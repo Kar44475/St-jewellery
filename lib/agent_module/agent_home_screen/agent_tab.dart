@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/Widgets/AgentNewBottomDrawer.dart';
-import 'package:stjewellery/agent_module/agent_home_screen/agenthomescreen.dart';
+import 'package:stjewellery/agent_module/agent_home_screen/agent_home_screen.dart';
 
 import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart'; // Add this import
 
