@@ -1,0 +1,214 @@
+{
+  "project_info": {
+    "project_number": "495829131386",
+    "project_id": "skygold-196d6",
+    "storage_bucket": "skygold-196d6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495829131386:android:d438bb9980e11350965bc3",
+        "android_client_info": {
+          "package_name": "com.stjewellery.stjewellery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495829131386-fkfdv8uphbm8dbmgf0vgl7jm43tjd3ij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stjewellery.stjewellery",
+            "certificate_hash": "69bd326c19fa87a2a14bbdaacd3fc28edb13d307"
+          }
+        },
+        {
+          "client_id": "495829131386-ji71pdakonrd6rcoj5ral1aem64v5dbq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stjewellery.stjewellery",
+            "certificate_hash": "f9a15f15e0864f4a7b8bac75c227c96311e57027"
+          }
+        },
+        {
+          "client_id": "495829131386-pc29db0247fergsl9isr31p39sjqe7ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stjewellery.stjewellery",
+            "certificate_hash": "d9ed0284835323c7e570b220d17cee3ea5b6637c"
+          }
+        },
+        {
+          "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7u_Eyhvh7djfflSEOvZf0Lv2swbi3Y4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495829131386-jcde62teirgrtdmf6j0fm21vjj8dclcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stjewellery.stjewellery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495829131386:android:315b8542582085ee965bc3",
+        "android_client_info": {
+          "package_name": "com.stjewellery.stjewelleryNew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7u_Eyhvh7djfflSEOvZf0Lv2swbi3Y4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495829131386-jcde62teirgrtdmf6j0fm21vjj8dclcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stjewellery.stjewellery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495829131386:android:0b7e10a4bbaeb4b2965bc3",
+        "android_client_info": {
+          "package_name": "com.stjewellery.stjewelleryanddiamonds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7u_Eyhvh7djfflSEOvZf0Lv2swbi3Y4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495829131386-jcde62teirgrtdmf6j0fm21vjj8dclcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stjewellery.stjewellery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495829131386:android:593b72ac0d10661c965bc3",
+        "android_client_info": {
+          "package_name": "com.stjewellery.stjewelleryschemeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7u_Eyhvh7djfflSEOvZf0Lv2swbi3Y4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495829131386-jcde62teirgrtdmf6j0fm21vjj8dclcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stjewellery.stjewellery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495829131386:android:6b49b2cbafd62393965bc3",
+        "android_client_info": {
+          "package_name": "com.skygold.schemeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7u_Eyhvh7djfflSEOvZf0Lv2swbi3Y4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495829131386-lrlein5pbvu7domgk2uh7iuh2nt4dvfe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495829131386-jcde62teirgrtdmf6j0fm21vjj8dclcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stjewellery.stjewellery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
