@@ -1,5 +1,5 @@
-import 'package:stjewellery/Util/Utils.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/wholewalletmodel.dart';
 
 import 'package:stjewellery/screens/Config/ApiConfig.dart';

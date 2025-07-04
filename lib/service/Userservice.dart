@@ -1,4 +1,4 @@
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Usermodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';

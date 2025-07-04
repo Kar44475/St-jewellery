@@ -4,9 +4,9 @@ import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stjewellery/AgentModule/homescreen/agentab.dart';
+import 'package:stjewellery/agent_module/homescreen/agentab.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Usermodel.dart';
 import 'package:stjewellery/screens/Login_OTP/OTP_Template.dart';
 import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
@@ -540,8 +540,8 @@ class _OtpPageState extends State<OtpPage> {
 
   /// Verifies the entered OTP against the generated OTP
   Future<void> _verifyEnteredOtp(String enteredOtpCode) async {
-    p("Entered OTP: $enteredOtpCode");
-    p("Expected OTP: $_currentOtpCode");
+    printDebug("Entered OTP: $enteredOtpCode");
+    printDebug("Expected OTP: $_currentOtpCode");
     
     if (_currentOtpCode.toString() == enteredOtpCode.toString()) {
       showSnackBar(context, "OTP Verified");

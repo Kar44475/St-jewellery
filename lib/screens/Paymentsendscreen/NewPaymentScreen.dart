@@ -6,12 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Bankdetailsmodel.dart';
 import 'package:stjewellery/model/userpaymodel.dart';
 import 'package:stjewellery/screens/Paymentsendscreen/newWidgetsPaymentPage.dart';
 import 'package:stjewellery/service/Paymentservice.dart';
-import 'package:stjewellery/service/bankdetailsservice.dart';
+import 'package:stjewellery/service/bank_details_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewPaymentScreen extends StatefulWidget {

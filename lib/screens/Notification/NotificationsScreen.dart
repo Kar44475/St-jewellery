@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Notificationmodel.dart';
 import 'package:stjewellery/service/notificationservice.dart';
 import 'package:intl/intl.dart';

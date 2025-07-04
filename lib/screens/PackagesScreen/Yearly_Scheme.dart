@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:stjewellery/AgentModule/homescreen/agentab.dart';
+import 'package:stjewellery/agent_module/homescreen/agentab.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/SchemeListModel.dart';
 import 'package:stjewellery/model/Schemeaddmodel.dart';
 import 'package:stjewellery/model/schemeAmountListmodel.dart';

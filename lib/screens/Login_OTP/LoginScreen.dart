@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:stjewellery/BottomNav/guest_login.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/screens/Login_OTP/OTP_Template.dart';
  import 'package:stjewellery/screens/Login_OTP/OtpScreen.dart';
 
@@ -257,22 +256,6 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   }
 
 
-  Widget _buildGuestLoginButton() {
-    return TextButton(
-          onPressed: () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const GuestLoginScreen()),
-          ),      child: const Text(
-        "Guest Login",
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
-          fontStyle: FontStyle.normal,
-        ),
-      ),
-    );
-  }
 
 
   Widget _buildGetOtpButton(BuildContext context) {
@@ -344,7 +327,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
 
   void _handleGetOtpPressed(BuildContext context) {
     final phoneNumber = _phoneNumberController.text.trim();
-    p(phoneNumber);
+    printDebug(phoneNumber);
     
     if (_validatePhoneNumber(phoneNumber)) {
       if (phoneNumber == _testPhoneNumber) {

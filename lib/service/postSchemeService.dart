@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:stjewellery/Util/Utils.dart';
+
 import 'package:stjewellery/model/Schemeaddmodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 
 class PostSchemeService {
   static Future<Schemeaddmodel> postService(Map data) async {

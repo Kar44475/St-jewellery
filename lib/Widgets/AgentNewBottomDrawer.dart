@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stjewellery/AgentModule/Agentprofile/agentprofile.dart';
-import 'package:stjewellery/AgentModule/Paymentdetails/Pendingpaymentdetials.dart';
-import 'package:stjewellery/BottomNav/new_home_screen.dart';
+import 'package:stjewellery/agent_module/AgentprofileView/agent_profile_view.dart';
+import 'package:stjewellery/agent_module/Paymentdetails/Pendingpaymentdetials.dart';
+import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/screens/Login_OTP/LoginScreen.dart';
 import 'package:stjewellery/service/logoutservice.dart';
 
@@ -52,7 +52,6 @@ void newAgentDrawer(context) async {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
           Container(
             margin: EdgeInsets.symmetric(vertical: 12),
             width: 40,
@@ -63,7 +62,6 @@ void newAgentDrawer(context) async {
             ),
           ),
 
-          // Header Section
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(20),
@@ -79,7 +77,6 @@ void newAgentDrawer(context) async {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                // Profile Avatar
                 Container(
                   width: 50,
                   height: 50,
@@ -90,7 +87,7 @@ void newAgentDrawer(context) async {
                   child: Icon(Icons.person, color: Colors.white, size: 24),
                 ),
                 SizedBox(width: 15),
-                // User Info
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +129,7 @@ void newAgentDrawer(context) async {
               children: [
                 _buildMenuItem(context, Icons.person_outline, "My Profile", () {
                   Navigator.pop(context);
-                  Navigate.push(context, Agentprofile());
+                  Navigate.push(context, AgentProfileView());
                 }),
                 SizedBox(height: 12),
                 _buildMenuItem(
@@ -421,17 +418,17 @@ void close(BuildContext context) async {
   try {
     Loading.show(context);
     await Logoutservice.logoutservice();
-    
+
     Loading.dismiss();
-    
+
     // Uncomment these lines if you need to clear SharedPreferences
     // SharedPreferences preferences = await SharedPreferences.getInstance();
     // await preferences.clear();
-    
+
     // Navigate to ModernHomeScreen and remove all previous routes
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => ModernHomeScreen()),
+      MaterialPageRoute(builder: (context) => JewelleryDetailsHomeScreen()),
       (route) => false, // This removes all previous routes
     );
   } catch (e) {
@@ -439,5 +436,4 @@ void close(BuildContext context) async {
     Loading.dismiss();
     print(e);
   }
-
 }

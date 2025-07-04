@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/screens/Login_OTP/OtpScreen.dart';
 
 // String cookie = "PHPSESSID=mfq5bi8d5h24c1t506m9m8r210";

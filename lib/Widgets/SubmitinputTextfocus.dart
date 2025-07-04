@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 
 class SubmitTextInputTextfocus extends StatelessWidget {
   const SubmitTextInputTextfocus({

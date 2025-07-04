@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/SchemeListModel.dart';
 import 'package:stjewellery/screens/PackagesScreen/PriceSelectTab.dart';
 import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';

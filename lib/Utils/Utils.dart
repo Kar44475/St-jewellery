@@ -25,16 +25,16 @@ class ScreenSize {
 
 class ColorUtil {
   /// Converts a color string in the format `#RRGGBB` to a `Color` object.
-  static Color fromHex(String hexColor) {
+  static Color fromHex(String hexColorString) {
     // Remove the '#' if present
-    final hex = hexColor.replaceAll('#', '');
+    final cleanHexString = hexColorString.replaceAll('#', '');
 
     // Ensure it's 6 characters long, then add the alpha value
-    if (hex.length == 6) {
-      return Color(int.parse('0xFF$hex'));
+    if (cleanHexString.length == 6) {
+      return Color(int.parse('0xFF$cleanHexString'));
     } else {
       throw ArgumentError(
-        'Invalid color format: $hexColor. Expected format: #RRGGBB',
+        'Invalid color format: $hexColorString. Expected format: #RRGGBB',
       );
     }
   }
@@ -42,9 +42,9 @@ class ColorUtil {
 
 //------------Buttons---------------------
 
-Widget  bttn(String txt, GestureTapCallback tapp) {
+Widget primaryButton(String buttonText, GestureTapCallback onTapCallback) {
   return GestureDetector(
-    onTap: tapp,
+    onTap: onTapCallback,
     child: Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -52,30 +52,30 @@ Widget  bttn(String txt, GestureTapCallback tapp) {
         borderRadius: BorderRadius.circular(8),
         color: ColorUtil.fromHex("#FF0F0F"),
       ),
-      child: Text(txt, style: font(16, Colors.white, FontWeight.w600)),
+      child: Text(buttonText, style: font(16, Colors.white, FontWeight.w600)),
     ),
   );
 }
 
-Widget bttn2(String txt, GestureTapCallback tapp) {
+Widget secondaryButton(String buttonText, GestureTapCallback onTapCallback) {
   return GestureDetector(
-    onTap: tapp,
+    onTap: onTapCallback,
     child: Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.red
+        color: const Color.fromRGBO(144, 48, 54, 1)
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 15),
-        child: Text(txt, style: font(16, Colors.white, FontWeight.w600)),
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: Text(buttonText, style: font(16, Colors.white, FontWeight.w600)),
       ),
     ),
   );
 }
 
-Widget loadBttn() {
+Widget loadingButton() {
   return Container(
     alignment: Alignment.center,
     margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -91,9 +91,9 @@ Widget loadBttn() {
   );
 }
 
-Widget payBttn(GestureTapCallback tapp) {
+Widget paymentButton(GestureTapCallback onTapCallback) {
   return GestureDetector(
-    onTap: tapp,
+    onTap: onTapCallback,
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
@@ -107,30 +107,30 @@ Widget payBttn(GestureTapCallback tapp) {
   );
 }
 
-Widget heading(String txt) {
+Widget sectionHeading(String headingText) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-    child: Text(txt, style: font(16, Colors.black, FontWeight.w600)),
+    child: Text(headingText, style: font(16, Colors.black, FontWeight.w600)),
   );
 }
 
-saveObject(String key, value) async {
+saveObject(String storageKey, dynamic objectValue) async {
   try {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, json.encode(value));
-  } catch (e) {
-    throw e;
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(storageKey, json.encode(objectValue));
+  } catch (error) {
+    throw error;
   }
 }
 
-getSavedObject(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  var data = prefs.getString(key);
-  return data != null ? json.decode(prefs.getString(key)!) : null;
+getSavedObject(String storageKey) async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+  var savedData = sharedPreferences.getString(storageKey);
+  return savedData != null ? json.decode(sharedPreferences.getString(storageKey)!) : null;
 }
 
-p(String txt) {
-  return print(txt);
+printDebug(String debugText) {
+  return print(debugText);
 }
 
 void showSnackBar(BuildContext context, String message) {
@@ -140,17 +140,17 @@ void showSnackBar(BuildContext context, String message) {
 }
 
 class Loading {
-  static BuildContext? _dialogContext;
+  static BuildContext? _currentDialogContext;
 
   /// Show a loading dialog if it's not already shown
   static void show(BuildContext context) {
-    if (_dialogContext != null) return; // Prevent multiple dialogs
+    if (_currentDialogContext != null) return; // Prevent multiple dialogs
 
     showDialog(
       context: context,
       barrierDismissible: false, // Prevent dismissal by tapping outside
       builder: (dialogContext) {
-        _dialogContext = dialogContext;
+        _currentDialogContext = dialogContext;
         return WillPopScope(
           onWillPop: () async => false, // Disable back button
           child: Center(
@@ -168,68 +168,68 @@ class Loading {
       },
     ).then((_) {
       // Reset context when the dialog is dismissed externally
-      _dialogContext = null;
+      _currentDialogContext = null;
     });
   }
 
   /// Dismiss the loading dialog if it's currently shown
   static void dismiss() {
-    if (_dialogContext == null) {
-      debugPrint("Dismiss called but _dialogContext is already null.");
+    if (_currentDialogContext == null) {
+      debugPrint("Dismiss called but _currentDialogContext is already null.");
       return;
     }
 
     Future.microtask(() {
-      if (_dialogContext?.mounted ??
-          false && Navigator.canPop(_dialogContext!)) {
+      if (_currentDialogContext?.mounted ??
+          false && Navigator.canPop(_currentDialogContext!)) {
         debugPrint("Dismissing loading dialog.");
-        Navigator.of(_dialogContext!).pop();
+        Navigator.of(_currentDialogContext!).pop();
       } else {
         debugPrint("Navigator cannot pop the loading dialog.");
       }
-      _dialogContext = null;
+      _currentDialogContext = null;
     });
   }
 }
 
-class Colorsapps {
-  static String buttonTextcolor = "#ffffff";
-  static String buttonColor = "#FFF284";
+class AppColors {
+  static String buttonTextColor = "#ffffff";
+  static String primaryButtonColor = "#FFF284";
 }
 
-savename(String key, value) async {
+saveUserName(String storageKey, dynamic nameValue) async {
   try {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, json.encode(value));
-  } catch (e) {
-    throw e;
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(storageKey, json.encode(nameValue));
+  } catch (error) {
+    throw error;
   }
 }
 
 bool get isInDebugMode {
-  bool inDebugMode = false;
-  assert(inDebugMode = true);
-  return inDebugMode;
+  bool debugModeFlag = false;
+  assert(debugModeFlag = true);
+  return debugModeFlag;
 }
 
-showErrorMessage(error) {
+showErrorMessage(dynamic errorObject) {
   if (isInDebugMode) {
     if (kDebugMode) {
-      print("Error is :$error");
+      print("Error is :$errorObject");
     }
   }
-  if (!error.toString().contains("setState()")) {
-    if (error is DioError) {
-      DioError e = error;
-      var message = e.response!.data["message"];
-      if (message == null) {
-        message = e.response!.data["message"];
-        message ??= "Oops Something went wrong try again !!";
+  if (!errorObject.toString().contains("setState()")) {
+    if (errorObject is DioError) {
+      DioError dioErrorObject = errorObject;
+      var errorMessage = dioErrorObject.response!.data["message"];
+      if (errorMessage == null) {
+        errorMessage = dioErrorObject.response!.data["message"];
+        errorMessage ??= "Oops Something went wrong try again !!";
       } else {
-        message = e.response!.data["message"];
+        errorMessage = dioErrorObject.response!.data["message"];
       }
       Fluttertoast.showToast(
-        msg: message.toString(),
+        msg: errorMessage.toString(),
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -239,7 +239,7 @@ showErrorMessage(error) {
       );
     } else {
       Fluttertoast.showToast(
-        msg: error.toString() ?? "Oops Something went wrong try again !!",
+        msg: errorObject.toString() ?? "Oops Something went wrong try again !!",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -251,9 +251,9 @@ showErrorMessage(error) {
   }
 }
 
-showToastCenter(String message) {
+showToastCenter(String toastMessage) {
   Fluttertoast.showToast(
-    msg: message,
+    msg: toastMessage,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.CENTER,
     timeInSecForIosWeb: 1,
@@ -263,9 +263,9 @@ showToastCenter(String message) {
   );
 }
 
-showToast(String message) {
+showToast(String toastMessage) {
   Fluttertoast.showToast(
-    msg: message,
+    msg: toastMessage,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
@@ -276,37 +276,37 @@ showToast(String message) {
 }
 
 class Navigate {
-  static PageRoute _getPageRoute(Widget page) {
+  static PageRoute _getPageRoute(Widget destinationPage) {
     return Platform.isIOS
-        ? CupertinoPageRoute(builder: (context) => page)
-        : MaterialPageRoute(builder: (context) => page);
+        ? CupertinoPageRoute(builder: (context) => destinationPage)
+        : MaterialPageRoute(builder: (context) => destinationPage);
   }
 
-  static void push(BuildContext context, Widget page) {
-    Navigator.push(context, _getPageRoute(page));
+  static void push(BuildContext context, Widget destinationPage) {
+    Navigator.push(context, _getPageRoute(destinationPage));
   }
 
-  static void pushReplacement(BuildContext context, Widget page) {
-    Navigator.pushReplacement(context, _getPageRoute(page));
+  static void pushReplacement(BuildContext context, Widget destinationPage) {
+    Navigator.pushReplacement(context, _getPageRoute(destinationPage));
   }
 
   static void pushAndRemoveUntil(
     BuildContext context,
-    Widget page, {
+    Widget destinationPage, {
     bool Function(Route<dynamic>)? removeUntilCondition,
   }) {
     Navigator.pushAndRemoveUntil(
       context,
-      _getPageRoute(page),
+      _getPageRoute(destinationPage),
       removeUntilCondition ?? (route) => false, // Default: Remove all routes
     );
   }
 
   static void pushWithCallback(
     BuildContext context,
-    Widget page,
-    Future<void> Function() onReturn, // Allow async callbacks
+    Widget destinationPage,
+    Future<void> Function() onReturnCallback, // Allow async callbacks
   ) {
-    Navigator.push(context, _getPageRoute(page)).then((value) => onReturn());
+    Navigator.push(context, _getPageRoute(destinationPage)).then((value) => onReturnCallback());
   }
 }

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UpdateScreen extends StatefulWidget {
@@ -43,7 +43,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   style: font(14, Colors.black, FontWeight.w600),
                 ),
                 h(20),
-                bttn2("Update Now", () {
+                secondaryButton("Update Now", () {
                   if (Platform.isAndroid) {
                     launchUrl(Uri.parse(androidLink));
                   } else if (Platform.isIOS) {

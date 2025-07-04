@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:stjewellery/BottomNav/scheme_screen.dart';
+import 'package:stjewellery/screens/main_screens/scheme_screen.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/Utils.dart';
+import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Sheduledmodel.dart';
 import 'package:stjewellery/screens/Recepit/Recepit.dart';
 import 'package:stjewellery/screens/Scheme_View/Status_Widget.dart';
