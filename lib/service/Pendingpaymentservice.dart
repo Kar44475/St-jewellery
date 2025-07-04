@@ -1,4 +1,4 @@
-import 'package:stjewellery/model/Agentpendingmodel.dart';
+import 'package:stjewellery/model/agent_pending_model.dart';
 import 'package:stjewellery/model/SchemeListModel.dart';
 import 'package:stjewellery/model/schemeAmountListmodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';

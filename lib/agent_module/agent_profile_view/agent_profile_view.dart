@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/Widgets/SubmitinputText.dart';
 import 'package:stjewellery/Widgets/SubmitinputTextfocus.dart';
-import 'package:stjewellery/model/agentprofileviewmodel.dart';
+import 'package:stjewellery/model/agent_profile_view_model.dart';
 import 'package:stjewellery/service/profileeditservice.dart';
 
 class AgentProfileView extends StatefulWidget {

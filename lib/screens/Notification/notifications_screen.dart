@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Notificationmodel.dart';
 import 'package:stjewellery/service/notificationservice.dart';
 import 'package:intl/intl.dart';
-import 'package:icons_plus/icons_plus.dart';
+
 
 class Notificationsscreen extends StatefulWidget {
   const Notificationsscreen({Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // Mark all as read functionality
+          
             },
             icon: Icon(Icons.done_all, color: Colors.white),
           ),
@@ -60,7 +59,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
           : data!.data.notification.isNotEmpty
               ? Column(
                   children: [
-                    // Header Section
+               
                     Container(
                       width: double.infinity,
                       margin: EdgeInsets.all(16),
@@ -111,7 +110,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                       ),
                     ),
                     
-                    // Notifications List
+             
                     Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -149,7 +148,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Notification Icon
+       
             Container(
               width: 40,
               height: 40,
@@ -166,12 +165,12 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
             
             SizedBox(width: 12),
             
-            // Notification Content
+          
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title and Time Row
+           
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -206,7 +205,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                   
                   SizedBox(height: 8),
                   
-                  // Description
+           
                   Text(
                     notification.description,
                     style: TextStyle(
@@ -218,8 +217,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                   ),
                   
                   SizedBox(height: 12),
-                  
-                  // Bottom Row with Date and Status
+          
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -244,7 +242,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                         ],
                       ),
                       
-                      // Unread indicator (you can add logic to show/hide based on read status)
+                   
                       Container(
                         width: 8,
                         height: 8,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/schemeAmountListmodel.dart';
-import 'package:stjewellery/screens/PackagesScreen/FixedPriceTab.dart';
-import 'package:stjewellery/screens/PackagesScreen/VariablepriceAmount.dart';
+import 'package:stjewellery/screens/PackagesScreen/fixed_price_tab.dart';
+import 'package:stjewellery/screens/PackagesScreen/variable_price_amount.dart';
 import 'package:stjewellery/service/Schemelistservice.dart';
 
 class PriceSelectTab extends StatefulWidget {

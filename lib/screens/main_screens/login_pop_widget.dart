@@ -1,18 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:stjewellery/agent_module/homescreen/agentab.dart';
-import 'package:stjewellery/screens/main_screens/bottom_navigation.dart';
+import 'package:stjewellery/agent_module/agent_home_screen/agent_tab.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/model/Usermodel.dart';
- import 'package:stjewellery/screens/Login_OTP/OTP_Template.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
+import 'package:stjewellery/model/user_model.dart';
+import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
 import 'package:stjewellery/screens/Registration/RegisterPage.dart';
 import 'package:stjewellery/screens/Update/UpdateScreen.dart';
 import 'package:stjewellery/service/dashboard_service.dart';
@@ -22,11 +21,8 @@ class LoginPopupWidget extends StatefulWidget {
   final VoidCallback? onLoginSuccess;
   final String? redirectMessage;
 
-  const LoginPopupWidget({
-    Key? key,
-    this.onLoginSuccess,
-    this.redirectMessage,
-  }) : super(key: key);
+  const LoginPopupWidget({Key? key, this.onLoginSuccess, this.redirectMessage})
+    : super(key: key);
 
   @override
   State<LoginPopupWidget> createState() => _LoginPopupWidgetState();
@@ -34,24 +30,26 @@ class LoginPopupWidget extends StatefulWidget {
 
 class _LoginPopupWidgetState extends State<LoginPopupWidget>
     with TickerProviderStateMixin {
-  
-
   late AnimationController _fadeController;
   late AnimationController _slideController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
 
-
   PageController _pageController = PageController();
   int _currentPage = 0;
-
 
   final TextEditingController _phoneNumberController = TextEditingController();
   bool _isLoadingOtp = false;
   int? _generatedOtpNumber;
 
-  final List<TextEditingController> _otpInputControllers = List.generate(6, (index) => TextEditingController());
-  final List<FocusNode> _otpFocusNodes = List.generate(6, (index) => FocusNode());
+  final List<TextEditingController> _otpInputControllers = List.generate(
+    6,
+    (index) => TextEditingController(),
+  );
+  final List<FocusNode> _otpFocusNodes = List.generate(
+    6,
+    (index) => FocusNode(),
+  );
   static const int _countdownStartTime = 30;
   int _remainingCountdownTime = _countdownStartTime;
   Timer? _countdownTimer;
@@ -61,7 +59,6 @@ class _LoginPopupWidgetState extends State<LoginPopupWidget>
   String? _userMobileNumber;
   String? _currentOtpCode;
   int? _generatedRandomOtp;
-
 
   static const String _debugMobileNumber = "+919562044475";
   static const int _otpLength = 6;
@@ -90,60 +87,48 @@ class _LoginPopupWidgetState extends State<LoginPopupWidget>
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _fadeController, curve: Curves.easeInOut),
     );
-    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero).animate(
-      CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
-    );
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
 
     _fadeController.forward();
     _slideController.forward();
   }
 
+  Future<void> _checkExistingLogin() async {
+    try {
+      await _checkForUpdates();
 
-Future<void> _checkExistingLogin() async {
-  try {
+      final role = await getSavedObject("roleid");
+      final subscription = await getSavedObject("subscription");
+      final token = await getSavedObject('token');
 
-    await _checkForUpdates();
-    
+      print(
+        "Existing login check - Role: $role, Subscription: $subscription, Token: $token",
+      );
 
-    final role = await getSavedObject("roleid");
-    final subscription = await getSavedObject("subscription");
-    final token = await getSavedObject('token');
-    
-    print("Existing login check - Role: $role, Subscription: $subscription, Token: $token");
+      if (role != null && token != null) {
+        Navigator.of(context).pop();
 
-    if (role != null && token != null) {
-
-      Navigator.of(context).pop();
-      
-
-      if (role == 2 || role == 4) {
-        if (subscription != null) {
-
-          Navigate.pushAndRemoveUntil(
-            context, 
-            TopNavigation(
-              sourceScreen: 'login_popup',
-              initialTab: 0,
-            )
-          );
-        } else {
-
-          Navigate.pushAndRemoveUntil(context, SelectScheme());
+        if (role == 2 || role == 4) {
+          if (subscription != null) {
+            Navigate.pushAndRemoveUntil(
+              context,
+              TopNavigation(sourceScreen: 'login_popup', initialTab: 0),
+            );
+          } else {
+            Navigate.pushAndRemoveUntil(context, SelectScheme());
+          }
+        } else if (role == 3) {
+          Navigate.push(context, AgentTab());
         }
-      } else if (role == 3) {
-        Navigate.push(context, Agentab());
+        return;
       }
-      return;
+    } catch (e) {
+      print("Error checking existing login: $e");
     }
-
-
-  } catch (e) {
-    print("Error checking existing login: $e");
-
   }
-}
-
-
 
   Future<void> _checkForUpdates() async {
     try {
@@ -230,10 +215,7 @@ Future<void> _checkExistingLogin() async {
                         _currentPage = index;
                       });
                     },
-                    children: [
-                      _buildLoginScreen(),
-                      _buildOtpScreen(),
-                    ],
+                    children: [_buildLoginScreen(), _buildOtpScreen()],
                   ),
                 ),
               ],
@@ -269,11 +251,7 @@ Future<void> _checkExistingLogin() async {
           Expanded(
             child: Column(
               children: [
-                Image.asset(
-                  "assets/pngIcons/mainIcons.png",
-                  height: 40,
-                
-                ),
+                Image.asset("assets/pngIcons/mainIcons.png", height: 40),
                 SizedBox(height: 8),
                 Text(
                   _currentPage == 0 ? 'Login to Continue' : 'Verify OTP',
@@ -303,7 +281,6 @@ Future<void> _checkExistingLogin() async {
     );
   }
 
-
   Widget _buildLoginScreen() {
     return Padding(
       padding: EdgeInsets.all(24),
@@ -330,7 +307,6 @@ Future<void> _checkExistingLogin() async {
             ),
           ),
           SizedBox(height: 24),
-          
 
           IntlPhoneField(
             initialCountryCode: "IN",
@@ -345,14 +321,16 @@ Future<void> _checkExistingLogin() async {
               filled: true,
               fillColor: Color.fromRGBO(255, 203, 3, 0.15),
               counterText: "",
-              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
             ),
             languageCode: "en",
             onChanged: (phone) => print(phone.completeNumber),
           ),
-          
+
           SizedBox(height: 24),
-          
 
           SizedBox(
             width: double.infinity,
@@ -386,7 +364,6 @@ Future<void> _checkExistingLogin() async {
     );
   }
 
-
   Widget _buildOtpScreen() {
     return Padding(
       padding: EdgeInsets.all(24),
@@ -413,14 +390,18 @@ Future<void> _checkExistingLogin() async {
                 height: 1.5,
               ),
               children: [
-                TextSpan(text: "A 6-digit OTP has been sent to your registered mobile "),
+                TextSpan(
+                  text:
+                      "A 6-digit OTP has been sent to your registered mobile ",
+                ),
                 TextSpan(text: "\nnumber +91${_phoneNumberController.text}\n"),
-                TextSpan(text: "please enter the OTP below to verify your identity"),
+                TextSpan(
+                  text: "please enter the OTP below to verify your identity",
+                ),
               ],
             ),
           ),
           SizedBox(height: 24),
-          
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -428,9 +409,8 @@ Future<void> _checkExistingLogin() async {
               return _buildSingleOtpField(index);
             }),
           ),
-          
+
           SizedBox(height: 20),
-          
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -450,10 +430,7 @@ Future<void> _checkExistingLogin() async {
               else ...[
                 Text(
                   "Resend Code in ",
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                 ),
                 Text(
                   "00:${_remainingCountdownTime.toString().padLeft(2, '0')}",
@@ -466,10 +443,9 @@ Future<void> _checkExistingLogin() async {
               ],
             ],
           ),
-          
+
           SizedBox(height: 24),
-          
-     
+
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -516,18 +492,13 @@ Future<void> _checkExistingLogin() async {
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         maxLength: 1,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         decoration: InputDecoration(
           counterText: "",
           border: InputBorder.none,
           contentPadding: EdgeInsets.zero,
         ),
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-        ],
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         onChanged: (value) => _handleOtpFieldChange(value, index),
       ),
     );
@@ -540,11 +511,10 @@ Future<void> _checkExistingLogin() async {
     );
   }
 
-
   void _handleGetOtpPressed() {
     final phoneNumber = _phoneNumberController.text.trim();
     printDebug(phoneNumber);
-    
+
     if (_validatePhoneNumber(phoneNumber)) {
       setState(() {
         _isLoadingOtp = true;
@@ -561,7 +531,7 @@ Future<void> _checkExistingLogin() async {
   bool _validatePhoneNumber(String phoneNumber) {
     const String phonePattern = r'(^(?:[+0]9)?[0-9]{6,12}$)';
     final RegExp regExp = RegExp(phonePattern);
-    
+
     if (phoneNumber.isEmpty) {
       showToast('Please enter mobile number');
       return false;
@@ -583,7 +553,7 @@ Future<void> _checkExistingLogin() async {
 
   void _sendOtpToUser(String phoneNumber) {
     _generateRandomOtp();
-    sendOtp(context, phoneNumber, _generatedOtpNumber.toString(),false);
+    sendOtp(context, phoneNumber, _generatedOtpNumber.toString(), false);
     setState(() {
       _isLoadingOtp = false;
       _currentOtpCode = _generatedOtpNumber.toString();
@@ -605,7 +575,6 @@ Future<void> _checkExistingLogin() async {
     );
     _startOtpCountdown();
   }
-
 
   void _handleOtpFieldChange(String value, int index) {
     if (value.isNotEmpty) {
@@ -675,21 +644,27 @@ Future<void> _checkExistingLogin() async {
     });
   }
 
-
   int _generateNewRandomOtp() {
     final Random random = Random();
     _generatedRandomOtp = random.nextInt(900000) + 100000;
     setState(() {
       _currentOtpCode = _generatedRandomOtp.toString();
     });
-    _resendOtpToUser(context, _phoneNumberController.text, _generatedRandomOtp.toString());
+    _resendOtpToUser(
+      context,
+      _phoneNumberController.text,
+      _generatedRandomOtp.toString(),
+    );
     return _generatedRandomOtp!;
   }
 
-  void _resendOtpToUser(BuildContext context, String mobileNumber, String otpCode) {
+  void _resendOtpToUser(
+    BuildContext context,
+    String mobileNumber,
+    String otpCode,
+  ) {
     resendOtp(context, mobileNumber, otpCode);
   }
-
 
   Future<void> _getFirebaseMessagingToken() async {
     try {
@@ -701,14 +676,13 @@ Future<void> _checkExistingLogin() async {
     }
   }
 
-
   Future<void> _handleSpecialUserLogin() async {
     try {
       await _getFirebaseMessagingToken();
     } catch (e) {
       print("Error getting Firebase token: $e");
     }
-    
+
     print("mobile : $_userMobileNumber");
     if (_userMobileNumber.toString() == _debugMobileNumber) {
       await _fetchAndProcessUserDetails();
@@ -717,11 +691,10 @@ Future<void> _checkExistingLogin() async {
     }
   }
 
-
   Future<void> _verifyEnteredOtp(String enteredOtpCode) async {
     printDebug("Entered OTP: $enteredOtpCode");
     printDebug("Expected OTP: $_currentOtpCode");
-    
+
     if (_currentOtpCode.toString() == enteredOtpCode.toString()) {
       showSnackBar(context, "OTP Verified");
       setState(() {
@@ -743,69 +716,61 @@ Future<void> _checkExistingLogin() async {
     }
   }
 
+  Future<void> _fetchAndProcessUserDetails() async {
+    print("Processing user login");
+    try {
+      Map<String, dynamic> loginData = {
+        "phone": _userMobileNumber,
+        "FcmToken": _firebaseToken,
+      };
+      print(_firebaseToken);
 
+      Usermodel? userData = await UserService.login(loginData);
+      print("User login status: ${userData!.data!.islogin}");
 
-Future<void> _fetchAndProcessUserDetails() async {
-  print("Processing user login");
-  try {
-    Map<String, dynamic> loginData = {
-      "phone": _userMobileNumber,
-      "FcmToken": _firebaseToken
-    };
-    print(_firebaseToken);
-    
-    Usermodel? userData = await UserService.login(loginData);
-    print("User login status: ${userData!.data!.islogin}");
+      if (userData.data!.islogin!) {
+        Navigator.of(context).pop();
 
-    if (userData.data!.islogin!) {
-
-      Navigator.of(context).pop();
-      
-
-      if (userData.data!.roleId == _agentRoleId) {
-        Navigate.push(context, Agentab());
-      } else {
-
-        if (userData.data!.subscriptionList!.isEmpty) {
-
-          Navigate.pushReplacement(context, SelectScheme());
+        if (userData.data!.roleId == _agentRoleId) {
+          Navigate.push(context, AgentTab());
         } else {
+          if (userData.data!.subscriptionList!.isEmpty) {
+            Navigate.pushReplacement(context, SelectScheme());
+          } else {
+            await saveObject(
+              "subscription",
+              userData.data!.subscriptionList![0].id,
+            );
+            await saveObject(
+              "schemeAmountId",
+              userData.data!.subscriptionList![0].schemeAmountId,
+            );
 
-          await saveObject("subscription", userData.data!.subscriptionList![0].id);
-          await saveObject("schemeAmountId", userData.data!.subscriptionList![0].schemeAmountId);
-          
-
-          Navigate.pushReplacement(
-            context, 
-            TopNavigation(
-              sourceScreen: 'login_popup',
-              initialTab: 0, 
-            )
-          );
+            Navigate.pushReplacement(
+              context,
+              TopNavigation(sourceScreen: 'login_popup', initialTab: 0),
+            );
+          }
         }
-      }
-      
 
-      if (widget.onLoginSuccess != null) {
-        widget.onLoginSuccess!();
+        if (widget.onLoginSuccess != null) {
+          widget.onLoginSuccess!();
+        }
+      } else {
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Registration(phone: _userMobileNumber),
+          ),
+        );
       }
-    } else {
-
-      Navigator.of(context).pop();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Registration(phone: _userMobileNumber),
-        ),
-      );
+    } catch (e) {
+      print("Error in user authentication: $e");
+      setState(() {
+        _isVerifyButtonPressed = false;
+      });
+      showToast("Login failed. Please try again.");
     }
-  } catch (e) {
-    print("Error in user authentication: $e");
-    setState(() {
-      _isVerifyButtonPressed = false;
-    });
-    showToast("Login failed. Please try again.");
   }
-}
-
 }

@@ -5,7 +5,7 @@ import 'package:stjewellery/screens/main_screens/Jewellery_tab.dart';
 import 'package:stjewellery/screens/main_screens/contact.dart';
 import 'package:stjewellery/screens/main_screens/gold_scheme.dart';
 import 'package:stjewellery/screens/main_screens/stores.dart';
-import 'package:stjewellery/screens/Notification/NotificationsScreen.dart';
+import 'package:stjewellery/screens/Notification/notifications_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';

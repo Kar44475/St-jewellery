@@ -11,7 +11,7 @@ import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/Widgets/exitwidget.dart';
 import 'package:stjewellery/model/profileeditmodel.dart';
 import 'package:stjewellery/model/profileeditpostmodel.dart';
-import 'package:stjewellery/screens/Notification/NotificationsScreen.dart';
+import 'package:stjewellery/screens/Notification/notifications_screen.dart';
 import 'package:stjewellery/service/profileeditservice.dart';
 
 class ProfileScreen extends StatefulWidget {

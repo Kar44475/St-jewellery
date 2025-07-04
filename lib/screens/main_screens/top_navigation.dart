@@ -7,7 +7,7 @@ import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.d
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/drawer/drawer.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/screens/Notification/NotificationsScreen.dart';
+import 'package:stjewellery/screens/Notification/notifications_screen.dart';
 
 class TopNavigation extends StatefulWidget {
   final int? initialTab;

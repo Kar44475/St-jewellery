@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stjewellery/Constant/constants.dart';
+import 'package:stjewellery/agent_module/agent_home_screen/agent_tab.dart';
+
 import 'package:stjewellery/drawer/contact_us.dart';
-import 'package:stjewellery/drawer/management_screen.dart';
+
 import 'package:stjewellery/drawer/privacy_policy.dart';
 import 'package:stjewellery/drawer/refer_and_earn.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/Widgets/exitwidget.dart';
-import 'package:stjewellery/screens/Login_OTP/LoginScreen.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
-import 'package:stjewellery/agent_module/homescreen/agentab.dart'; // Add this import
-import 'package:url_launcher/url_launcher.dart';
+import 'package:stjewellery/screens/Login_OTP/login_screen.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
 
 class DrawerWidget extends StatefulWidget {
-  const DrawerWidget({Key? key}) : super(key: key);
+  const DrawerWidget({super.key});
 
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
@@ -25,22 +24,25 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   String ss = "";
   bool isLoggedIn = false;
   bool isLoading = true;
-  bool isAgent = false; // Add this to track if user is an agent
-  
+  bool isAgent = false;
+
   getUser() async {
     try {
       var _user = await getSavedObject("name");
       var _ss = await getSavedObject("Email");
       var token = await getSavedObject("token");
       var userId = await getSavedObject("userid");
-      var referalId = await getSavedObject("referalId"); // Check for agent referral ID
+      var referalId = await getSavedObject(
+        "referalId",
+      ); // Check for agent referral ID
 
       setState(() {
         user = _user ?? "";
         ss = _ss ?? "";
         // Check if user is logged in by checking for token or userid
-        isLoggedIn = (token != null && token.toString().isNotEmpty) || 
-                    (userId != null && userId.toString().isNotEmpty);
+        isLoggedIn =
+            (token != null && token.toString().isNotEmpty) ||
+            (userId != null && userId.toString().isNotEmpty);
         // Check if user is an agent by checking for referral ID
         isAgent = referalId != null && referalId.toString().isNotEmpty;
         isLoading = false;
@@ -82,19 +84,16 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          // Header Section - Different content based on login status
           _buildHeaderSection(),
-          
+
           SizedBox(height: 20),
-          
-          // Menu Items - Conditional based on login status and agent status
+
           _buildMenuItems(),
-          
+
           SizedBox(height: 30),
-          
-          // Login/Logout Section
+
           _buildActionSection(),
-          
+
           SizedBox(height: 20),
         ],
       ),
@@ -138,9 +137,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isLoggedIn 
-                      ? (user.isNotEmpty ? user : "User")
-                      : "Guest User",
+                  isLoggedIn ? (user.isNotEmpty ? user : "User") : "Guest User",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -151,10 +148,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  isLoggedIn 
-                      ? (isAgent 
-                          ? "Agent Account" 
-                          : (ss.isNotEmpty ? ss : "Welcome back!"))
+                  isLoggedIn
+                      ? (isAgent
+                            ? "Agent Account"
+                            : (ss.isNotEmpty ? ss : "Welcome back!"))
                       : "Login to access all features",
                   style: TextStyle(
                     fontSize: 12,
@@ -177,95 +174,66 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
     // Always available items
     menuItems.addAll([
-      _buildMenuItem(
-        Icons.privacy_tip_outlined,
-        "Privacy & Terms",
-        () {
-          Navigator.pop(context);
-          Navigate.push(context, PrivacyPolicy());
-        },
-      ),
-      _buildMenuItem(
-        Icons.support_agent,
-        "Help & Support",
-        () {
-          Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ContactUs()),
-          );
-        },
-      ),
+      _buildMenuItem(Icons.privacy_tip_outlined, "Privacy & Terms", () {
+        Navigator.pop(context);
+        Navigate.push(context, PrivacyPolicy());
+      }),
+      _buildMenuItem(Icons.support_agent, "Help & Support", () {
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ContactUs()),
+        );
+      }),
     ]);
 
-    // Agent-specific menu item
+ 
     if (isLoggedIn && isAgent) {
-      menuItems.insert(0, _buildMenuItem(
-        Icons.dashboard,
-        "Agent Dashboard",
-        () {
+      menuItems.insert(
+        0,
+        _buildMenuItem(Icons.dashboard, "Agent Dashboard", () {
           Navigator.pop(context);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Agentab()),
+            MaterialPageRoute(builder: (context) => AgentTab()),
           );
-        },
-      ));
+        }),
+      );
     }
 
-    // Login-only items - Hide "Switch Plan" and "Invite & Earn" for agents
+
     if (isLoggedIn && !isAgent) {
       menuItems.insertAll(0, [
-        _buildMenuItem(
-          Icons.calendar_today,
-          "Switch Plan",
-          () {
-            Navigator.pop(context);
-            Navigate.pushReplacement(context, SelectScheme());
-          },
-        ),
-        _buildMenuItem(
-          Icons.person_add_alt_1_outlined,
-          "Invite & Earn",
-          () {
-            Navigator.pop(context);
-            Navigate.push(context, ReferAndEarn());
-          },
-        ),
+        _buildMenuItem(Icons.calendar_today, "Switch Plan", () {
+          Navigator.pop(context);
+          Navigate.pushReplacement(context, SelectScheme());
+        }),
+        _buildMenuItem(Icons.person_add_alt_1_outlined, "Invite & Earn", () {
+          Navigator.pop(context);
+          Navigate.push(context, ReferAndEarn());
+        }),
       ]);
     }
 
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: menuItems,
-    );
+    return Wrap(spacing: 10, runSpacing: 10, children: menuItems);
   }
 
   Widget _buildActionSection() {
     if (isLoggedIn) {
-      // Show logout for logged-in users
-      return _buildLogoutItem(
-        Icons.power_settings_new,
-        "Log Out",
-        () {
-          Navigator.pop(context);
-          exitApp(context);
-        },
-      );
+   
+      return _buildLogoutItem(Icons.power_settings_new, "Log Out", () {
+        Navigator.pop(context);
+        exitApp(context);
+      });
     } else {
-      // Show login for guest users
-      return _buildLoginItem(
-        Icons.login,
-        "Log In",
-        () {
-          Navigator.pop(context);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
-          );
-        },
-      );
+   
+      return _buildLoginItem(Icons.login, "Log In", () {
+        Navigator.pop(context);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+      });
     }
   }
 
@@ -330,10 +298,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         decoration: BoxDecoration(
           color: Colors.red.withOpacity(0.05),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: Colors.red.withOpacity(0.2),
-            width: 1,
-          ),
+          border: Border.all(color: Colors.red.withOpacity(0.2), width: 1),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -345,11 +310,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 color: Colors.red.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
-                icon,
-                color: Colors.red,
-                size: 18,
-              ),
+              child: Icon(icon, color: Colors.red, size: 18),
             ),
             SizedBox(width: 12),
             Text(

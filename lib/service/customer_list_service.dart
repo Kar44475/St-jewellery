@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Nextpaymentcustomerlistmodel.dart';
-import 'package:stjewellery/model/agentlistmodel.dart';
+import 'package:stjewellery/model/agent_list_model.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
 

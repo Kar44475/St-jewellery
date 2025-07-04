@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stjewellery/agent_module/homescreen/agenthomescreen.dart';
+
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/Widgets/AgentNewBottomDrawer.dart';
+import 'package:stjewellery/agent_module/agent_home_screen/agenthomescreen.dart';
+
 import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart'; // Add this import
 
-class Agentab extends StatefulWidget {
+class AgentTab extends StatefulWidget {
   @override
-  _AgentabState createState() => _AgentabState();
+  _AgentTabState createState() => _AgentTabState();
 }
 
-class _AgentabState extends State<Agentab> {
+class _AgentTabState extends State<AgentTab> {
   String agentid = "";
   getAgent() async {
     String s = await getSavedObject("referalId");
@@ -32,28 +34,24 @@ class _AgentabState extends State<Agentab> {
     });
   }
 
-  // Function to handle back navigation
   void _handleBackNavigation() {
-    // Set the selected tab index to 3 (Gold Booking)
     JewelleryDetailsHomeScreenState.selectedTabIndex = 3;
 
-    // Navigate to ModernHomeScreen and remove all previous routes
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => const JewelleryDetailsHomeScreen(),
       ),
-      (route) => false, // This removes all previous routes
+      (route) => false,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false, // Prevent default back behavior
+      canPop: false,
       onPopInvoked: (didPop) {
         if (!didPop) {
-          // Handle back navigation
           _handleBackNavigation();
         }
       },
@@ -70,7 +68,6 @@ class _AgentabState extends State<Agentab> {
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: Colors.black),
                       onPressed: () {
-                        // Handle app bar back button press
                         _handleBackNavigation();
                       },
                     ),
@@ -169,10 +166,7 @@ class _AgentabState extends State<Agentab> {
                       Expanded(
                         child: TabBarView(
                           controller: _controller,
-                          children: [
-                            Agenthomescreen(),
-                            // Agentnextpaymentcustomer(),
-                          ],
+                          children: [AgentHomeScreen()],
                         ),
                       ),
                     ],

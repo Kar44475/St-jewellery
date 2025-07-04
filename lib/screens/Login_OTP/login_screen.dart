@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/screens/Login_OTP/OTP_Template.dart';
- import 'package:stjewellery/screens/Login_OTP/OtpScreen.dart';
+import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
+ import 'package:stjewellery/screens/Login_OTP/otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

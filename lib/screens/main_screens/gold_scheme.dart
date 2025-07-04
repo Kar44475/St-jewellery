@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/agent_module/homescreen/agentab.dart';
-import 'package:stjewellery/screens/main_screens/bottom_navigation.dart';
 import 'package:stjewellery/screens/main_screens/login_pop_widget.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
+
 
 class GoldBookingTab extends StatefulWidget {
-  const GoldBookingTab({Key? key}) : super(key: key);
+  const GoldBookingTab({super.key});
 
   @override
   State<GoldBookingTab> createState() => _GoldBookingTabState();
@@ -22,7 +20,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
   bool hasExistingScheme = false;
   bool isCheckingScheme = true;
 
-  // Gold booking schemes data
+
   final List<Map<String, dynamic>> goldSchemes = [
     {'amount': 500, 'months': 11, 'total': 5500},
     {'amount': 750, 'months': 11, 'total': 8250},
@@ -55,7 +53,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     ));
     _animationController.forward();
     
-    // Check if user has existing scheme
+   
     _checkExistingScheme();
   }
 
@@ -97,33 +95,33 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header Banner Section
+        
                     _buildHeaderBanner(),
                     
                     SizedBox(height: 20),
                     
-                    // Gold Box Icon and Title Section
+             
                     _buildTitleSection(),
                     
                     SizedBox(height: 25),
                     
-                    // Current Scheme Section (only if user has existing scheme)
+             
                     if (hasExistingScheme) ...[
                       _buildCurrentSchemeSection(),
                       SizedBox(height: 25),
                     ],
                     
-                    // Available Schemes Table Section (separated as example)
+           
                     _buildAvailableSchemesTable(),
                     
                     SizedBox(height: 25),
                     
-                    // Terms and Conditions Section
+      
                     _buildTermsAndConditions(),
                     
                     SizedBox(height: 25),
                     
-                    // Action Button Section (simplified - no "Book New Scheme" button)
+           
                     _buildActionSection(),
                     
                     SizedBox(height: 30),
@@ -140,7 +138,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
       width: double.infinity,
       child: Stack(
         children: [
-          // Banner Image
+
           ClipRRect(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -173,7 +171,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
             ),
           ),
           
-          // Gradient Overlay
+   
           Container(
             height: 220,
             decoration: BoxDecoration(
@@ -192,7 +190,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
             ),
           ),
           
-          // Content
+  
           Positioned(
             bottom: 25,
             left: 25,
@@ -313,7 +311,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     );
   }
 
-  // NEW: Separate Current Scheme Section
+
   Widget _buildCurrentSchemeSection() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -345,7 +343,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               ),
             ),
             
-            // Current scheme status
+          
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.all(15),
@@ -390,7 +388,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     );
   }
 
-  // UPDATED: Available Schemes Table (now clearly marked as examples)
+
   Widget _buildAvailableSchemesTable() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -436,7 +434,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               ),
             ),
             
-            // Table Header
+          
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
@@ -475,7 +473,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               ),
             ),
             
-                      // Table Rows
+                
             ...goldSchemes.map((scheme) {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -518,7 +516,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
             
             SizedBox(height: 15),
             
-            // Example disclaimer
+         
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
@@ -629,7 +627,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     );
   }
 
-  // UPDATED: Simplified Action Section (removed "Book New Scheme" button)
   Widget _buildActionSection() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -743,7 +740,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
             
             SizedBox(height: 15),
             
-            // Info Container
+  
             Container(
               padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -782,7 +779,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
   }
 
   String _formatAmount(int amount) {
-    // Format amount with commas for Indian numbering system
     String amountStr = amount.toString();
     String result = '';
     int count = 0;
@@ -802,13 +798,12 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
   }
 
 void _navigateToSchemeDetails() {
-  // Navigate to scheme details/management screen
   Navigator.push(
     context, 
     MaterialPageRoute(
       builder: (context) => TopNavigation(
         sourceScreen: 'gold_scheme',
-        initialTab: 0, // Start with Scheme tab
+        initialTab: 0, 
       ),
     ),
   );

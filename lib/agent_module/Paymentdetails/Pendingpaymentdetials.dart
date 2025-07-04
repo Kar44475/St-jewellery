@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/model/Agentpendingmodel.dart';
+import 'package:stjewellery/model/agent_pending_model.dart';
 import 'package:stjewellery/service/Pendingpaymentservice.dart';
 
 class PendingPayment extends StatefulWidget {
@@ -64,7 +64,7 @@ class _PendingPaymentState extends State<PendingPayment> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 0),
                                 child: Text(
-                                  "$rs${datas!.data!.pending}",
+                                  "$rs${datas!.responseData!.pending}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
@@ -93,7 +93,7 @@ class _PendingPaymentState extends State<PendingPayment> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "COLLECTION LIST  (${datas!.data!.adminpayment!.length})",
+                      "COLLECTION LIST  (${datas!.responseData!.adminpayment!.length})",
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -103,9 +103,9 @@ class _PendingPaymentState extends State<PendingPayment> {
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: datas!.data!.adminpayment!.length,
+                    itemCount: datas!.responseData!.adminpayment!.length,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return (datas!.data!.adminpayment!.isEmpty)
+                      return (datas!.responseData!.adminpayment!.isEmpty)
                           ? const Center(
                               child: Text(
                                 "No data",
@@ -134,7 +134,7 @@ class _PendingPaymentState extends State<PendingPayment> {
                                         bottom: 0.0,
                                       ),
                                       child: Text(
-                                        "From date : ${datas!.data!.adminpayment!.elementAt(index).fromdate.toString().substring(0, 10)}",
+                                        "From date : ${datas!.responseData!.adminpayment!.elementAt(index).fromdate.toString().substring(0, 10)}",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: ColorUtil.fromHex("#643036"),
@@ -144,7 +144,7 @@ class _PendingPaymentState extends State<PendingPayment> {
                                     Padding(
                                       padding: const EdgeInsets.only(bottom: 0),
                                       child: Text(
-                                        "To date : ${datas!.data!.adminpayment!.elementAt(index).todate.toString().substring(0, 10)}",
+                                        "To date : ${datas!.responseData!.adminpayment!.elementAt(index).todate.toString().substring(0, 10)}",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: ColorUtil.fromHex("#643036"),
@@ -154,7 +154,7 @@ class _PendingPaymentState extends State<PendingPayment> {
                                     Padding(
                                       padding: const EdgeInsets.only(bottom: 0),
                                       child: Text(
-                                        "Amount : ${datas!.data!.adminpayment!.elementAt(index).pendingamount}",
+                                        "Amount : ${datas!.responseData!.adminpayment!.elementAt(index).pendingamount}",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: ColorUtil.fromHex("#643036"),

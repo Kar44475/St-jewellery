@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stjewellery/agent_module/AgentprofileView/agent_profile_view.dart';
+import 'package:stjewellery/agent_module/agent_profile_view/agent_profile_view.dart';
 import 'package:stjewellery/agent_module/Paymentdetails/Pendingpaymentdetials.dart';
 import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/screens/Login_OTP/LoginScreen.dart';
+import 'package:stjewellery/screens/Login_OTP/login_screen.dart';
 import 'package:stjewellery/service/logoutservice.dart';
 
 void newAgentDrawer(context) async {

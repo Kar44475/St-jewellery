@@ -1,282 +1,8 @@
-// import 'dart:async';
-//
-// import 'package:flutter/material.dart';
-// import 'package:stjewellery/Constant/Constants.dart';
-// import 'package:stjewellery/Utils/Utils.dart';
-// import 'package:stjewellery/model/Nextpaymentcustomerlistmodel.dart';
-// import 'package:stjewellery/service/customerlistservice.dart';
-//
-// class Agentnextpaymentcustomer extends StatefulWidget {
-//   const Agentnextpaymentcustomer({
-//     Key? key,
-//   }) : super(key: key);
-//   @override
-//   _AgentnextpaymentcustomerState createState() =>
-//       _AgentnextpaymentcustomerState();
-// }
-//
-// class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
-//
-//
-//   StreamController<List<CustomerList>>? _dataStream;
-//   Stream? broadcastStream;
-//   List<CustomerList>? customerListall;
-//   List<CustomerList> customerListsearch = [];
-//
-//
-//   @override
-//   void initState() {
-//     _dataStream = StreamController<List<CustomerList>>();
-//     broadcastStream = _dataStream!.stream.asBroadcastStream();
-//     Future.delayed(Duration.zero, () {
-//       getCustomerlistnextpayment();
-//     });
-//     super.initState();
-//   }
-//
-//
-//   search(String text) {
-//     print(text);
-//     if (text.isEmpty) {
-//       _dataStream!.add(customerListall!);
-//     } else {
-//       customerListsearch.clear();
-//       customerListall!.forEach((element) {
-//         if (element.name!.toLowerCase().contains(text.toLowerCase()) ||
-//             element.registrationNumber!
-//                 .toLowerCase()
-//                 .contains(text.toLowerCase())) {
-//           print(customerListsearch.length.toString());
-//           customerListsearch.add(element);
-//         }
-//       });
-//
-//       _dataStream!.add(customerListsearch);
-//     }
-//   }
-//
-//   TextEditingController controllers = TextEditingController();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         child: Column(
-//           children: [
-//             Padding(
-//               padding: const EdgeInsets.only(top: 15.0),
-//               child: Container(
-//                 height: 50,
-//                 width: MediaQuery.of(context).size.width,
-//                 margin:
-//                     const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 10),
-//                 decoration: new BoxDecoration(
-//                     color: Colors.grey[100],
-//                     boxShadow: [shadow],
-//                     border: Border.all(color: Colors.black38),
-//                     borderRadius: BorderRadius.circular(5)),
-//                 child: Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 15),
-//                   child: Row(
-//                     children: [
-//                       Expanded(
-//                         child: Container(
-//                           child: TextField(
-//                             style: font(14, Colors.black, FontWeight.w400),
-//                             controller: controllers,
-//                             onChanged: search,
-//                             decoration: InputDecoration(
-//                                 hintStyle: TextStyle(
-//                                   color: ColorUtil.fromHex("#000000"),
-//                                   fontFamily: "OpenSans",
-//                                 ),
-//                                 border: InputBorder.none,
-//                                 hintText: 'Search'),
-//                           ),
-//                         ),
-//                       ),
-//                       w(15),
-//                       Icon(
-//                         Icons.search,
-//                         color: ColorUtil.fromHex("#000000"),
-//                         size: 24.0,
-//                         semanticLabel:
-//                             'Text to announce in accessibility modes',
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             Expanded(
-//               child: StreamBuilder(
-//                 stream: broadcastStream,
-//                 builder: (context, snapshot) {
-//                   if (snapshot.hasData) {
-//                     return Container(
-//                       child: snapshot.data != null
-//                           ? SafeArea(
-//                               child: Column(
-//                                 children: [
-//                                   Expanded(
-//                                     child: snapshot.data.length == 0
-//                                         ? const Center(
-//                                             child: Text(
-//                                               "No cilent",
-//                                               style: TextStyle(
-//                                                   color: Colors.black),
-//                                             ),
-//                                           )
-//                                         : ListView.builder(
-//                                             itemCount: snapshot.data.length,
-//                                             itemBuilder:
-//                                                 (BuildContext ctxt, int index) {
-//                                               return Padding(
-//                                                 padding: const EdgeInsets.only(
-//                                                     left: 20.0,
-//                                                     right: 20,
-//                                                     top: 15),
-//                                                 child: Container(
-//                                                   decoration: BoxDecoration(
-//                                                       boxShadow: [shadow],
-//                                                       border: Border.all(
-//                                                           color:
-//                                                               Colors.black12),
-//                                                       color: ColorUtil.fromHex(
-//                                                           "#ececec"),
-//                                                       borderRadius:
-//                                                           const BorderRadius.all(
-//                                                               Radius.circular(
-//                                                                   10))),
-//                                                   child: InkWell(
-//                                                     onTap: () async {
-//                                                       await saveObject(
-//                                                           "customerid",
-//                                                           snapshot.data
-//                                                               .elementAt(index)
-//                                                               .userId);
-//                                                       await saveObject(
-//                                                           "subscription",
-//                                                           snapshot.data
-//                                                               .elementAt(index)
-//                                                               .subscriptionId);
-//
-//                                                       // Navigator.pushNamed(
-//                                                       //     context,
-//                                                       //     HomeTabs.routeName);
-//                                                     },
-//                                                     child: Padding(
-//                                                       padding:
-//                                                           const EdgeInsets.only(
-//                                                               left: 10.0,
-//                                                               right: 10,
-//                                                               top: 15,
-//                                                               bottom: 15),
-//                                                       child: Column(
-//                                                         crossAxisAlignment:
-//                                                             CrossAxisAlignment
-//                                                                 .start,
-//                                                         children: [
-//                                                           line(
-//                                                               snapshot.data
-//                                                                   .elementAt(
-//                                                                       index)
-//                                                                   .name
-//                                                                   .toString(),
-//                                                               Icons.person,
-//                                                               FontWeight.w700),
-//                                                           w(5),
-//                                                           line(
-//                                                               snapshot.data
-//                                                                   .elementAt(
-//                                                                       index)
-//                                                                   .registrationNumber
-//                                                                   .toString(),
-//                                                               Icons
-//                                                                   .featured_play_list_rounded,
-//                                                               FontWeight.w500),
-//                                                           w(5),
-//                                                           line(
-//                                                               snapshot.data
-//                                                                   .elementAt(
-//                                                                       index)
-//                                                                   .phone
-//                                                                   .toString(),
-//                                                               Icons.phone,
-//                                                               FontWeight.w500)
-//                                                         ],
-//                                                       ),
-//                                                     ),
-//                                                   ),
-//                                                 ),
-//                                               );
-//                                             }),
-//                                   ),
-//                                   const Column(
-//                                     crossAxisAlignment:
-//                                         CrossAxisAlignment.center,
-//                                     children: [
-//                                       SizedBox(
-//                                         height: 5,
-//                                       ),
-//                                     ],
-//                                   )
-//                                 ],
-//                               ),
-//                             )
-//                           : Container(),
-//                     );
-//                   } else {
-//                     return Container(
-//                       decoration: const BoxDecoration(),
-//                     );
-//                   }
-//                 },
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//
-//     );
-//   }
-//
-//
-//   getCustomerlistnextpayment() async {
-//     Nextpaymentcustomerlistmodel datas;
-//     try {
-//       Loading.show(context);
-//       Map d = {
-//         "agentId": await getSavedObject("userid"),
-//         "limit": "10",
-//         "page": "1"
-//       };
-//       datas = await Customerlistservice.getCustomernextpaymnetlist(d);
-//       Loading.dismiss();
-//
-//       customerListall = datas.data!.customerList;
-//       Loading.dismiss();
-//       _dataStream!.add(customerListall!);
-//
-//     } catch (e) {
-//       Loading.dismiss();
-//     }
-//   }
-//
-//   line(String txt, IconData icn, FontWeight weight) {
-//     return Row(
-//       children: [
-//         Icon(icn, size: 18),
-//         w(10),
-//         Text(txt, style: TextStyle(fontSize: 14, fontWeight: weight))
-//       ],
-//     );
-//   }
-// }
 
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:stjewellery/agent_module/Agentregistration/agent_registration_screen.dart';
+import 'package:stjewellery/agent_module/agent_registration/agent_registration_screen.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Nextpaymentcustomerlistmodel.dart';
@@ -286,16 +12,16 @@ import 'package:stjewellery/service/Paymentservice.dart';
 import 'package:stjewellery/service/Sheduledservice.dart';
 import 'package:stjewellery/service/customer_list_service.dart';
 
-class Agentnextpaymentcustomer extends StatefulWidget {
-  const Agentnextpaymentcustomer({Key? key}) : super(key: key);
+class AgentNextPaymentCustomer extends StatefulWidget {
+  const AgentNextPaymentCustomer({super.key});
 
   @override
-  _AgentnextpaymentcustomerState createState() =>
-      _AgentnextpaymentcustomerState();
+  _AgentNextPaymentCustomerState createState() =>
+      _AgentNextPaymentCustomerState();
 }
 
-class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
-  Map<int, bool> loadingButtons = {}; // Track loading state per button
+class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
+  Map<int, bool> loadingButtons = {}; 
 
   TextEditingController amountController = TextEditingController();
 
@@ -371,7 +97,7 @@ class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
         customerListAll.addAll(fetchedList);
         _dataStream!.add(customerListAll);
         currentPage++;
-        if (fetchedList.length < limit) hasMore = false; // Check here
+        if (fetchedList.length < limit) hasMore = false; 
       } else {
         hasMore = false;
       }
@@ -585,7 +311,7 @@ class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
   }
 
   showAlertDialog(BuildContext context) {
-    // set up the buttons
+  
     Widget cancelButton = TextButton(
       child: const Text("Cancel"),
       onPressed: () {
@@ -603,14 +329,14 @@ class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
       },
     );
 
-    // set up the AlertDialog
+
     AlertDialog alert = AlertDialog(
       title: const Text("Payment"),
       content: const Text("Would you like to continue with the paymnet?"),
       actions: [cancelButton, continueButton],
     );
 
-    // show the dialog
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -649,7 +375,7 @@ class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
       },
     );
 
-    // set up the AlertDialog
+  
     AlertDialog alert = AlertDialog(
       title: const Text("Payment"),
       content: StatefulBuilder(
@@ -711,7 +437,7 @@ class _AgentnextpaymentcustomerState extends State<Agentnextpaymentcustomer> {
       actions: [cancelButton, continueButton],
     );
 
-    // show the dialog
+   
     showDialog(
       context: context,
       builder: (BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/screens/Login_OTP/LoginScreen.dart';
+import 'package:stjewellery/screens/Login_OTP/login_screen.dart';
 
 exitApp(BuildContext context) {
   return showDialog(

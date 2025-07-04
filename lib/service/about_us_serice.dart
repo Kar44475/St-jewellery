@@ -1,4 +1,4 @@
-import 'package:stjewellery/model/Aboutusmodel.dart';
+import 'package:stjewellery/model/about_us_model.dart';
 import 'package:stjewellery/model/Subscriptionlistmodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';

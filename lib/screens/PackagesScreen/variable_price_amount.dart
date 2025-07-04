@@ -1,72 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Schemeaddmodel.dart';
 import 'package:stjewellery/model/schemeAmountListmodel.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
 import 'package:stjewellery/service/postSchemeService.dart';
 
-class FixedPriceAmount extends StatefulWidget {
+class VariablePriceAmount extends StatefulWidget {
   final SchemeAmountListmodel data;
   final int schemeid;
-  const FixedPriceAmount({Key? key, required this.data, required this.schemeid})
-    : super(key: key);
+
+  const VariablePriceAmount({
+    Key? key,
+    required this.data,
+    required this.schemeid,
+  }) : super(key: key);
   @override
-  _FixedPriceAmountState createState() => _FixedPriceAmountState();
+  _VariablePriceAmountState createState() => _VariablePriceAmountState();
 }
 
-class _FixedPriceAmountState extends State<FixedPriceAmount> {
+class _VariablePriceAmountState extends State<VariablePriceAmount> {
   bool terms = false;
   int? priceid;
-  int? termsid;
   List<int> pricelist = [];
   var _isCheckeded;
   int termindex = 0;
-
+  int? termsid;
+  
   tick(int index) {
-    widget.data;
     setState(() {
       _isCheckeded.clear();
       _isCheckeded = List<bool>.filled(
-        widget.data.data.fixed.length,
+        widget.data.data.varient.length,
         false,
         growable: true,
       );
       _isCheckeded.remove(index);
       _isCheckeded.insert(index, true);
       priceid = pricelist.elementAt(index);
-      termsid = widget.data.data.fixed.elementAt(index).termsId;
+      termsid = widget.data.data.varient.elementAt(index).termsId;
       print(priceid);
     });
 
     for (int i = 0; i < widget.data.data.termsandcondtion.length; i++) {
       if (widget.data.data.termsandcondtion.elementAt(i).id ==
-          widget.data.data.fixed.elementAt(index).termsId) {
+          widget.data.data.varient.elementAt(index).termsId) {
         termindex = i;
       }
     }
   }
 
-  String _chosenValue = "Gold";
   @override
   void initState() {
     _isCheckeded = List<bool>.filled(
-      widget.data.data.fixed.length,
+      widget.data.data.varient.length,
       false,
       growable: true,
     );
-    widget.data.data.fixed.forEach((element) {
+    widget.data.data.varient.forEach((element) {
       pricelist.add(element.id);
     });
-
     super.initState();
   }
 
+  String _chosenValue = "Gold";
   @override
   Widget build(BuildContext context) {
-    return widget.data.data.fixed.length == 0
+    return widget.data.data.varient.length == 0
         ? Center(
             child: Text(
               "No schemes available!",
@@ -87,7 +88,7 @@ class _FixedPriceAmountState extends State<FixedPriceAmount> {
                         mainAxisSpacing: 15,
                         childAspectRatio: 2.5,
                       ),
-                      itemCount: widget.data.data.fixed.length,
+                      itemCount: widget.data.data.varient.length,
                       itemBuilder: (BuildContext context, int index) {
                         bool isSelected = _isCheckeded.elementAt(index);
                         return GestureDetector(
@@ -114,16 +115,13 @@ class _FixedPriceAmountState extends State<FixedPriceAmount> {
                             ),
                             child: Center(
                               child: Text(
-                                rs +
-                                    widget.data.data.fixed
-                                        .elementAt(index)
-                                        .amount!
-                                        .split('.')[0],
+                                "$rs${widget.data.data.varient.elementAt(index).amount!.split('.')[0]} - $rs${widget.data.data.varient.elementAt(index).amountTo!.split('.')[0]}",
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -243,7 +241,7 @@ class _FixedPriceAmountState extends State<FixedPriceAmount> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Submit Button
+                      // Submit Button with Primary Color
                       Container(
                         width: double.infinity,
                         height: 50,
@@ -293,7 +291,7 @@ class _FixedPriceAmountState extends State<FixedPriceAmount> {
           ? await getSavedObject("customerid")
           : await getSavedObject("userid"),
       "StartDate": now.toString().substring(0, 10),
-      "subscription_type": "0",
+      "subscription_type": "1",
       "termsId": termsid,
     };
     try {

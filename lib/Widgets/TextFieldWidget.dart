@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/textCapitalization.dart';
+import 'package:stjewellery/Utils/text_capitalization.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String label;

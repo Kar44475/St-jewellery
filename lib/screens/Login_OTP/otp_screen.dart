@@ -1,15 +1,13 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stjewellery/agent_module/homescreen/agentab.dart';
-import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/model/Usermodel.dart';
-import 'package:stjewellery/screens/Login_OTP/OTP_Template.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
+import 'package:stjewellery/agent_module/agent_home_screen/agent_tab.dart';
+import 'package:stjewellery/model/user_model.dart';
+import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
 import 'package:stjewellery/screens/Registration/RegisterPage.dart';
 import 'package:stjewellery/service/Userservice.dart';
 
@@ -17,36 +15,36 @@ class OtpPage extends StatefulWidget {
   final generatedOtp;
   final mobile;
 
-  const OtpPage({Key? key, this.generatedOtp, this.mobile}) : super(key: key);
+  const OtpPage({super.key, this.generatedOtp, this.mobile});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
 }
 
 class _OtpPageState extends State<OtpPage> {
-  // Timer and Countdown Configuration
+
   static const int _countdownStartTime = 30;
   int _remainingCountdownTime = _countdownStartTime;
   Timer? _countdownTimer;
   bool _isResendEnabled = false;
 
-  // OTP Input Controllers
+
   final List<TextEditingController> _otpInputControllers = List.generate(
     6,
     (index) => TextEditingController(),
   );
   final List<FocusNode> _otpFocusNodes = List.generate(6, (index) => FocusNode());
 
-  // User Data Variables
+
   String? _firebaseToken;
   String? _userMobileNumber;
   String? _currentOtpCode;
   int? _generatedRandomOtp;
 
-  // UI State Variables
+
   bool _isVerifyButtonPressed = false;
 
-  // Constants
+
   static const String _debugMobileNumber = "+919562044475";
   static const int _otpLength = 6;
   static const int _agentRoleId = 3;
@@ -84,7 +82,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the header section with back button and logo
+
   Widget _buildHeaderSection(BuildContext context, double screenWidth) {
     return Expanded(
       flex: 9,
@@ -103,7 +101,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the back button
+
   Widget _buildBackButton(BuildContext context) {
     return Align(
       alignment: Alignment.topLeft,
@@ -123,7 +121,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the logo section
+
   Widget _buildLogoSection(double screenWidth) {
     return Expanded(
       child: Center(
@@ -137,7 +135,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the OTP form section
+
   Widget _buildOtpFormSection(BuildContext context, double screenHeight) {
     return Expanded(
       flex: 11,
@@ -180,7 +178,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Returns the decoration for the form container
   BoxDecoration _getFormContainerDecoration() {
     return BoxDecoration(
       color: Colors.white,
@@ -198,7 +195,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the OTP title
+
   Widget _buildOtpTitle(BuildContext context) {
     return Text(
       "ENTER OTP",
@@ -211,7 +208,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the OTP instructions text
+
   Widget _buildOtpInstructions() {
     return RichText(
       textAlign: TextAlign.center,
@@ -235,7 +232,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the OTP input fields
+
   Widget _buildOtpInputFields() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -245,7 +242,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds a single OTP input field
+
   Widget _buildSingleOtpField(int index) {
     return Container(
       width: 45,
@@ -280,7 +277,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the resend section with countdown
+
   Widget _buildResendSection(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -318,7 +315,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  /// Builds the verify OTP button
+
   Widget _buildVerifyButton(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -351,9 +348,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  // Initialization Methods
 
-  /// Initializes user data from widget parameters
   void _initializeUserData() {
     setState(() {
       _userMobileNumber = widget.mobile.toString();
@@ -361,23 +356,21 @@ class _OtpPageState extends State<OtpPage> {
     });
   }
 
-  /// Disposes all OTP input controllers
+
   void _disposeControllers() {
     for (var controller in _otpInputControllers) {
       controller.dispose();
     }
   }
 
-  /// Disposes all OTP focus nodes
+
   void _disposeFocusNodes() {
     for (var focusNode in _otpFocusNodes) {
       focusNode.dispose();
     }
   }
 
-  // Timer and Countdown Methods
 
-  /// Starts the OTP resend countdown timer
   void _startOtpCountdown() {
     _countdownTimer?.cancel();
     setState(() {
@@ -397,16 +390,14 @@ class _OtpPageState extends State<OtpPage> {
     });
   }
 
-  /// Handles countdown completion
+
   void _onCountdownComplete() {
     setState(() {
       _isResendEnabled = true;
     });
   }
 
-  // OTP Input Handling Methods
 
-  /// Handles changes in OTP input fields
   void _handleOtpFieldChange(String value, int index) {
     if (value.isNotEmpty) {
       if (index < _otpLength - 1) {
@@ -425,12 +416,12 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-  /// Gets the complete OTP value from all input fields
+
   String _getCompleteOtpValue() {
     return _otpInputControllers.map((controller) => controller.text).join();
   }
 
-  /// Clears all OTP input fields
+
   void _clearAllOtpFields() {
     for (var controller in _otpInputControllers) {
       controller.clear();
@@ -438,16 +429,13 @@ class _OtpPageState extends State<OtpPage> {
     _otpFocusNodes[0].requestFocus();
   }
 
-  // Event Handlers
 
-  /// Handles resend OTP button press
   void _handleResendOtp() {
     _generateNewRandomOtp();
     _startOtpCountdown();
     _clearAllOtpFields();
   }
 
-  /// Handles verify button press
   void _handleVerifyButtonPress(BuildContext context) {
     String enteredOtp = _getCompleteOtpValue();
     if (enteredOtp.length == _otpLength) {
@@ -460,16 +448,14 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-  // Firebase and Authentication Methods
 
-  /// Gets Firebase messaging token
   Future<void> _getFirebaseMessagingToken() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     _firebaseToken = await messaging.getToken();
     print(_firebaseToken);
   }
 
-  /// Handles special user login (debug mode)
+
   Future<void> _handleSpecialUserLogin() async {
     try{
       await _getFirebaseMessagingToken();
@@ -483,7 +469,7 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-  /// Fetches user details and processes login
+
   Future<void> _fetchAndProcessUserDetails() async {
     print("Processing special user login");
     try {
@@ -498,7 +484,7 @@ class _OtpPageState extends State<OtpPage> {
 
       if (userData.data!.islogin!) {
         if (userData.data!.roleId == _agentRoleId) {
-          Navigate.pushReplacement(context, Agentab());
+          Navigate.pushReplacement(context, AgentTab());
         } else {
           if (userData.data!.subscriptionList!.isEmpty) {
             Navigate.pushAndRemoveUntil(context, SelectScheme());
@@ -515,7 +501,7 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-  /// Navigates to registration page for new users
+
   void _navigateToRegistration() {
     Navigator.pushReplacement(
       context,
@@ -525,9 +511,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  // OTP Generation and Verification Methods
 
-  /// Generates a new random OTP for resend functionality
   int _generateNewRandomOtp() {
     final Random random = Random();
     _generatedRandomOtp = random.nextInt(900000) + 100000;
@@ -538,7 +522,7 @@ class _OtpPageState extends State<OtpPage> {
     return _generatedRandomOtp!;
   }
 
-  /// Verifies the entered OTP against the generated OTP
+ 
   Future<void> _verifyEnteredOtp(String enteredOtpCode) async {
     printDebug("Entered OTP: $enteredOtpCode");
     printDebug("Expected OTP: $_currentOtpCode");
@@ -564,7 +548,7 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-  /// Resends OTP to user's mobile number
+
   void _resendOtpToUser(BuildContext context, String mobileNumber, String otpCode) {
     resendOtp(context, mobileNumber, otpCode);
   }

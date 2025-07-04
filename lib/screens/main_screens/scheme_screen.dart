@@ -7,7 +7,7 @@ import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Paymentdetailsmodel.dart';
 import 'package:stjewellery/model/Sheduledmodel.dart';
 import 'package:stjewellery/model/paymentmodel.dart';
-import 'package:stjewellery/screens/Notification/NotificationsScreen.dart';
+import 'package:stjewellery/screens/Notification/notifications_screen.dart';
 import 'package:stjewellery/screens/Paymentsendscreen/NewPaymentScreen.dart';
 import 'package:stjewellery/service/Paymentdetailsserivce.dart';
 import 'package:stjewellery/service/Paymentservice.dart';

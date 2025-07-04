@@ -1,22 +1,21 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:stjewellery/agent_module/Agentregistration/agent_registration_screen.dart';
+import 'package:stjewellery/agent_module/agent_registration/agent_registration_screen.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
-import 'package:stjewellery/model/agentlistmodel.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
+import 'package:stjewellery/model/agent_list_model.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
 import 'package:stjewellery/service/customer_list_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Agenthomescreen extends StatefulWidget {
+class AgentHomeScreen extends StatefulWidget {
   @override
-  _AgenthomescreenState createState() => _AgenthomescreenState();
+  _AgentHomeScreenState createState() => _AgentHomeScreenState();
 }
 
-class _AgenthomescreenState extends State<Agenthomescreen> {
+class _AgentHomeScreenState extends State<AgentHomeScreen> {
   int? subid;
   List<int> subidlist = [];
   StreamController<List<CustomerList>>? _dataStream;
@@ -69,7 +68,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
       backgroundColor: Colors.grey[50],
       body: Column(
         children: [
-          // Header Section
+    
           Container(
             height: MediaQuery.of(context).size.height * 0.25,
             width: double.infinity,
@@ -80,7 +79,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header with logo
+                 
                     Row(
                       children: [
                         Image.asset(
@@ -118,7 +117,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
 
                     Spacer(),
 
-                    // Welcome message
+                 
                     Text(
                       "Manage Your Customers",
                       style: TextStyle(
@@ -143,7 +142,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
             ),
           ),
 
-          // Search Section
+         
           Container(
             color: Theme.of(context).primaryColor,
             child: Container(
@@ -203,7 +202,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
             ),
           ),
 
-          // Customer List Section
+        
           Expanded(
             child: Container(
               color: Colors.grey[50],
@@ -315,7 +314,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
                                                       ),
                                                       child: Row(
                                                         children: [
-                                                          // Customer Avatar
+                                                       
                                                           Container(
                                                             width: 50,
                                                             height: 50,
@@ -344,7 +343,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
 
                                                           SizedBox(width: 15),
 
-                                                          // Customer Details
+                                                         
                                                           Expanded(
                                                             child: Column(
                                                               crossAxisAlignment:
@@ -448,7 +447,7 @@ class _AgenthomescreenState extends State<Agenthomescreen> {
                                                             ),
                                                           ),
 
-                                                          // Call Button
+                                                         
                                                           Container(
                                                             width: 40,
                                                             height: 40,

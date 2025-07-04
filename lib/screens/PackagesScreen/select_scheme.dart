@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/screens/main_screens/bottom_navigation.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/Sheduledmodel.dart';
 import 'package:stjewellery/model/Subscriptionlistmodel.dart';
 import 'package:stjewellery/model/paymentmodel.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectNewScheme.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_new_scheme.dart';
 import 'package:stjewellery/service/Paymentservice.dart';
 import 'package:stjewellery/service/Schemelistgetservice.dart';
 import 'package:stjewellery/service/Sheduledservice.dart';

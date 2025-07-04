@@ -11,7 +11,7 @@ import 'package:stjewellery/model/Registrationmodel.dart';
 import 'package:stjewellery/model/districtmodel.dart';
 import 'package:stjewellery/model/referal_model.dart';
 import 'package:stjewellery/model/statemodel.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectNewScheme.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_new_scheme.dart';
 import 'package:stjewellery/service/Registrationservice.dart';
 import 'package:stjewellery/service/branch_service.dart';
 import 'package:stjewellery/service/locationservice.dart';

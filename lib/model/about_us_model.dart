@@ -33,18 +33,18 @@ class Aboutusmodel {
 
 class Data {
   Data({
-    required this.aboutUs,
+    required this.aboutOurJewellery,
   });
 
-  AboutUs aboutUs;
+  AboutUs aboutOurJewellery;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        aboutUs:
+        aboutOurJewellery:
            AboutUs.fromJson(json["AboutUs"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "AboutUs": aboutUs == null ? null : aboutUs.toJson(),
+        "AboutUs": aboutOurJewellery == null ? null : aboutOurJewellery.toJson(),
       };
 }
 

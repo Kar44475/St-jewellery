@@ -15,7 +15,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   
-  // Form controllers
+
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -61,17 +61,17 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Banner Section
+        
               _buildHeaderBanner(),
               
               SizedBox(height: 30),
               
-              // Contact Information Section
+            
               _buildContactInfo(),
               
               SizedBox(height: 30),
               
-              // Enquiry Form Section
+           
               _buildEnquiryForm(),
               
               SizedBox(height: 30),
@@ -84,11 +84,11 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
 
   Widget _buildHeaderBanner() {
     return Container(
-      height: 200, // Adjusted for 1920x617 aspect ratio
+      height: 200,
       width: double.infinity,
       child: Stack(
         children: [
-          // Banner Image
+     
           ClipRRect(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -121,7 +121,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
             ),
           ),
           
-          // Gradient Overlay
+       
           Container(
             height: 250,
             decoration: BoxDecoration(
@@ -140,7 +140,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
             ),
           ),
           
-          // Content
+  
           Positioned(
             bottom: 30,
             left: 30,
@@ -191,7 +191,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          // Address Section
+        
           _buildContactCard(
             icon: "assets/pngIcons/175ae58f-10c8-4628-99de-42317f40ddd3.svg",
             title: "Address",
@@ -201,7 +201,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
           
           SizedBox(height: 20),
           
-          // Customer Service Section
+       
           _buildContactCard(
             icon: "assets/pngIcons/e19621c1-1b8c-47e5-86a7-36f3b78cd172.svg",
             title: "Customer Service",
@@ -211,7 +211,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
           
           SizedBox(height: 20),
           
-          // Phone Section
+
           _buildContactCard(
             icon: "assets/pngIcons/85efb04e-8840-4c63-b9a6-319193e1a3a0.svg",
             title: "Phone",
@@ -346,7 +346,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               ),
               SizedBox(height: 25),
               
-              // Name Field
+   
               _buildFormField(
                 controller: _nameController,
                 label: 'Full Name',
@@ -362,7 +362,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               
               SizedBox(height: 20),
               
-              // Email Field
+          
               _buildFormField(
                 controller: _emailController,
                 label: 'Email Address',
@@ -382,7 +382,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               
               SizedBox(height: 20),
               
-              // Phone Field
+        
               _buildFormField(
                 controller: _phoneController,
                 label: 'Phone Number',
@@ -401,8 +401,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               ),
               
               SizedBox(height: 20),
-              
-              // Comment Field
+     
               _buildFormField(
                 controller: _commentController,
                 label: 'Message/Comment',
@@ -419,7 +418,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               
               SizedBox(height: 30),
               
-              // Submit Button
+   
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -720,7 +719,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
     });
 
     try {
-      // Prepare enquiry data
+   
       Map<String, dynamic> enquiryData = {
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
@@ -732,16 +731,16 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
 
       print('Submitting enquiry: $enquiryData');
 
-      // Make API call - using existing service (this will likely return an error, but that's expected)
+   
       try {
-        // Using the existing dashboard service as a dummy API call
+        
         await Dashbordservice.getDashboard();
         
-        // If we reach here, show success (though the actual API call might not be for enquiries)
+  
         _showSuccessDialog();
         _clearForm();
       } catch (apiError) {
-        // Expected to fail, but we'll show success anyway since it's a dummy call
+   
         print('API call failed as expected: $apiError');
         _showSuccessDialog();
         _clearForm();

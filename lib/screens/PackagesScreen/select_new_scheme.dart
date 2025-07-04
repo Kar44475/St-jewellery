@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/Constant/constants.dart';
+
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/model/SchemeListModel.dart';
-import 'package:stjewellery/screens/PackagesScreen/PriceSelectTab.dart';
-import 'package:stjewellery/screens/PackagesScreen/SelectScheme.dart';
-import 'package:stjewellery/screens/PackagesScreen/Yearly_Scheme.dart';
+import 'package:stjewellery/screens/PackagesScreen/price_select_tab.dart';
+import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
+import 'package:stjewellery/screens/PackagesScreen/yearly_scheme.dart';
 import 'package:stjewellery/service/Schemelistservice.dart';
 
 class SelectNewScheme extends StatefulWidget {
