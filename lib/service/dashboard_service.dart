@@ -1,4 +1,3 @@
-
 import 'package:stjewellery/model/CategoryWiseProductResponseModel.dart';
 import 'package:stjewellery/model/Dashboardmodel.dart';
 import 'package:stjewellery/model/allproductmodel.dart';
@@ -52,7 +51,7 @@ class Dashbordservice {
       var url = ApiEndPoints.allProduct;
       print(ApiConfigs.API_URL + url);
       Response response = await Dio().post(ApiConfigs.API_URL + url);
-      print(response.  data);
+      print(response.data);
 
       return AllProductsResponseModel.fromJson(response.data);
     } catch (e) {

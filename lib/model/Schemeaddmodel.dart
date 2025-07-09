@@ -21,34 +21,29 @@ class Schemeaddmodel {
   Data data;
 
   factory Schemeaddmodel.fromJson(Map<String, dynamic> json) => Schemeaddmodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data == null ? null : data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data == null ? null : data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-    required this.subscriptionId,
-  });
+  Data({required this.status, required this.subscriptionId});
 
   String status;
   int subscriptionId;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        subscriptionId: json["subscriptionId"],
-      );
+  factory Data.fromJson(Map<String, dynamic> json) =>
+      Data(status: json["status"], subscriptionId: json["subscriptionId"]);
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "subscriptionId": subscriptionId,
-      };
+    "status": status,
+    "subscriptionId": subscriptionId,
+  };
 }

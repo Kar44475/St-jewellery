@@ -21,16 +21,21 @@ const rs = "₹ ";
 
 font(double s, Color clr, FontWeight weight) {
   return TextStyle(
-      fontSize: s, color: clr, fontWeight: weight, fontFamily: 'Roboto');
+    fontSize: s,
+    color: clr,
+    fontWeight: weight,
+    fontFamily: 'Roboto',
+  );
 }
 
 // String tstImg =
 //     "https://www.dazzlesjewellery.in/cdn/shop/files/IMG_9798_0af72cbf-a031-4900-8c47-96cfa781b91d.jpg?v=1720172694";
 const shadow = BoxShadow(
-    color: Colors.black12,
-    offset: Offset(0.0, 2.0),
-    blurRadius: 2.0,
-    spreadRadius: 1.0);
+  color: Colors.black12,
+  offset: Offset(0.0, 2.0),
+  blurRadius: 2.0,
+  spreadRadius: 1.0,
+);
 
 final appbarStyle = font(18, Colors.black, FontWeight.w600);
 

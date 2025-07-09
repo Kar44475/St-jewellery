@@ -21,30 +21,25 @@ class Userpaymodel {
   Data data;
 
   factory Userpaymodel.fromJson(Map<String, dynamic> json) => Userpaymodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data == null ? null : data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data == null ? null : data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-  });
+  Data({required this.status});
 
   bool status;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-      );
+  factory Data.fromJson(Map<String, dynamic> json) =>
+      Data(status: json["status"]);
 
-  Map<String, dynamic> toJson() => {
-        "status": status,
-      };
+  Map<String, dynamic> toJson() => {"status": status};
 }

@@ -27,8 +27,7 @@ Future<void> sendOtp(
     );
 
     if (apiResponse.statusCode == 200) {
-      if (shouldNavigate) 
-      {
+      if (shouldNavigate) {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -47,7 +46,11 @@ Future<void> sendOtp(
   }
 }
 
-Future<void> resendOtp(BuildContext context, String phoneNumber, String otpCode) async {
+Future<void> resendOtp(
+  BuildContext context,
+  String phoneNumber,
+  String otpCode,
+) async {
   print(phoneNumber);
   print(otpCode);
   // var headers = {'Cookie': cookie};

@@ -21,39 +21,37 @@ class Districtmodel {
   Data data;
 
   factory Districtmodel.fromJson(Map<String, dynamic> json) => Districtmodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-    required this.districtsList,
-  });
+  Data({required this.status, required this.districtsList});
 
   int status;
   List<DistrictsList> districtsList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        districtsList: List<DistrictsList>.from(
-            json["districts_list"].map((x) => DistrictsList.fromJson(x))),
-      );
+    status: json["status"],
+    districtsList: List<DistrictsList>.from(
+      json["districts_list"].map((x) => DistrictsList.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "districts_list": districtsList == null
-            ? null
-            : List<dynamic>.from(districtsList.map((x) => x.toJson())),
-      };
+    "status": status,
+    "districts_list": districtsList == null
+        ? null
+        : List<dynamic>.from(districtsList.map((x) => x.toJson())),
+  };
 }
 
 class DistrictsList {
@@ -72,18 +70,18 @@ class DistrictsList {
   DateTime updatedAt;
 
   factory DistrictsList.fromJson(Map<String, dynamic> json) => DistrictsList(
-        id: json["id"],
-        stateId: json["stateId"],
-        districtName: json["districtName"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    stateId: json["stateId"],
+    districtName: json["districtName"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "stateId": stateId,
-        "districtName": districtName,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "stateId": stateId,
+    "districtName": districtName,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

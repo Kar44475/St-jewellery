@@ -80,10 +80,7 @@ class _SelectPackageState extends State<SelectpriceTabyearly> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -101,20 +98,18 @@ class _SelectPackageState extends State<SelectpriceTabyearly> {
       body: load == true
           ? const Center(child: CircularProgressIndicator())
           : schemelistModel!.data != null
-              ? Column(
-                  children: [
-                    Expanded(
-                      child: VariablePriceAmount(
-                        data: schemelistModel!,
-                        schemeid: schemeid!,
-                        details: details!,
-                      ),
-                    ),
-                  ],
-                )
-              : const Center(
-                  child: Text("No data available"),
+          ? Column(
+              children: [
+                Expanded(
+                  child: VariablePriceAmount(
+                    data: schemelistModel!,
+                    schemeid: schemeid!,
+                    details: details!,
+                  ),
                 ),
+              ],
+            )
+          : const Center(child: Text("No data available")),
     );
   }
 }
@@ -143,7 +138,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
   String _chosenValue = "Gold";
   int termindex = 0;
   bool schemeCheck = false;
-  
+
   tick(int index) {
     setState(() {
       _isCheckeded.clear();
@@ -187,7 +182,10 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 15,
+              ),
               child: ListView.builder(
                 itemCount: widget.data.data.varient.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -204,7 +202,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: isSelected 
+                          color: isSelected
                               ? const Color.fromRGBO(255, 203, 3, 1)
                               : Colors.white,
                           border: Border.all(
@@ -236,7 +234,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
               ),
             ),
           ),
-          
+
           // Terms and Conditions Section
           Container(
             color: Colors.white,
@@ -249,7 +247,12 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                   children: [
                     Theme(
                       data: Theme.of(context).copyWith(
-                        unselectedWidgetColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                        unselectedWidgetColor: const Color.fromRGBO(
+                          0,
+                          0,
+                          0,
+                          0.5,
+                        ),
                       ),
                       child: Checkbox(
                         activeColor: const Color.fromRGBO(0, 0, 0, 1),
@@ -266,7 +269,8 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                       onTap: () {
                         print(schemeCheck);
                         // For single item, allow viewing terms without selection
-                        if (widget.data.data.varient.length == 1 || schemeCheck == true) {
+                        if (widget.data.data.varient.length == 1 ||
+                            schemeCheck == true) {
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -305,7 +309,12 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                                     children: [
                                       Html(
                                         data: widget.data.data.termsandcondtion
-                                            .elementAt(widget.data.data.varient.length == 1 ? 0 : termindex)
+                                            .elementAt(
+                                              widget.data.data.varient.length ==
+                                                      1
+                                                  ? 0
+                                                  : termindex,
+                                            )
                                             .description,
                                       ),
                                     ],
@@ -321,9 +330,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                       child: Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.only(
-                              bottom: 2,
-                            ),
+                            padding: const EdgeInsets.only(bottom: 2),
                             decoration: const BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
@@ -364,21 +371,28 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                         showToast("Please agree to our Terms & Conditions");
                       } else {
                         // Handle single item case - auto-select when user clicks Select button
-                        if (widget.data.data.varient.length == 1 && priceid == null) {
+                        if (widget.data.data.varient.length == 1 &&
+                            priceid == null) {
                           // Auto-select the single item
                           priceid = pricelist[0];
                           termssId = widget.data.data.varient[0].termsId;
-                          
+
                           // Find the corresponding terms index
-                          for (int i = 0; i < widget.data.data.termsandcondtion.length; i++) {
-                            if (widget.data.data.termsandcondtion.elementAt(i).id ==
+                          for (
+                            int i = 0;
+                            i < widget.data.data.termsandcondtion.length;
+                            i++
+                          ) {
+                            if (widget.data.data.termsandcondtion
+                                    .elementAt(i)
+                                    .id ==
                                 widget.data.data.varient.elementAt(0).termsId) {
                               termindex = i;
                               break;
                             }
                           }
                         }
-                        
+
                         if (priceid == null) {
                           showToast("Please select a payment option");
                         } else {

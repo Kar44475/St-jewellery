@@ -57,7 +57,8 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   final TextEditingController _aadhaarController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _nomineeNameController = TextEditingController();
-  final TextEditingController _nomineeRelationController = TextEditingController();
+  final TextEditingController _nomineeRelationController =
+      TextEditingController();
   final TextEditingController _pincodeController = TextEditingController();
   final TextEditingController _nomineePhoneController = TextEditingController();
   final TextEditingController _referralIdController = TextEditingController();
@@ -230,10 +231,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
                   border: InputBorder.none,
                   enabled: false,
                   hintText: "Date Of Birth",
-                  hintStyle: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[700],
-                  ),
+                  hintStyle: TextStyle(fontSize: 12, color: Colors.grey[700]),
                 ),
               ),
             ),
@@ -268,10 +266,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Widget _buildDocumentSection() {
     return Column(
       children: [
-        Divider(
-          color: ColorUtil.fromHex("#D4D4D4"),
-          thickness: 1.5,
-        ),
+        Divider(color: ColorUtil.fromHex("#D4D4D4"), thickness: 1.5),
         Padding(
           padding: const EdgeInsets.only(left: 20.0, bottom: 10),
           child: Text(
@@ -301,10 +296,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Widget _buildImageUploadSection() {
     return Column(
       children: [
-        Divider(
-          color: ColorUtil.fromHex("#D4D4D4"),
-          thickness: 1.5,
-        ),
+        Divider(color: ColorUtil.fromHex("#D4D4D4"), thickness: 1.5),
         Padding(
           padding: const EdgeInsets.only(left: 20, bottom: 10),
           child: Text(
@@ -343,10 +335,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
                 ),
               ),
               const SizedBox(width: 5),
-              Icon(
-                Icons.upload,
-                color: ColorUtil.fromHex("#461524"),
-              ),
+              Icon(Icons.upload, color: ColorUtil.fromHex("#461524")),
             ],
           ),
         ),
@@ -389,10 +378,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Widget _buildLocationSection() {
     return Column(
       children: [
-        Divider(
-          color: ColorUtil.fromHex("#D4D4D4"),
-          thickness: 1.5,
-        ),
+        Divider(color: ColorUtil.fromHex("#D4D4D4"), thickness: 1.5),
         const SizedBox(height: 5),
         SubmitSelectInputBorder(
           label: _emptyString,
@@ -422,10 +408,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Widget _buildAddressSection() {
     return Column(
       children: [
-        Divider(
-          color: ColorUtil.fromHex("#D4D4D4"),
-          thickness: 1.5,
-        ),
+        Divider(color: ColorUtil.fromHex("#D4D4D4"), thickness: 1.5),
         Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 10),
           child: Messageview(
@@ -456,19 +439,22 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
       _stateNames.clear();
       _districtNames.clear();
     });
-    
+
     if (selectedCountry != null) {
-      final countryId = _countryIds.elementAt(_countryNames.indexOf(selectedCountry));
+      final countryId = _countryIds.elementAt(
+        _countryNames.indexOf(selectedCountry),
+      );
       _fetchStates(countryId.toString());
     }
   }
+
   void _onStateChanged(String? selectedState) {
     setState(() {
       _selectedStateName = selectedState;
       _selectedDistrictName = null;
       _districtNames.clear();
     });
-    
+
     if (selectedState != null) {
       final stateId = _stateIds.elementAt(_stateNames.indexOf(selectedState));
       _fetchDistricts(stateId.toString());
@@ -493,32 +479,32 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
       showToast("Please enter name");
       return false;
     }
-    
+
     if (_isPhoneEmpty()) {
       showToast("Please enter phone");
       return false;
     }
-    
+
     if (_isAddressEmpty()) {
       showToast("Please enter your address");
       return false;
     }
-    
+
     if (_selectedCountryName == null) {
       showToast("Please select country");
       return false;
     }
-    
+
     if (_selectedStateName == null) {
       showToast("Please select state");
       return false;
     }
-    
+
     if (_selectedDistrictName == null) {
       showToast("Please select district");
       return false;
     }
-    
+
     return true;
   }
 
@@ -533,11 +519,11 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
       final int savedBranchId = await getSavedObject("branch");
 
       print("Branch ID: $savedBranchId");
-      
+
       if (savedReferralId.isNotEmpty) {
         _agentReferralId = savedReferralId;
       }
-      
+
       if (savedBranchId > 0) {
         _branchId = savedBranchId;
         _fetchCountries(_branchId!);
@@ -547,7 +533,6 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
     }
   }
 
-
   Future<void> _selectDateOfBirth(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -555,25 +540,24 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
       firstDate: DateTime(1930, 8),
       lastDate: DateTime.now(),
     );
-    
+
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
         _selectedDateOfBirth = pickedDate.toString().substring(0, 10);
-        _dateOfBirthController.text = DateFormat(_dateFormat)
-            .format(DateTime.parse(_selectedDateOfBirth!))
-            .toString();
+        _dateOfBirthController.text = DateFormat(
+          _dateFormat,
+        ).format(DateTime.parse(_selectedDateOfBirth!)).toString();
       });
     }
   }
-
 
   Future<void> _selectImageFromGallery() async {
     try {
       final XFile? pickedFile = await _imagePicker.pickImage(
         source: ImageSource.gallery,
       );
-      
+
       if (pickedFile != null) {
         setState(() {
           _selectedAadhaarImage = File(pickedFile.path);
@@ -586,16 +570,17 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
     }
   }
 
-
   Future<void> _fetchCountries(int branchId) async {
     print("Fetching countries for branch: $branchId");
     _clearLocationData();
 
     try {
       Loading.show(context);
-      final Countrymodel countryResponse = await Locationservice.getCountry(branchId);
+      final Countrymodel countryResponse = await Locationservice.getCountry(
+        branchId,
+      );
       Loading.dismiss();
-      
+
       setState(() {
         _countryNames = countryResponse.data.countryList
             .map((country) => country.countryName)
@@ -612,12 +597,14 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
 
   Future<void> _fetchStates(String countryId) async {
     _clearStateAndDistrictData();
-    
+
     try {
       Loading.show(context);
-      final Statemodel stateResponse = await Locationservice.getState(countryId);
+      final Statemodel stateResponse = await Locationservice.getState(
+        countryId,
+      );
       Loading.dismiss();
-      
+
       setState(() {
         _stateNames = stateResponse.data.stateList
             .map((state) => state.stateName)
@@ -635,9 +622,11 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Future<void> _fetchDistricts(String stateId) async {
     try {
       Loading.show(context);
-      final Districtmodel districtResponse = await Locationservice.getDistrict(stateId);
+      final Districtmodel districtResponse = await Locationservice.getDistrict(
+        stateId,
+      );
       Loading.dismiss();
-      
+
       setState(() {
         _districtNames = districtResponse.data.districtsList
             .map((district) => district.districtName)
@@ -655,13 +644,12 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
   Future<void> _submitRegistration() async {
     try {
       final Map<String, dynamic> registrationData = _buildRegistrationData();
-      
+
       print("Submitting registration: $registrationData");
       Loading.show(context);
-      
-   
-          await Registrationservice.getagentRegistration(registrationData);
-      
+
+      await Registrationservice.getagentRegistration(registrationData);
+
       Loading.dismiss();
       Navigator.pop(context, true);
     } catch (error) {
@@ -702,9 +690,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
       ),
       "branchId": _branchId,
       "adhar": _selectedAadhaarImage?.path,
-      "state": _stateIds.elementAt(
-        _stateNames.indexOf(_selectedStateName!),
-      ),
+      "state": _stateIds.elementAt(_stateNames.indexOf(_selectedStateName!)),
       "country": _countryIds.elementAt(
         _countryNames.indexOf(_selectedCountryName!),
       ),
@@ -714,7 +700,7 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
 
   bool validateMobile(String phoneNumber) {
     final RegExp phoneRegExp = RegExp(_phonePattern);
-    
+
     if (phoneNumber.isEmpty) {
       showToast('Please enter mobile number');
       return false;
@@ -725,5 +711,3 @@ class AgentRegistrationScreenState extends State<AgentRegistrationScreen> {
     return true;
   }
 }
-
-  

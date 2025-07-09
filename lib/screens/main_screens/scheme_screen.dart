@@ -23,7 +23,8 @@ class SchemeScreen extends StatefulWidget {
   State<SchemeScreen> createState() => _SchemeScreenState();
 }
 
-class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMixin {
+class _SchemeScreenState extends State<SchemeScreen>
+    with TickerProviderStateMixin {
   bool ios = true;
   final amountController = TextEditingController();
 
@@ -68,27 +69,20 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
       duration: Duration(milliseconds: 800),
       vsync: this,
     );
-    
+
     _slideController = AnimationController(
       duration: Duration(milliseconds: 1000),
       vsync: this,
     );
-    
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _fadeController,
-      curve: Curves.easeInOut,
-    ));
-    
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _slideController,
-      curve: Curves.easeOutCubic,
-    ));
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _fadeController, curve: Curves.easeInOut),
+    );
+
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
 
     _fadeController.forward();
     _slideController.forward();
@@ -105,34 +99,32 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return 
-    load == true
+    return load == true
         ? Center(
             child: CircularProgressIndicator(
               color: Theme.of(context).primaryColor,
             ),
           )
-        : 
-        FadeTransition(
+        : FadeTransition(
             opacity: _fadeAnimation,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(height: 10),
-                  
+
                   // Gold Rate Section
                   _buildGoldRateSection(),
-                  
+
                   SizedBox(height: 20),
-                  
+
                   // Scheme Details Card
                   _buildSchemeDetailsCard(),
-                  
+
                   SizedBox(height: 20),
-                  
+
                   // Payment Actions Section
                   _buildPaymentActionsSection(),
-                  
+
                   SizedBox(height: 30),
                 ],
               ),
@@ -149,9 +141,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
           color: Color.fromRGBO(255, 197, 19, 1),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
+        child: Center(child: CircularProgressIndicator(color: Colors.white)),
       );
     }
 
@@ -204,20 +194,18 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                           ),
                         ),
                         Text(
-                          today ?? DateFormat('dd MMM, yyyy').format(DateTime.now()),
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.black87,
-                          ),
+                          today ??
+                              DateFormat('dd MMM, yyyy').format(DateTime.now()),
+                          style: TextStyle(fontSize: 13, color: Colors.black87),
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-              
+
               SizedBox(height: 20),
-              
+
               // Rates Row with Fixed Height Containers
               IntrinsicHeight(
                 child: Row(
@@ -226,7 +214,10 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                     Expanded(
                       child: Container(
                         height: 80, // Fixed height for alignment
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 12,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(12),
@@ -264,14 +255,17 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
-                    
+
                     SizedBox(width: 8),
-                    
+
                     // 8 Gram Rate
                     Expanded(
                       child: Container(
                         height: 80, // Fixed height for alignment
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 12,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(12),
@@ -309,14 +303,17 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
-                    
+
                     SizedBox(width: 8),
-                    
+
                     // Change Rate
                     Expanded(
                       child: Container(
                         height: 80, // Fixed height for alignment
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 12,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(12),
@@ -348,7 +345,9 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                                 ),
                                 SizedBox(width: 2),
                                 Lottie.asset(
-                                  updown ? "assets/up.json" : "assets/down.json",
+                                  updown
+                                      ? "assets/up.json"
+                                      : "assets/down.json",
                                   height: 16,
                                   width: 16,
                                 ),
@@ -443,7 +442,8 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              data?.data?.schemeName?.toString() ?? "My Gold Scheme",
+                              data?.data?.schemeName?.toString() ??
+                                  "My Gold Scheme",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -462,9 +462,9 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                       ),
                     ],
                   ),
-                  
+
                   SizedBox(height: 24),
-                  
+
                   // Stats Row - Only show Total Paid and Total Gold
                   Row(
                     children: [
@@ -499,18 +499,11 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.15),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: Colors.white.withOpacity(0.3),
-            width: 1,
-          ),
+          border: Border.all(color: Colors.white.withOpacity(0.3), width: 1),
         ),
         child: Column(
           children: [
-            Icon(
-              icon,
-              color: Colors.white,
-              size: 20,
-            ),
+            Icon(icon, color: Colors.white, size: 20),
             SizedBox(height: 8),
             Text(
               value,
@@ -534,6 +527,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
       ),
     );
   }
+
   Widget _buildPaymentActionsSection() {
     return SlideTransition(
       position: _slideAnimation,
@@ -554,9 +548,9 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                 isPayButton: true,
               ),
             ),
-            
+
             SizedBox(width: 16),
-            
+
             // Next Payment Card
             Expanded(
               child: _buildPaymentCard(
@@ -597,10 +591,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
             offset: Offset(0, 4),
           ),
         ],
-        border: Border.all(
-          color: color.withOpacity(0.2),
-          width: 1,
-        ),
+        border: Border.all(color: color.withOpacity(0.2), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -613,11 +604,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                   color: color.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
-                  icon,
-                  color: color,
-                  size: 20,
-                ),
+                child: Icon(icon, color: color, size: 20),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -632,9 +619,9 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
               ),
             ],
           ),
-          
+
           SizedBox(height: 16),
-          
+
           Text(
             amount,
             style: TextStyle(
@@ -643,9 +630,9 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
               color: color,
             ),
           ),
-          
+
           SizedBox(height: 8),
-          
+
           if (isPayButton && (role == 2 || role == 4))
             SizedBox(
               width: double.infinity,
@@ -662,10 +649,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                 ),
                 child: Text(
                   "PAY NOW",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               ),
             )
@@ -696,17 +680,26 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
   Future<void> _getDashboardData() async {
     try {
       today = DateFormat('dd MMM, yyyy').format(DateTime.now());
-      
+
       model.Dashboardmodel? datas = await Dashbordservice.getDashboard();
-      
+
       if (datas.success) {
         gram = (double.parse(datas.data.todayRate) * 8).toString();
-        
-        if (double.parse(datas.data.todayRate) > double.parse(datas.data.gramPrevious)) {
-          change = ((double.parse(datas.data.todayRate) - double.parse(datas.data.gramPrevious)) * 8).toString();
+
+        if (double.parse(datas.data.todayRate) >
+            double.parse(datas.data.gramPrevious)) {
+          change =
+              ((double.parse(datas.data.todayRate) -
+                          double.parse(datas.data.gramPrevious)) *
+                      8)
+                  .toString();
           updown = true;
         } else {
-          change = ((double.parse(datas.data.gramPrevious) - double.parse(datas.data.todayRate)) * 8).toString();
+          change =
+              ((double.parse(datas.data.gramPrevious) -
+                          double.parse(datas.data.todayRate)) *
+                      8)
+                  .toString();
           updown = false;
         }
 
@@ -730,11 +723,16 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
 
     if (schemeName == "UNLIMTED PACKAGE WITH MC" ||
         (branchId == 2 && schemeName == "Marriage Package") ||
-        branchId == 4 || branchId == 5 ||
+        branchId == 4 ||
+        branchId == 5 ||
         (branchId == 6 && schemeName != "MONTHLY SCHEME") ||
-        (branchId == 14906 && (schemeName == "Daily Scheme" || schemeName == "SKY GOLD SCHEME")) ||
+        (branchId == 14906 &&
+            (schemeName == "Daily Scheme" ||
+                schemeName == "SKY GOLD SCHEME")) ||
         (branchId == 2 && schemeName == "SKY GOLD  TAARA  SCHEME") ||
-        (branchId == 3 && (schemeName == "11 MONTH SCHEME DAILY WITHOUT MC" || schemeName == "SKY GOLD TAARA SCHEME")) ||
+        (branchId == 3 &&
+            (schemeName == "11 MONTH SCHEME DAILY WITHOUT MC" ||
+                schemeName == "SKY GOLD TAARA SCHEME")) ||
         (branchId == 27114 && schemeIddd == 30)) {
       return paymentData!.data.sumGram;
     }
@@ -753,7 +751,8 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
   }
 
   void _handlePaymentAction() async {
-    if (await getSavedObject("roleid") == 2 || await getSavedObject("roleid") == 4) {
+    if (await getSavedObject("roleid") == 2 ||
+        await getSavedObject("roleid") == 4) {
       Map details = {
         'type': data!.data!.paymentType,
         'UserId': await getSavedObject('userid'),
@@ -791,7 +790,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
 
   // Original methods (keeping all existing functionality)
   var schemeIddd;
-  
+
   getrole() async {
     role = await getSavedObject("roleid");
     schemeIddd = await getSavedObject("schemeIddd");
@@ -821,7 +820,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
 
     print(details);
     try {
-   //   Loading.show(context);
+      //   Loading.show(context);
       Sheduledmodel datas = await Sheduledservice.postService(details);
       print("Reached here");
 
@@ -961,7 +960,8 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
                             gram = 0;
                             finalgram = "";
                           } else {
-                            gram = double.parse(value) /
+                            gram =
+                                double.parse(value) /
                                 double.parse(data!.data!.todayRate.toString());
                             finalgram = gram.toStringAsFixed(3);
                           }
@@ -1000,7 +1000,7 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
     };
     print("details--------------------------->$details");
     try {
-    //  Loading.show(context);
+      //  Loading.show(context);
       Paymentmodel datas = await Paymentservice.postPay(details);
       print("Reached here");
 
@@ -1039,6 +1039,3 @@ class _SchemeScreenState extends State<SchemeScreen> with TickerProviderStateMix
     }
   }
 }
-
-
-

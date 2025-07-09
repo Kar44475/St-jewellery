@@ -15,11 +15,7 @@ class Nextpaymentcustomerlistmodel {
   String? message;
   Data? data;
 
-  Nextpaymentcustomerlistmodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  Nextpaymentcustomerlistmodel({this.success, this.message, this.data});
 
   factory Nextpaymentcustomerlistmodel.fromJson(Map<String, dynamic> json) =>
       Nextpaymentcustomerlistmodel(
@@ -29,35 +25,33 @@ class Nextpaymentcustomerlistmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
   String? status;
   List<CustomerList>? customerList;
 
-  Data({
-    this.status,
-    this.customerList,
-  });
+  Data({this.status, this.customerList});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        customerList: json["CustomerList"] == null
-            ? []
-            : List<CustomerList>.from(
-                json["CustomerList"]!.map((x) => CustomerList.fromJson(x))),
-      );
+    status: json["status"],
+    customerList: json["CustomerList"] == null
+        ? []
+        : List<CustomerList>.from(
+            json["CustomerList"]!.map((x) => CustomerList.fromJson(x)),
+          ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "CustomerList": customerList == null
-            ? []
-            : List<dynamic>.from(customerList!.map((x) => x.toJson())),
-      };
+    "status": status,
+    "CustomerList": customerList == null
+        ? []
+        : List<dynamic>.from(customerList!.map((x) => x.toJson())),
+  };
 }
 
 class CustomerList {
@@ -76,18 +70,18 @@ class CustomerList {
   });
 
   factory CustomerList.fromJson(Map<String, dynamic> json) => CustomerList(
-        userId: json["UserId"],
-        name: json["name"],
-        registrationNumber: json["registrationNumber"],
-        phone: json["phone"],
-        subscriptionId: json["subscriptionId"],
-      );
+    userId: json["UserId"],
+    name: json["name"],
+    registrationNumber: json["registrationNumber"],
+    phone: json["phone"],
+    subscriptionId: json["subscriptionId"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "UserId": userId,
-        "name": name,
-        "registrationNumber": registrationNumber,
-        "phone": phone,
-        "subscriptionId": subscriptionId,
-      };
+    "UserId": userId,
+    "name": name,
+    "registrationNumber": registrationNumber,
+    "phone": phone,
+    "subscriptionId": subscriptionId,
+  };
 }

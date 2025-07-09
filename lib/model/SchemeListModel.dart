@@ -4,26 +4,25 @@
 
 import 'dart:convert';
 
-SchemeListmodel schemeListmodelFromJson(String str) => SchemeListmodel.fromJson(json.decode(str));
+SchemeListmodel schemeListmodelFromJson(String str) =>
+    SchemeListmodel.fromJson(json.decode(str));
 
-String schemeListmodelToJson(SchemeListmodel data) => json.encode(data.toJson());
+String schemeListmodelToJson(SchemeListmodel data) =>
+    json.encode(data.toJson());
 
 class SchemeListmodel {
   bool? success;
   String? message;
   Data? data;
 
-  SchemeListmodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  SchemeListmodel({this.success, this.message, this.data});
 
-  factory SchemeListmodel.fromJson(Map<String, dynamic> json) => SchemeListmodel(
-    success: json["success"],
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-  );
+  factory SchemeListmodel.fromJson(Map<String, dynamic> json) =>
+      SchemeListmodel(
+        success: json["success"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
     "success": success,
@@ -36,19 +35,22 @@ class Data {
   int? status;
   List<SchemeList>? schemeList;
 
-  Data({
-    this.status,
-    this.schemeList,
-  });
+  Data({this.status, this.schemeList});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     status: json["status"],
-    schemeList: json["SchemeList"] == null ? [] : List<SchemeList>.from(json["SchemeList"]!.map((x) => SchemeList.fromJson(x))),
+    schemeList: json["SchemeList"] == null
+        ? []
+        : List<SchemeList>.from(
+            json["SchemeList"]!.map((x) => SchemeList.fromJson(x)),
+          ),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
-    "SchemeList": schemeList == null ? [] : List<dynamic>.from(schemeList!.map((x) => x.toJson())),
+    "SchemeList": schemeList == null
+        ? []
+        : List<dynamic>.from(schemeList!.map((x) => x.toJson())),
   };
 }
 
@@ -86,8 +88,12 @@ class SchemeList {
     status: json["status"],
     schemeType: json["scheme_type"],
     checkPaymentInterval: json["check_payment_interval"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    createdAt: json["created_at"] == null
+        ? null
+        : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null
+        ? null
+        : DateTime.parse(json["updated_at"]),
   );
 
   Map<String, dynamic> toJson() => {

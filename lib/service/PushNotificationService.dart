@@ -44,22 +44,22 @@ class PushNotificationService {
     //     print('Message also contained a notification: ${message.notification}');
     //   }
     // });
-//      if (notification != null && android != null) {
-//         flutterLocalNotificationsPlugin.show(
-//             notification.hashCode,
-//             notification.title,
-//             notification.body,
-//             NotificationDetails(
-//               android: AndroidNotificationDetails(
-//               '23', 'Proaims', 'Gold',
-//                 // TODO add a proper drawable resource to android, for now using
-//                 //      one that already exists in example app.
-//                 icon: 'launch_background',
-//               ),
-//             ));
-//       }
+    //      if (notification != null && android != null) {
+    //         flutterLocalNotificationsPlugin.show(
+    //             notification.hashCode,
+    //             notification.title,
+    //             notification.body,
+    //             NotificationDetails(
+    //               android: AndroidNotificationDetails(
+    //               '23', 'Proaims', 'Gold',
+    //                 // TODO add a proper drawable resource to android, for now using
+    //                 //      one that already exists in example app.
+    //                 icon: 'launch_background',
+    //               ),
+    //             ));
+    //       }
 
-// });
+    // });
 
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
       '78', // id
@@ -73,7 +73,8 @@ class PushNotificationService {
 
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.createNotificationChannel(channel);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
@@ -84,18 +85,19 @@ class PushNotificationService {
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
         flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
 
-                icon: android?.smallIcon,
-                // other properties...
-              ),
-            ));
+              icon: android?.smallIcon,
+              // other properties...
+            ),
+          ),
+        );
       }
     });
   }

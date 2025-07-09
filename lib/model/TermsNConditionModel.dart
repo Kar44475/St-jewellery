@@ -29,30 +29,27 @@ class TermsNConditionModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
   bool status;
   List<Term> terms;
 
-  Data({
-    required this.status,
-    required this.terms,
-  });
+  Data({required this.status, required this.terms});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        terms: List<Term>.from(json["terms"].map((x) => Term.fromJson(x))),
-      );
+    status: json["status"],
+    terms: List<Term>.from(json["terms"].map((x) => Term.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "terms": List<dynamic>.from(terms.map((x) => x.toJson())),
-      };
+    "status": status,
+    "terms": List<dynamic>.from(terms.map((x) => x.toJson())),
+  };
 }
 
 class Term {
@@ -60,21 +57,17 @@ class Term {
   String title;
   String description;
 
-  Term({
-    required this.termsId,
-    required this.title,
-    required this.description,
-  });
+  Term({required this.termsId, required this.title, required this.description});
 
   factory Term.fromJson(Map<String, dynamic> json) => Term(
-        termsId: json["termsId"],
-        title: json["title"],
-        description: json["description"],
-      );
+    termsId: json["termsId"],
+    title: json["title"],
+    description: json["description"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "termsId": termsId,
-        "title": title,
-        "description": description,
-      };
+    "termsId": termsId,
+    "title": title,
+    "description": description,
+  };
 }

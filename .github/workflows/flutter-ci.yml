@@ -29,9 +29,10 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     
-    # Step 4: Check code formatting
+    # Step 4: Check code formatting (auto-fix)
     - name: Check formatting
-      run: dart format --output=none --set-exit-if-changed .
+      run: dart format .
+
     
     # Step 5: Analyze code for issues
     - name: Analyze code

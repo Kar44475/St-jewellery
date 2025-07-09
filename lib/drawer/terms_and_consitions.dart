@@ -21,7 +21,10 @@ class _TermsNconditionsState extends State<TermsNconditions> {
           children: [
             const SizedBox(height: 10),
             // Center(child: Image.asset("assets/logoOnly.png", height: 120)),
-            Text("St jewellery", style: font(14, Colors.white, FontWeight.w700)),
+            Text(
+              "St jewellery",
+              style: font(14, Colors.white, FontWeight.w700),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Card(

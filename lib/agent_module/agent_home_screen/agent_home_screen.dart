@@ -68,7 +68,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
       backgroundColor: Colors.grey[50],
       body: Column(
         children: [
-    
           Container(
             height: MediaQuery.of(context).size.height * 0.25,
             width: double.infinity,
@@ -79,7 +78,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                 
                     Row(
                       children: [
                         Image.asset(
@@ -117,7 +115,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
 
                     Spacer(),
 
-                 
                     Text(
                       "Manage Your Customers",
                       style: TextStyle(
@@ -142,7 +139,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
             ),
           ),
 
-         
           Container(
             color: Theme.of(context).primaryColor,
             child: Container(
@@ -202,7 +198,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
             ),
           ),
 
-        
           Expanded(
             child: Container(
               color: Colors.grey[50],
@@ -314,7 +309,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
                                                       ),
                                                       child: Row(
                                                         children: [
-                                                       
                                                           Container(
                                                             width: 50,
                                                             height: 50,
@@ -343,7 +337,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
 
                                                           SizedBox(width: 15),
 
-                                                         
                                                           Expanded(
                                                             child: Column(
                                                               crossAxisAlignment:
@@ -447,7 +440,6 @@ class _AgentHomeScreenState extends State<AgentHomeScreen> {
                                                             ),
                                                           ),
 
-                                                         
                                                           Container(
                                                             width: 40,
                                                             height: 40,

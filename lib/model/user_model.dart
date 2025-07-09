@@ -13,23 +13,19 @@ class Usermodel {
   String? message;
   Data? data;
 
-  Usermodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  Usermodel({this.success, this.message, this.data});
 
   factory Usermodel.fromJson(Map<String, dynamic> json) => Usermodel(
-        success: json["success"],
-        message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
@@ -58,35 +54,36 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        islogin: json["islogin"],
-        token: json["token"],
-        userName: json["userName"],
-        userId: json["userId"],
-        email: json["Email"],
-        roleId: json["roleId"],
-        branchId: json["branchId"],
-        referalId: json["referalId"],
-        subscriptionList: json["subscriptionList"] == null
-            ? []
-            : List<SubscriptionList>.from(json["subscriptionList"]!
-                .map((x) => SubscriptionList.fromJson(x))),
-      );
+    status: json["status"],
+    islogin: json["islogin"],
+    token: json["token"],
+    userName: json["userName"],
+    userId: json["userId"],
+    email: json["Email"],
+    roleId: json["roleId"],
+    branchId: json["branchId"],
+    referalId: json["referalId"],
+    subscriptionList: json["subscriptionList"] == null
+        ? []
+        : List<SubscriptionList>.from(
+            json["subscriptionList"]!.map((x) => SubscriptionList.fromJson(x)),
+          ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "islogin": islogin,
-        "token": token,
-        "userName": userName,
-        "userId": userId,
-        "Email": email,
-        "roleId": roleId,
-        "branchId": branchId,
-        "referalId": referalId,
-        "subscriptionList": subscriptionList == null
-            ? []
-            : List<dynamic>.from(subscriptionList!.map((x) => x.toJson())),
-      };
+    "status": status,
+    "islogin": islogin,
+    "token": token,
+    "userName": userName,
+    "userId": userId,
+    "Email": email,
+    "roleId": roleId,
+    "branchId": branchId,
+    "referalId": referalId,
+    "subscriptionList": subscriptionList == null
+        ? []
+        : List<dynamic>.from(subscriptionList!.map((x) => x.toJson())),
+  };
 }
 
 class SubscriptionList {
@@ -149,21 +146,21 @@ class SubscriptionList {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "UserId": userId,
-        "SchemeId": schemeId,
-        "SchemeAmountId": schemeAmountId,
-        "StartDate":
-            "${startDate!.year.toString().padLeft(4, '0')}-${startDate!.month.toString().padLeft(2, '0')}-${startDate!.day.toString().padLeft(2, '0')}",
-        "EndDate": endDate,
-        "subscription_type": subscriptionType,
-        "scheme_type": schemeType,
-        "date_check":
-            "${dateCheck!.year.toString().padLeft(4, '0')}-${dateCheck!.month.toString().padLeft(2, '0')}-${dateCheck!.day.toString().padLeft(2, '0')}",
-        "status": status,
-        "user_scheme_name": userSchemeName,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "branchId": branchId,
+    "UserId": userId,
+    "SchemeId": schemeId,
+    "SchemeAmountId": schemeAmountId,
+    "StartDate":
+        "${startDate!.year.toString().padLeft(4, '0')}-${startDate!.month.toString().padLeft(2, '0')}-${startDate!.day.toString().padLeft(2, '0')}",
+    "EndDate": endDate,
+    "subscription_type": subscriptionType,
+    "scheme_type": schemeType,
+    "date_check":
+        "${dateCheck!.year.toString().padLeft(4, '0')}-${dateCheck!.month.toString().padLeft(2, '0')}-${dateCheck!.day.toString().padLeft(2, '0')}",
+    "status": status,
+    "user_scheme_name": userSchemeName,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

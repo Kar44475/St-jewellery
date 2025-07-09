@@ -14,45 +14,38 @@ class Recepitmodel {
   String? message;
   Data? data;
 
-  Recepitmodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  Recepitmodel({this.success, this.message, this.data});
 
   factory Recepitmodel.fromJson(Map<String, dynamic> json) => Recepitmodel(
-        success: json["success"],
-        message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
   PaymentsDetails? paymentsDetails;
   Rate? rate;
 
-  Data({
-    this.paymentsDetails,
-    this.rate,
-  });
+  Data({this.paymentsDetails, this.rate});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        paymentsDetails: json["paymentsDetails"] == null
-            ? null
-            : PaymentsDetails.fromJson(json["paymentsDetails"]),
-        rate: json["rate"] == null ? null : Rate.fromJson(json["rate"]),
-      );
+    paymentsDetails: json["paymentsDetails"] == null
+        ? null
+        : PaymentsDetails.fromJson(json["paymentsDetails"]),
+    rate: json["rate"] == null ? null : Rate.fromJson(json["rate"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "paymentsDetails": paymentsDetails?.toJson(),
-        "rate": rate?.toJson(),
-      };
+    "paymentsDetails": paymentsDetails?.toJson(),
+    "rate": rate?.toJson(),
+  };
 }
 
 class PaymentsDetails {
@@ -134,29 +127,29 @@ class PaymentsDetails {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "voucherNumber": voucherNumber,
-        "UserId": userId,
-        "SheduledDateId": sheduledDateId,
-        "subscriptionId": subscriptionId,
-        "gram": gram,
-        "amount": amount,
-        "taransactionId": taransactionId,
-        "paymentDate":
-            "${paymentDate!.year.toString().padLeft(4, '0')}-${paymentDate!.month.toString().padLeft(2, '0')}-${paymentDate!.day.toString().padLeft(2, '0')}",
-        "paidBy": paidBy,
-        "note": note,
-        "paymentMode": paymentMode,
-        "payment_method": paymentMethod,
-        "status": status,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "name": name,
-        "phone": phone,
-        "registrationNumber": registrationNumber,
-        "schemeName": schemeName,
-      };
+    "id": id,
+    "branchId": branchId,
+    "voucherNumber": voucherNumber,
+    "UserId": userId,
+    "SheduledDateId": sheduledDateId,
+    "subscriptionId": subscriptionId,
+    "gram": gram,
+    "amount": amount,
+    "taransactionId": taransactionId,
+    "paymentDate":
+        "${paymentDate!.year.toString().padLeft(4, '0')}-${paymentDate!.month.toString().padLeft(2, '0')}-${paymentDate!.day.toString().padLeft(2, '0')}",
+    "paidBy": paidBy,
+    "note": note,
+    "paymentMode": paymentMode,
+    "payment_method": paymentMethod,
+    "status": status,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+    "name": name,
+    "phone": phone,
+    "registrationNumber": registrationNumber,
+    "schemeName": schemeName,
+  };
 }
 
 class Rate {
@@ -179,26 +172,26 @@ class Rate {
   });
 
   factory Rate.fromJson(Map<String, dynamic> json) => Rate(
-        id: json["id"],
-        branchId: json["branchId"],
-        name: json["name"],
-        amount: json["amount"],
-        status: json["status"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    branchId: json["branchId"],
+    name: json["name"],
+    amount: json["amount"],
+    status: json["status"],
+    createdAt: json["created_at"] == null
+        ? null
+        : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null
+        ? null
+        : DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "name": name,
-        "amount": amount,
-        "status": status,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "branchId": branchId,
+    "name": name,
+    "amount": amount,
+    "status": status,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

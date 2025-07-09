@@ -29,32 +29,31 @@ class Subscriptionlistmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
   String status;
   List<SubscriptionList> subscriptionList;
 
-  Data({
-    required this.status,
-    required this.subscriptionList,
-  });
+  Data({required this.status, required this.subscriptionList});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        subscriptionList: List<SubscriptionList>.from(
-            json["subscriptionList"].map((x) => SubscriptionList.fromJson(x))),
-      );
+    status: json["status"],
+    subscriptionList: List<SubscriptionList>.from(
+      json["subscriptionList"].map((x) => SubscriptionList.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "subscriptionList":
-            List<dynamic>.from(subscriptionList.map((x) => x.toJson())),
-      };
+    "status": status,
+    "subscriptionList": List<dynamic>.from(
+      subscriptionList.map((x) => x.toJson()),
+    ),
+  };
 }
 
 class SubscriptionList {
@@ -78,9 +77,9 @@ class SubscriptionList {
     required this.startDate,
     required this.endDate,
     required this.status,
-     this.schemeName,
-     this.schemAmount,
-     this.amountTo,
+    this.schemeName,
+    this.schemAmount,
+    this.amountTo,
     required this.subscriptionType,
   });
 
@@ -93,24 +92,24 @@ class SubscriptionList {
         startDate: DateTime.parse(json["StartDate"]),
         endDate: json["EndDate"],
         status: json["status"],
-        schemeName: json["schemeName"]??"",
-        schemAmount: json["schem_amount"]??"",
-        amountTo: json["amount_to"]??"",
+        schemeName: json["schemeName"] ?? "",
+        schemAmount: json["schem_amount"] ?? "",
+        amountTo: json["amount_to"] ?? "",
         subscriptionType: json["subscription_type"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "UserId": userId,
-        "SchemeId": schemeId,
-        "SchemeAmountId": schemeAmountId,
-        "StartDate":
-            "${startDate.year.toString().padLeft(4, '0')}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}",
-        "EndDate": endDate,
-        "status": status,
-        "schemeName": schemeName,
-        "schem_amount": schemAmount,
-        "amount_to": amountTo,
-        "subscription_type": subscriptionType,
-      };
+    "id": id,
+    "UserId": userId,
+    "SchemeId": schemeId,
+    "SchemeAmountId": schemeAmountId,
+    "StartDate":
+        "${startDate.year.toString().padLeft(4, '0')}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}",
+    "EndDate": endDate,
+    "status": status,
+    "schemeName": schemeName,
+    "schem_amount": schemAmount,
+    "amount_to": amountTo,
+    "subscription_type": subscriptionType,
+  };
 }

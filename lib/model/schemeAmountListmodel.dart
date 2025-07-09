@@ -29,10 +29,10 @@ class SchemeAmountListmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data == null ? null : data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data == null ? null : data.toJson(),
+  };
 }
 
 class Data {
@@ -49,26 +49,26 @@ class Data {
   List<Termsandcondtion> termsandcondtion;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        fixed: List<Fixed>.from(json["Fixed"].map((x) => Fixed.fromJson(x))),
-        varient:
-            List<Fixed>.from(json["Varient"].map((x) => Fixed.fromJson(x))),
-        termsandcondtion: List<Termsandcondtion>.from(
-            json["termsandcondtion"].map((x) => Termsandcondtion.fromJson(x))),
-      );
+    status: json["status"],
+    fixed: List<Fixed>.from(json["Fixed"].map((x) => Fixed.fromJson(x))),
+    varient: List<Fixed>.from(json["Varient"].map((x) => Fixed.fromJson(x))),
+    termsandcondtion: List<Termsandcondtion>.from(
+      json["termsandcondtion"].map((x) => Termsandcondtion.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "Fixed": fixed == null
-            ? null
-            : List<dynamic>.from(fixed.map((x) => x.toJson())),
-        "Varient": varient == null
-            ? null
-            : List<dynamic>.from(varient.map((x) => x.toJson())),
-        "termsandcondtion": termsandcondtion == null
-            ? null
-            : List<dynamic>.from(termsandcondtion.map((x) => x.toJson())),
-      };
+    "status": status,
+    "Fixed": fixed == null
+        ? null
+        : List<dynamic>.from(fixed.map((x) => x.toJson())),
+    "Varient": varient == null
+        ? null
+        : List<dynamic>.from(varient.map((x) => x.toJson())),
+    "termsandcondtion": termsandcondtion == null
+        ? null
+        : List<dynamic>.from(termsandcondtion.map((x) => x.toJson())),
+  };
 }
 
 class Fixed {
@@ -76,8 +76,8 @@ class Fixed {
     required this.id,
     required this.schemeId,
     required this.paymentType,
-     this.amount,
-     this.amountTo,
+    this.amount,
+    this.amountTo,
     required this.termsId,
     required this.createdAt,
     required this.updatedAt,
@@ -87,32 +87,32 @@ class Fixed {
   int schemeId;
   int paymentType;
   String? amount;
-  String ? amountTo;
+  String? amountTo;
   DateTime createdAt;
   int termsId;
   DateTime updatedAt;
 
   factory Fixed.fromJson(Map<String, dynamic> json) => Fixed(
-        id: json["id"],
-        schemeId: json["SchemeId"],
-        paymentType: json["payment_type"],
-        amount: json["amount"]??"",
-        amountTo: json["amount_to"]??"",
-        termsId: json["termsId"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    schemeId: json["SchemeId"],
+    paymentType: json["payment_type"],
+    amount: json["amount"] ?? "",
+    amountTo: json["amount_to"] ?? "",
+    termsId: json["termsId"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "SchemeId": schemeId,
-        "payment_type": paymentType,
-        "amount": amount,
-        "amount_to": amountTo,
-        "termsId": termsId,
-        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
-        "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "SchemeId": schemeId,
+    "payment_type": paymentType,
+    "amount": amount,
+    "amount_to": amountTo,
+    "termsId": termsId,
+    "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+    "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
+  };
 }
 
 class Termsandcondtion {
@@ -143,11 +143,11 @@ class Termsandcondtion {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "title": title,
-        "description": description,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "branchId": branchId,
+    "title": title,
+    "description": description,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

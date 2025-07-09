@@ -17,7 +17,7 @@ class _JewelleryTabState extends State<JewelleryTab> {
   List<AllProduct> allProducts = [];
   List<CategoryWiseProduct> categoryProducts = [];
   List<dynamic> currentProducts = [];
-  
+
   int selectedCategoryIndex = 0;
   bool isLoadingProducts = false;
   bool isDataLoaded = false;
@@ -26,13 +26,12 @@ class _JewelleryTabState extends State<JewelleryTab> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-  
+
     if (!_hasInitialized) {
       _hasInitialized = true;
       _loadJewelleryData();
@@ -56,10 +55,7 @@ class _JewelleryTabState extends State<JewelleryTab> {
                   SizedBox(height: 16),
                   Text(
                     'Loading jewellery collection...',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.grey[600], fontSize: 16),
                   ),
                 ],
               ),
@@ -68,23 +64,20 @@ class _JewelleryTabState extends State<JewelleryTab> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-             
                   _buildJewelleryBanner(),
-                  
+
                   SizedBox(height: 20),
-                
+
                   _buildTitleSection(),
-                  
+
                   SizedBox(height: 20),
-                  
-              
+
                   _buildCategoryFilter(),
-                  
+
                   SizedBox(height: 20),
-                  
-                
+
                   _buildProductsGrid(),
-                  
+
                   SizedBox(height: 30),
                 ],
               ),
@@ -136,11 +129,7 @@ class _JewelleryTabState extends State<JewelleryTab> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.diamond,
-                        size: 80,
-                        color: Colors.white,
-                      ),
+                      Icon(Icons.diamond, size: 80, color: Colors.white),
                       SizedBox(height: 10),
                       Text(
                         'Jewellery Collection',
@@ -155,20 +144,17 @@ class _JewelleryTabState extends State<JewelleryTab> {
                 );
               },
             ),
-         
+
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withOpacity(0.7),
-                  ],
+                  colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
                 ),
               ),
             ),
-     
+
             Positioned(
               bottom: 40,
               left: 30,
@@ -244,9 +230,6 @@ class _JewelleryTabState extends State<JewelleryTab> {
     );
   }
 
-
-
-
   Widget _buildCategoryFilter() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,15 +246,13 @@ class _JewelleryTabState extends State<JewelleryTab> {
           ),
         ),
         SizedBox(height: 15),
-   
+
         SizedBox(
           height: 70,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Row(
-              children: _buildCategoryChips(),
-            ),
+            child: Row(children: _buildCategoryChips()),
           ),
         ),
       ],
@@ -280,14 +261,14 @@ class _JewelleryTabState extends State<JewelleryTab> {
 
   Widget _buildCategoryChip(String title, int index, IconData icon) {
     bool isSelected = selectedCategoryIndex == index;
-    
+
     return GestureDetector(
       onTap: () async {
         setState(() {
           selectedCategoryIndex = index;
           isLoadingProducts = true;
         });
-        
+
         try {
           if (index == 0) {
             await _loadAllProducts();
@@ -305,14 +286,12 @@ class _JewelleryTabState extends State<JewelleryTab> {
         }
       },
       child: Container(
-   
         margin: EdgeInsets.only(right: 15, top: 2, bottom: 2),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           decoration: BoxDecoration(
-  
             gradient: isSelected
                 ? LinearGradient(
                     begin: Alignment.topLeft,
@@ -325,21 +304,18 @@ class _JewelleryTabState extends State<JewelleryTab> {
                 : LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [
-                      Colors.white,
-                      Colors.grey[50]!,
-                    ],
+                    colors: [Colors.white, Colors.grey[50]!],
                   ),
             borderRadius: BorderRadius.circular(25),
-   
+
             boxShadow: [
               BoxShadow(
-                color: isSelected 
+                color: isSelected
                     ? Theme.of(context).primaryColor.withOpacity(0.25)
                     : Colors.grey.withOpacity(0.15),
-                spreadRadius: 0, 
+                spreadRadius: 0,
                 blurRadius: isSelected ? 6 : 4,
-                offset: Offset(0, isSelected ? 2 : 1), 
+                offset: Offset(0, isSelected ? 2 : 1),
               ),
             ],
             border: Border.all(
@@ -373,22 +349,23 @@ class _JewelleryTabState extends State<JewelleryTab> {
     );
   }
 
-
-
   List<Widget> _buildCategoryChips() {
     List<Widget> chips = [];
-    
 
     chips.add(_buildCategoryChip("All Products", 0, Icons.apps));
 
     for (int i = 0; i < categories.length; i++) {
-      chips.add(_buildCategoryChip(categories[i].category, i + 1, _getCategoryIcon(categories[i].category)));
+      chips.add(
+        _buildCategoryChip(
+          categories[i].category,
+          i + 1,
+          _getCategoryIcon(categories[i].category),
+        ),
+      );
     }
-    
+
     return chips;
   }
-
-
 
   Widget _buildProductsGrid() {
     if (isLoadingProducts) {
@@ -406,10 +383,7 @@ class _JewelleryTabState extends State<JewelleryTab> {
               SizedBox(height: 16),
               Text(
                 'Loading products...',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.grey[600], fontSize: 16),
               ),
             ],
           ),
@@ -491,7 +465,6 @@ class _JewelleryTabState extends State<JewelleryTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-     
             Expanded(
               flex: 3,
               child: Container(
@@ -524,11 +497,11 @@ class _JewelleryTabState extends State<JewelleryTab> {
                           );
                         },
                       ),
-            
+
                       Positioned(
                         bottom: 0,
                         left: 0,
-                       
+
                         right: 0,
                         child: Container(
                           height: 40,
@@ -549,8 +522,7 @@ class _JewelleryTabState extends State<JewelleryTab> {
                 ),
               ),
             ),
-            
- 
+
             Expanded(
               flex: 2,
               child: Padding(
@@ -585,8 +557,6 @@ class _JewelleryTabState extends State<JewelleryTab> {
                         ),
                       ],
                     ),
-                    
-           
                   ],
                 ),
               ),
@@ -596,7 +566,6 @@ class _JewelleryTabState extends State<JewelleryTab> {
       ),
     );
   }
-
 
   String _getProductImage(dynamic product) {
     if (product is AllProduct) {
@@ -625,7 +594,6 @@ class _JewelleryTabState extends State<JewelleryTab> {
     return '';
   }
 
-
   IconData _getCategoryIcon(String categoryName) {
     switch (categoryName.toLowerCase()) {
       case 'rings':
@@ -647,19 +615,17 @@ class _JewelleryTabState extends State<JewelleryTab> {
     }
   }
 
-
   Future<void> _loadJewelleryData() async {
     try {
-
       setState(() {
         isDataLoaded = false;
       });
-      
-  
-      CategoryProductResponseModel categoryData = await Dashbordservice.getDashboardCatgory();
-      
 
-      AllProductsResponseModel allProductsResponse = await Dashbordservice.getAllProduct();
+      CategoryProductResponseModel categoryData =
+          await Dashbordservice.getDashboardCatgory();
+
+      AllProductsResponseModel allProductsResponse =
+          await Dashbordservice.getAllProduct();
 
       if (categoryData.success && allProductsResponse.success) {
         setState(() {
@@ -683,11 +649,11 @@ class _JewelleryTabState extends State<JewelleryTab> {
     }
   }
 
-
   Future<void> _loadAllProducts() async {
     try {
-      AllProductsResponseModel allProductsResponse = await Dashbordservice.getAllProduct();
-      
+      AllProductsResponseModel allProductsResponse =
+          await Dashbordservice.getAllProduct();
+
       if (allProductsResponse.success) {
         setState(() {
           allProducts = allProductsResponse.data.allProductList;
@@ -702,12 +668,11 @@ class _JewelleryTabState extends State<JewelleryTab> {
     }
   }
 
-
   Future<void> _loadCategoryProducts(String categoryId) async {
     try {
-      CategoryWiseProductResponseModel categoryProductsResponse = 
+      CategoryWiseProductResponseModel categoryProductsResponse =
           await Dashbordservice.getByCategoryProduct(categoryId);
-      
+
       if (categoryProductsResponse.success) {
         setState(() {
           categoryProducts = categoryProductsResponse.data.productList;

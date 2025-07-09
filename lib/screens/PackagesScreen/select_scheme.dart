@@ -81,22 +81,24 @@ class _SelectSchemeState extends State<SelectScheme> {
     int userId;
     _subscriptionIds.clear();
     _schemeAmountIds.clear();
-    
+
     try {
       Loading.show(context);
       userId = await getSavedObject("roleid") == 3
           ? await getSavedObject("customerid")
           : await getSavedObject("userid");
-      
-      Subscriptionlistmodel responseData = await Schemelistgetservice.getScheme(userId);
+
+      Subscriptionlistmodel responseData = await Schemelistgetservice.getScheme(
+        userId,
+      );
       Loading.dismiss();
-      
+
       setState(() {
         _subscriptionData = responseData;
         print(_subscriptionData);
         _isPageLoading = false;
       });
-      
+
       _subscriptionData!.data.subscriptionList.forEach((subscription) {
         _subscriptionIds.add(subscription.id);
         _schemeAmountIds.add(subscription.schemeAmountId);
@@ -122,7 +124,7 @@ class _SelectSchemeState extends State<SelectScheme> {
         backgroundColor: Colors.white,
         floatingActionButton: _buildNewSchemeButton(),
         appBar: _buildAppBar(),
-        body: _isPageLoading 
+        body: _isPageLoading
             ? const Center(child: CircularProgressIndicator())
             : _buildBody(),
       ),
@@ -135,14 +137,11 @@ class _SelectSchemeState extends State<SelectScheme> {
       backgroundColor: Colors.white,
       elevation: 0,
       automaticallyImplyLeading: false,
-      leading: (_userRole == 2 || _userRole == 4) 
-          ? null 
+      leading: (_userRole == 2 || _userRole == 4)
+          ? null
           : IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
             ),
       title: const Text(
         "Choose Scheme",
@@ -163,16 +162,10 @@ class _SelectSchemeState extends State<SelectScheme> {
       onPressed: () {
         Navigate.push(context, SelectNewScheme());
       },
-      icon: const Icon(
-        Icons.add,
-        color: Colors.white,
-      ),
+      icon: const Icon(Icons.add, color: Colors.white),
       label: const Text(
         "New Scheme",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -196,10 +189,7 @@ class _SelectSchemeState extends State<SelectScheme> {
     return const Center(
       child: Text(
         "No scheme selected \nPlease select a scheme",
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 16,
-        ),
+        style: TextStyle(color: Colors.black, fontSize: 16),
         textAlign: TextAlign.center,
       ),
     );
@@ -212,7 +202,7 @@ class _SelectSchemeState extends State<SelectScheme> {
       itemBuilder: (BuildContext context, int index) {
         final subscription = _subscriptionData!.data.subscriptionList[index];
         bool isSelected = _selectedSchemeIndex == index;
-        
+
         return Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20, top: 15),
           child: GestureDetector(
@@ -248,11 +238,11 @@ class _SelectSchemeState extends State<SelectScheme> {
   Widget _buildSchemeCard(dynamic subscription, int index, bool isSelected) {
     // For agents, don't show selection color change
     bool showSelection = !_isAgent && isSelected;
-    
+
     return Container(
       decoration: BoxDecoration(
         boxShadow: [shadow],
-        color: showSelection 
+        color: showSelection
             ? const Color.fromRGBO(255, 203, 3, 1)
             : Colors.white,
         border: Border.all(
@@ -358,10 +348,7 @@ class _SelectSchemeState extends State<SelectScheme> {
               "Min Amount",
               rs + subscription.schemAmount.toString().split('.')[0],
             ),
-            VerticalDivider(
-              color: Colors.black.withOpacity(0.2),
-              thickness: 1,
-            ),
+            VerticalDivider(color: Colors.black.withOpacity(0.2), thickness: 1),
             _buildInfoColumn(
               "Max Amount",
               rs + subscription.amountTo.toString().split('.')[0],
@@ -379,7 +366,7 @@ class _SelectSchemeState extends State<SelectScheme> {
         // Pay button (only for non-admin users)
         if (_userRole != 2 && _userRole != 4)
           _buildPayButton(subscription, index),
-        
+
         // View Customer button - commented out as requested
         // _buildViewCustomerButton(index),
       ],
@@ -400,9 +387,7 @@ class _SelectSchemeState extends State<SelectScheme> {
   Widget _buildLoadingButton() {
     return Container(
       height: 40,
-      child: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -415,17 +400,12 @@ class _SelectSchemeState extends State<SelectScheme> {
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: () => _handlePayButtonPress(subscription, index),
         child: const Text(
           "Pay",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -438,11 +418,8 @@ class _SelectSchemeState extends State<SelectScheme> {
       _isPaymentButtonPressed = true;
     });
 
-    await _getPaymentProfile(
-      subscription.userId,
-      subscription.id,
-    );
-    
+    await _getPaymentProfile(subscription.userId, subscription.id);
+
     setState(() {
       _buttonLoadingStates[index] = false;
     });
@@ -455,21 +432,20 @@ class _SelectSchemeState extends State<SelectScheme> {
     Navigate.push(context, TopNavigation());
   }
 
-    /// Gets payment profile data
+  /// Gets payment profile data
   Future<void> _getPaymentProfile(int userId, int subscriptionId) async {
     _totalPaidCount = 0;
     _isPaymentVisible = false;
-    
-    Map paymentDetails = {
-      'UserId': userId,
-      'subscriptionId': subscriptionId
-    };
+
+    Map paymentDetails = {'UserId': userId, 'subscriptionId': subscriptionId};
 
     print(paymentDetails);
     try {
-      Sheduledmodel responseData = await Sheduledservice.postService(paymentDetails);
+      Sheduledmodel responseData = await Sheduledservice.postService(
+        paymentDetails,
+      );
       print("Payment profile loaded");
-      
+
       setState(() {
         _scheduleData = responseData;
       });
@@ -479,7 +455,7 @@ class _SelectSchemeState extends State<SelectScheme> {
       setState(() {
         _isPaymentButtonPressed = false;
       });
-      
+
       _scheduleData!.data!.paymentType == 0
           ? _showFixedPaymentDialog(context, userId, subscriptionId)
           : _showVariablePaymentDialog(context, userId, subscriptionId);
@@ -512,268 +488,285 @@ class _SelectSchemeState extends State<SelectScheme> {
     } else {
       setState(() {
         _pendingPaymentId = responseData.data!.upcomingPayment!.elementAt(0).id;
-        _currentSchemeId = responseData.data!.upcomingPayment!.elementAt(0).schemeId;
-        _currentSchemeAmountId = responseData.data!.upcomingPayment!.elementAt(0).schemeAmountId;
-        _upiPaymentStatus = responseData.data!.upcomingPayment!.elementAt(0).upiStatus.toString();
+        _currentSchemeId = responseData.data!.upcomingPayment!
+            .elementAt(0)
+            .schemeId;
+        _currentSchemeAmountId = responseData.data!.upcomingPayment!
+            .elementAt(0)
+            .schemeAmountId;
+        _upiPaymentStatus = responseData.data!.upcomingPayment!
+            .elementAt(0)
+            .upiStatus
+            .toString();
         _isPaymentVisible = true;
       });
     }
   }
 
   /// Shows fixed payment dialog
-void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionId) {
-  showDialog(
-    context: context,
-    barrierDismissible: false, // Prevent dismissing by tapping outside
-    builder: (BuildContext context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 10,
-        backgroundColor: Colors.transparent,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
+  void _showFixedPaymentDialog(
+    BuildContext context,
+    int userId,
+    int subscriptionId,
+  ) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                spreadRadius: 5,
-                blurRadius: 15,
-                offset: Offset(0, 5),
-              ),
-            ],
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header Section with Icon
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor.withOpacity(0.8),
+          elevation: 10,
+          backgroundColor: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 5,
+                  blurRadius: 15,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Header Section with Icon
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(context).primaryColor.withOpacity(0.8),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Icon(
+                          Icons.payment,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        "Payment Confirmation",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.payment,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      "Payment Confirmation",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
 
-              // Content Section
-              Padding(
-                padding: EdgeInsets.all(24),
-                child: Column(
-                  children: [
-                    // Amount Display Card
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor.withOpacity(0.05),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor.withOpacity(0.2),
-                          width: 1,
+                // Content Section
+                Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      // Amount Display Card
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).primaryColor.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).primaryColor.withOpacity(0.2),
+                            width: 1,
+                          ),
                         ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Payment Amount",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            "${rs}${_scheduleData!.data!.monthlyAmont}",
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(height: 20),
-
-                    // Additional Info
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.info_outline,
-                            color: Colors.blue,
-                            size: 20,
-                          ),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              "This payment will be processed immediately and cannot be undone.",
+                        child: Column(
+                          children: [
+                            Text(
+                              "Payment Amount",
                               style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[700],
-                                height: 1.4,
+                                fontSize: 14,
+                                color: Colors.grey[600],
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(height: 24),
-
-                    // Confirmation Text
-                    Text(
-                      "Would you like to continue with the payment?",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-
-              // Action Buttons
-              Padding(
-                padding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
-                child: Row(
-                  children: [
-                    // Cancel Button
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                              color: Colors.grey[400]!,
-                              width: 1.5,
+                            SizedBox(height: 8),
+                            Text(
+                              "${rs}${_scheduleData!.data!.monthlyAmont}",
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).primaryColor,
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[700],
-                            ),
-                          ),
+                          ],
                         ),
                       ),
-                    ),
 
-                    SizedBox(width: 16),
+                      SizedBox(height: 20),
 
-                    // Continue Button
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _processAgentPayment(
-                              _scheduleData!.data!.monthlyAmont!,
-                              _scheduleData!.data!.todayEarnings.toString(),
-                              userId,
-                              subscriptionId,
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                            foregroundColor: Colors.white,
-                            elevation: 3,
-                            shadowColor: Theme.of(context).primaryColor.withOpacity(0.3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                      // Additional Info
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.info_outline,
+                              color: Colors.blue,
+                              size: 20,
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.check_circle_outline,
-                                size: 20,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                "Continue",
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                "This payment will be processed immediately and cannot be undone.",
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.grey[700],
+                                  height: 1.4,
                                 ),
                               ),
-                            ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 24),
+
+                      // Confirmation Text
+                      Text(
+                        "Would you like to continue with the payment?",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Action Buttons
+                Padding(
+                  padding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                  child: Row(
+                    children: [
+                      // Cancel Button
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(
+                                color: Colors.grey[400]!,
+                                width: 1.5,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[700],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
 
- 
-  void _showVariablePaymentDialog(BuildContext context, int userId, int subscriptionId) {
+                      SizedBox(width: 16),
+
+                      // Continue Button
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _processAgentPayment(
+                                _scheduleData!.data!.monthlyAmont!,
+                                _scheduleData!.data!.todayEarnings.toString(),
+                                userId,
+                                subscriptionId,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              foregroundColor: Colors.white,
+                              elevation: 3,
+                              shadowColor: Theme.of(
+                                context,
+                              ).primaryColor.withOpacity(0.3),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.check_circle_outline, size: 20),
+                                SizedBox(width: 8),
+                                Text(
+                                  "Continue",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showVariablePaymentDialog(
+    BuildContext context,
+    int userId,
+    int subscriptionId,
+  ) {
     double calculatedGram = 0;
     String finalGramAmount = "";
 
@@ -788,10 +781,7 @@ void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionI
               ),
               title: const Text(
                 "Payment Amount",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -823,9 +813,14 @@ void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionI
                             finalGramAmount = "";
                           } else {
                             try {
-                              calculatedGram = double.parse(value) /
-                                  double.parse(_scheduleData!.data!.todayRate.toString());
-                              finalGramAmount = calculatedGram.toStringAsFixed(3);
+                              calculatedGram =
+                                  double.parse(value) /
+                                  double.parse(
+                                    _scheduleData!.data!.todayRate.toString(),
+                                  );
+                              finalGramAmount = calculatedGram.toStringAsFixed(
+                                3,
+                              );
                             } catch (e) {
                               calculatedGram = 0;
                               finalGramAmount = "";
@@ -840,10 +835,7 @@ void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionI
                   if (finalGramAmount.isNotEmpty)
                     Text(
                       "Gold: ${finalGramAmount}g",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                 ],
               ),
@@ -862,11 +854,18 @@ void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionI
                   child: const Text("Continue"),
                   onPressed: () {
                     try {
-                      double enteredAmount = double.parse(_paymentAmountController.text);
-                      double minAmount = double.parse(_scheduleData!.data!.monthlyAmont.toString());
-                      double maxAmount = double.parse(_scheduleData!.data!.amountTo.toString());
-                      
-                      if (enteredAmount >= minAmount && enteredAmount <= maxAmount) {
+                      double enteredAmount = double.parse(
+                        _paymentAmountController.text,
+                      );
+                      double minAmount = double.parse(
+                        _scheduleData!.data!.monthlyAmont.toString(),
+                      );
+                      double maxAmount = double.parse(
+                        _scheduleData!.data!.amountTo.toString(),
+                      );
+
+                      if (enteredAmount >= minAmount &&
+                          enteredAmount <= maxAmount) {
                         Navigator.pop(context);
                         _processAgentPayment(
                           _paymentAmountController.text,
@@ -906,18 +905,18 @@ void _showFixedPaymentDialog(BuildContext context, int userId, int subscriptionI
       'subscriptionId': subscriptionId,
       'paidBy': await getSavedObject('userid'),
     };
-    
+
     print("Payment details: $paymentDetails");
-    
+
     try {
       Loading.show(context);
       Paymentmodel responseData = await Paymentservice.postPay(paymentDetails);
       print("Payment processed successfully");
       Loading.dismiss();
-      
+
       // Refresh the scheme data
       _loadSchemeData();
-      
+
       showToast("Payment processed successfully");
     } catch (e) {
       Loading.dismiss();

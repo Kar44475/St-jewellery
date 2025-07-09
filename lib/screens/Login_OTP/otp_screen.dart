@@ -22,28 +22,26 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPageState extends State<OtpPage> {
-
   static const int _countdownStartTime = 30;
   int _remainingCountdownTime = _countdownStartTime;
   Timer? _countdownTimer;
   bool _isResendEnabled = false;
 
-
   final List<TextEditingController> _otpInputControllers = List.generate(
     6,
     (index) => TextEditingController(),
   );
-  final List<FocusNode> _otpFocusNodes = List.generate(6, (index) => FocusNode());
-
+  final List<FocusNode> _otpFocusNodes = List.generate(
+    6,
+    (index) => FocusNode(),
+  );
 
   String? _firebaseToken;
   String? _userMobileNumber;
   String? _currentOtpCode;
   int? _generatedRandomOtp;
 
-
   bool _isVerifyButtonPressed = false;
-
 
   static const String _debugMobileNumber = "+919562044475";
   static const int _otpLength = 6;
@@ -82,7 +80,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildHeaderSection(BuildContext context, double screenWidth) {
     return Expanded(
       flex: 9,
@@ -101,18 +98,13 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildBackButton(BuildContext context) {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 24,
-          ),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 24),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -120,7 +112,6 @@ class _OtpPageState extends State<OtpPage> {
       ),
     );
   }
-
 
   Widget _buildLogoSection(double screenWidth) {
     return Expanded(
@@ -135,7 +126,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildOtpFormSection(BuildContext context, double screenHeight) {
     return Expanded(
       flex: 11,
@@ -146,14 +136,9 @@ class _OtpPageState extends State<OtpPage> {
           decoration: _getFormContainerDecoration(),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 32,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: screenHeight * 0.5 - 64,
-              ),
+              constraints: BoxConstraints(minHeight: screenHeight * 0.5 - 64),
               child: IntrinsicHeight(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -195,7 +180,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildOtpTitle(BuildContext context) {
     return Text(
       "ENTER OTP",
@@ -207,7 +191,6 @@ class _OtpPageState extends State<OtpPage> {
       ),
     );
   }
-
 
   Widget _buildOtpInstructions() {
     return RichText(
@@ -232,7 +215,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildOtpInputFields() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -242,24 +224,18 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildSingleOtpField(int index) {
     return Container(
       width: 45,
       height: 45,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: TextFormField(
         controller: _otpInputControllers[index],
         focusNode: _otpFocusNodes[index],
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         maxLength: 1,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         decoration: const InputDecoration(
           counterText: "",
           border: InputBorder.none,
@@ -269,14 +245,11 @@ class _OtpPageState extends State<OtpPage> {
           disabledBorder: InputBorder.none,
           contentPadding: EdgeInsets.zero,
         ),
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-        ],
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         onChanged: (value) => _handleOtpFieldChange(value, index),
       ),
     );
   }
-
 
   Widget _buildResendSection(BuildContext context) {
     return Row(
@@ -287,10 +260,7 @@ class _OtpPageState extends State<OtpPage> {
             onTap: _handleResendOtp,
             child: const Text(
               "Resend Code",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
           )
         else ...[
@@ -315,7 +285,6 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-
   Widget _buildVerifyButton(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -339,15 +308,11 @@ class _OtpPageState extends State<OtpPage> {
               ),
               child: const Text(
                 "Verify OTP",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
               ),
             ),
     );
   }
-
 
   void _initializeUserData() {
     setState(() {
@@ -356,20 +321,17 @@ class _OtpPageState extends State<OtpPage> {
     });
   }
 
-
   void _disposeControllers() {
     for (var controller in _otpInputControllers) {
       controller.dispose();
     }
   }
 
-
   void _disposeFocusNodes() {
     for (var focusNode in _otpFocusNodes) {
       focusNode.dispose();
     }
   }
-
 
   void _startOtpCountdown() {
     _countdownTimer?.cancel();
@@ -390,13 +352,11 @@ class _OtpPageState extends State<OtpPage> {
     });
   }
 
-
   void _onCountdownComplete() {
     setState(() {
       _isResendEnabled = true;
     });
   }
-
 
   void _handleOtpFieldChange(String value, int index) {
     if (value.isNotEmpty) {
@@ -416,11 +376,9 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-
   String _getCompleteOtpValue() {
     return _otpInputControllers.map((controller) => controller.text).join();
   }
-
 
   void _clearAllOtpFields() {
     for (var controller in _otpInputControllers) {
@@ -428,7 +386,6 @@ class _OtpPageState extends State<OtpPage> {
     }
     _otpFocusNodes[0].requestFocus();
   }
-
 
   void _handleResendOtp() {
     _generateNewRandomOtp();
@@ -448,19 +405,18 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-
   Future<void> _getFirebaseMessagingToken() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     _firebaseToken = await messaging.getToken();
     print(_firebaseToken);
   }
 
-
   Future<void> _handleSpecialUserLogin() async {
-    try{
+    try {
       await _getFirebaseMessagingToken();
-    }catch(e){};
-    
+    } catch (e) {}
+    ;
+
     print("mobile : $_userMobileNumber");
     if (_userMobileNumber.toString() == _debugMobileNumber) {
       await _fetchAndProcessUserDetails();
@@ -469,16 +425,15 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-
   Future<void> _fetchAndProcessUserDetails() async {
     print("Processing special user login");
     try {
       Map<String, dynamic> loginData = {
         "phone": _userMobileNumber,
-        "FcmToken": _firebaseToken
+        "FcmToken": _firebaseToken,
       };
       print(_firebaseToken);
-      
+
       Usermodel? userData = await UserService.login(loginData);
       print("User login status: ${userData!.data!.islogin}");
 
@@ -501,7 +456,6 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-
   void _navigateToRegistration() {
     Navigator.pushReplacement(
       context,
@@ -510,7 +464,6 @@ class _OtpPageState extends State<OtpPage> {
       ),
     );
   }
-
 
   int _generateNewRandomOtp() {
     final Random random = Random();
@@ -522,11 +475,10 @@ class _OtpPageState extends State<OtpPage> {
     return _generatedRandomOtp!;
   }
 
- 
   Future<void> _verifyEnteredOtp(String enteredOtpCode) async {
     printDebug("Entered OTP: $enteredOtpCode");
     printDebug("Expected OTP: $_currentOtpCode");
-    
+
     if (_currentOtpCode.toString() == enteredOtpCode.toString()) {
       showSnackBar(context, "OTP Verified");
       setState(() {
@@ -548,8 +500,11 @@ class _OtpPageState extends State<OtpPage> {
     }
   }
 
-
-  void _resendOtpToUser(BuildContext context, String mobileNumber, String otpCode) {
+  void _resendOtpToUser(
+    BuildContext context,
+    String mobileNumber,
+    String otpCode,
+  ) {
     resendOtp(context, mobileNumber, otpCode);
   }
 }

@@ -27,7 +27,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
   var _isCheckeded;
   int termindex = 0;
   int? termsid;
-  
+
   tick(int index) {
     setState(() {
       _isCheckeded.clear();
@@ -80,14 +80,18 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 15,
+                    ),
                     child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                        childAspectRatio: 2.5,
-                      ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 15,
+                            childAspectRatio: 2.5,
+                          ),
                       itemCount: widget.data.data.varient.length,
                       itemBuilder: (BuildContext context, int index) {
                         bool isSelected = _isCheckeded.elementAt(index);
@@ -97,7 +101,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: isSelected 
+                              color: isSelected
                                   ? const Color.fromRGBO(255, 203, 3, 1)
                                   : Colors.white,
                               border: Border.all(
@@ -130,11 +134,14 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                     ),
                   ),
                 ),
-                
+
                 // Terms and Conditions Section
                 Container(
                   color: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -143,7 +150,12 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                         children: [
                           Theme(
                             data: Theme.of(context).copyWith(
-                              unselectedWidgetColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                              unselectedWidgetColor: const Color.fromRGBO(
+                                0,
+                                0,
+                                0,
+                                0.5,
+                              ),
                             ),
                             child: Checkbox(
                               activeColor: const Color.fromRGBO(0, 0, 0, 1),
@@ -167,8 +179,12 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                                     ),
                                     elevation: 16,
                                     child: Container(
-                                      height: MediaQuery.of(context).size.height * 0.8,
-                                      width: MediaQuery.of(context).size.width * 0.9,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                          0.8,
+                                      width:
+                                          MediaQuery.of(context).size.width *
+                                          0.9,
                                       child: ListView(
                                         children: <Widget>[
                                           const SizedBox(height: 20),
@@ -177,7 +193,9 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                                               "Terms and conditions",
                                               style: TextStyle(
                                                 fontSize: 24,
-                                                color: Theme.of(context).primaryColor,
+                                                color: Theme.of(
+                                                  context,
+                                                ).primaryColor,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -215,9 +233,7 @@ class _VariablePriceAmountState extends State<VariablePriceAmount> {
                             child: Column(
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.only(
-                                    bottom: 2,
-                                  ),
+                                  padding: const EdgeInsets.only(bottom: 2),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(

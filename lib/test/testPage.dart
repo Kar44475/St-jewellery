@@ -51,7 +51,8 @@ class GridViewExample extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(10.0)),
+                          top: Radius.circular(10.0),
+                        ),
                         child: Image.asset(
                           item['image'],
                           height: 120,
@@ -64,8 +65,10 @@ class GridViewExample extends StatelessWidget {
                         right: 10,
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
-                          child:
-                              Icon(Icons.favorite_border, color: Colors.black),
+                          child: Icon(
+                            Icons.favorite_border,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
@@ -93,7 +96,9 @@ class GridViewExample extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 4.0),
+                      horizontal: 8.0,
+                      vertical: 4.0,
+                    ),
                     child: Row(
                       children: [
                         Text(
@@ -125,15 +130,19 @@ class GridViewExample extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 4.0),
+                      horizontal: 8.0,
+                      vertical: 4.0,
+                    ),
                     child: Row(
                       children: [
                         const Icon(Icons.star, color: Colors.amber, size: 14),
                         const SizedBox(width: 5),
                         Text(
                           item['rating'].toString(),
-                          style:
-                              const TextStyle(fontSize: 12, color: Colors.grey),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     ),

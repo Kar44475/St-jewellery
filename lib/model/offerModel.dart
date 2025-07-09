@@ -21,36 +21,33 @@ class Offermodel {
   });
 
   factory Offermodel.fromJson(Map<String, dynamic> json) => Offermodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
   bool status;
   List<Offer> offers;
 
-  Data({
-    required this.status,
-    required this.offers,
-  });
+  Data({required this.status, required this.offers});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        offers: List<Offer>.from(json["offers"].map((x) => Offer.fromJson(x))),
-      );
+    status: json["status"],
+    offers: List<Offer>.from(json["offers"].map((x) => Offer.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
-      };
+    "status": status,
+    "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
+  };
 }
 
 class Offer {
@@ -75,24 +72,24 @@ class Offer {
   });
 
   factory Offer.fromJson(Map<String, dynamic> json) => Offer(
-        id: json["id"],
-        productName: json["product_name"],
-        offerCode: json["offer_code"],
-        title: json["title"],
-        description: json["description"],
-        image: json["image"],
-        likeStatus: json["like_status"],
-        totalCount: json["total_count"],
-      );
+    id: json["id"],
+    productName: json["product_name"],
+    offerCode: json["offer_code"],
+    title: json["title"],
+    description: json["description"],
+    image: json["image"],
+    likeStatus: json["like_status"],
+    totalCount: json["total_count"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "product_name": productName,
-        "offer_code": offerCode,
-        "title": title,
-        "description": description,
-        "image": image,
-        "like_status": likeStatus,
-        "total_count": totalCount,
-      };
+    "id": id,
+    "product_name": productName,
+    "offer_code": offerCode,
+    "title": title,
+    "description": description,
+    "image": image,
+    "like_status": likeStatus,
+    "total_count": totalCount,
+  };
 }

@@ -65,7 +65,7 @@ Widget secondaryButton(String buttonText, GestureTapCallback onTapCallback) {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color.fromRGBO(144, 48, 54, 1)
+        color: const Color.fromRGBO(144, 48, 54, 1),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
@@ -126,7 +126,9 @@ saveObject(String storageKey, dynamic objectValue) async {
 getSavedObject(String storageKey) async {
   final sharedPreferences = await SharedPreferences.getInstance();
   var savedData = sharedPreferences.getString(storageKey);
-  return savedData != null ? json.decode(sharedPreferences.getString(storageKey)!) : null;
+  return savedData != null
+      ? json.decode(sharedPreferences.getString(storageKey)!)
+      : null;
 }
 
 printDebug(String debugText) {
@@ -307,6 +309,9 @@ class Navigate {
     Widget destinationPage,
     Future<void> Function() onReturnCallback, // Allow async callbacks
   ) {
-    Navigator.push(context, _getPageRoute(destinationPage)).then((value) => onReturnCallback());
+    Navigator.push(
+      context,
+      _getPageRoute(destinationPage),
+    ).then((value) => onReturnCallback());
   }
 }

@@ -56,52 +56,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await prefs.setString('selectedGender', gender);
   }
 
-void _showBottomDrawer(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (context) => DraggableScrollableSheet(
-      initialChildSize: 0.7,
-      minChildSize: 0.5,
-      maxChildSize: 0.9,
-      builder: (context, scrollController) => Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: Offset(0, -5),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            // Handle bar
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(2),
+  void _showBottomDrawer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.7,
+        minChildSize: 0.5,
+        maxChildSize: 0.9,
+        builder: (context, scrollController) => Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: Offset(0, -5),
               ),
-            ),
-            // Drawer content
-            Expanded(
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: DrawerWidget(),
+            ],
+          ),
+          child: Column(
+            children: [
+              // Handle bar
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
-            ),
-          ],
+              // Drawer content
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: DrawerWidget(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,46 +110,46 @@ void _showBottomDrawer(BuildContext context) {
       body: Stack(
         children: [
           Scaffold(
-    //         appBar: AppBar(
-    //            elevation: 0,
-    // leading: role == 2 || role == 4 
-    //   ? IconButton(
-    //       icon: Icon(Icons.menu, color: Colors.white),
-    //       onPressed: () {
-    //         _showBottomDrawer(context);
-    //       },
-    //     )
-    //   : null,
-    //           backgroundColor: Theme.of(context).primaryColor,
-    //           title: Image.asset(
-    //             "assets/pngIcons/mainIcons.png",
-    //             height: 55,
-               
-    //           ),
+            //         appBar: AppBar(
+            //            elevation: 0,
+            // leading: role == 2 || role == 4
+            //   ? IconButton(
+            //       icon: Icon(Icons.menu, color: Colors.white),
+            //       onPressed: () {
+            //         _showBottomDrawer(context);
+            //       },
+            //     )
+            //   : null,
+            //           backgroundColor: Theme.of(context).primaryColor,
+            //           title: Image.asset(
+            //             "assets/pngIcons/mainIcons.png",
+            //             height: 55,
 
-    //               actions: [
-    //   IconButton(
-    //     onPressed: () {
-    //       Navigator.push(
-    //         context,
-    //         MaterialPageRoute(
-    //           builder: (context) => const Notificationsscreen(),
-    //         ),
-    //       );
-    //     },
-    //     icon: const Icon(Icons.notifications, size: 25, color: Colors.white),
-    //   ),
-    // ],
-    //         ),
+            //           ),
+
+            //               actions: [
+            //   IconButton(
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => const Notificationsscreen(),
+            //         ),
+            //       );
+            //     },
+            //     icon: const Icon(Icons.notifications, size: 25, color: Colors.white),
+            //   ),
+            // ],
+            //         ),
             body: Container(
               color: Colors.white,
               child: SingleChildScrollView(
-              padding: EdgeInsets.only(top: 20, bottom: 120),
+                padding: EdgeInsets.only(top: 20, bottom: 120),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Profile Icon and Name Row
-                      Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
                         children: [
@@ -183,14 +183,16 @@ void _showBottomDrawer(BuildContext context) {
                       ),
                     ),
                     SizedBox(height: 20),
-              
+
                     // User Details Container - Smaller and Full Width
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(255, 203, 3, 1),
-                    
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -212,7 +214,7 @@ void _showBottomDrawer(BuildContext context) {
                                 horizontal: 8,
                                 vertical: 6,
                               ),
-                     
+
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -238,10 +240,10 @@ void _showBottomDrawer(BuildContext context) {
                       ),
                     ),
                     SizedBox(height: 15),
-              
+
                     // First Details Grid with White Background
                     Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         width: double.infinity,
                         padding: EdgeInsets.all(16),
@@ -268,17 +270,19 @@ void _showBottomDrawer(BuildContext context) {
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "PAN Card",
-                                    data?.data?.userId?.pancard ?? "Not Available",
+                                    data?.data?.userId?.pancard ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Address",
-                                    data?.data?.userId?.address ?? "Not Available",
+                                    data?.data?.userId?.address ??
+                                        "Not Available",
                                   ),
                                 ],
                               ),
                             ),
-                      
+
                             // Vertical Divider
                             Container(
                               width: 1,
@@ -291,7 +295,7 @@ void _showBottomDrawer(BuildContext context) {
                                 ),
                               ),
                             ),
-                      
+
                             // Right Column
                             Expanded(
                               child: Column(
@@ -327,13 +331,15 @@ void _showBottomDrawer(BuildContext context) {
                         ),
                       ),
                     ),
-                    
+
                     SizedBox(height: 20), // 20px gap between sections
-                    
                     // Additional Details Container
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(255, 203, 3, 1),
                       ),
@@ -347,7 +353,7 @@ void _showBottomDrawer(BuildContext context) {
                       ),
                     ),
                     SizedBox(height: 15),
-                    
+
                     // Second Details Grid with Additional Information - REARRANGED
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -367,27 +373,31 @@ void _showBottomDrawer(BuildContext context) {
                                 children: [
                                   _buildDetailItem(
                                     "Registration Number",
-                                    data?.data?.userId?.registrationNumber ?? "Not Available",
+                                    data?.data?.userId?.registrationNumber ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Branch ID",
-                                    data?.data?.userId?.branchId?.toString() ?? "Not Available",
+                                    data?.data?.userId?.branchId?.toString() ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "A/C Number",
-                                    data?.data?.userId?.aCNumber?.toString() ?? "Not Available",
+                                    data?.data?.userId?.aCNumber?.toString() ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Nominee",
-                                    data?.data?.userId?.nominee ?? "Not Available",
+                                    data?.data?.userId?.nominee ??
+                                        "Not Available",
                                   ),
                                 ],
                               ),
                             ),
-                      
+
                             // Vertical Divider - Adjusted height
                             Container(
                               width: 1,
@@ -400,7 +410,7 @@ void _showBottomDrawer(BuildContext context) {
                                 ),
                               ),
                             ),
-                      
+
                             // Right Column - Redistributed items
                             Expanded(
                               child: Column(
@@ -408,22 +418,26 @@ void _showBottomDrawer(BuildContext context) {
                                 children: [
                                   _buildDetailItem(
                                     "Pincode",
-                                    data?.data?.userId?.pincode ?? "Not Available",
+                                    data?.data?.userId?.pincode ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Nominee Relation",
-                                    data?.data?.userId?.nomineeRelation ?? "Not Available",
+                                    data?.data?.userId?.nomineeRelation ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Nominee Phone",
-                                    data?.data?.userId?.nomineePhone ?? "Not Available",
+                                    data?.data?.userId?.nomineePhone ??
+                                        "Not Available",
                                   ),
                                   SizedBox(height: 20),
                                   _buildDetailItem(
                                     "Points",
-                                    data?.data?.userId?.point ?? "Not Available",
+                                    data?.data?.userId?.point ??
+                                        "Not Available",
                                   ),
                                 ],
                               ),
@@ -432,10 +446,8 @@ void _showBottomDrawer(BuildContext context) {
                         ),
                       ),
                     ),
-                    
+
                     SizedBox(height: 20), // 20px gap between sections
-                    
-              
                   ],
                 ),
               ),
@@ -463,7 +475,7 @@ void _showBottomDrawer(BuildContext context) {
     );
   }
 
-   Widget _buildDetailItem(String heading, String value) {
+  Widget _buildDetailItem(String heading, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -491,7 +503,7 @@ void _showBottomDrawer(BuildContext context) {
   void _showEditDialog(BuildContext context) {
     final TextEditingController dialogNameController = TextEditingController();
     final TextEditingController dialogEmailController = TextEditingController();
-    
+
     // Pre-fill with current values
     dialogNameController.text = nameController.text;
     dialogEmailController.text = emailController.text;
@@ -524,14 +536,20 @@ void _showBottomDrawer(BuildContext context) {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 2,
+                      ),
                     ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 16,
+                    ),
                   ),
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 16),
-                
+
                 // Email Field
                 TextFormField(
                   controller: dialogEmailController,
@@ -543,9 +561,15 @@ void _showBottomDrawer(BuildContext context) {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 2,
+                      ),
                     ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 16,
+                    ),
                   ),
                   style: TextStyle(fontSize: 16),
                   keyboardType: TextInputType.emailAddress,
@@ -560,10 +584,7 @@ void _showBottomDrawer(BuildContext context) {
               },
               child: Text(
                 'Cancel',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.grey[600], fontSize: 16),
               ),
             ),
             ElevatedButton(
@@ -572,11 +593,11 @@ void _showBottomDrawer(BuildContext context) {
                   showToast("Please enter name");
                   return;
                 }
-                
+
                 // Update the main controllers
                 nameController.text = dialogNameController.text;
                 emailController.text = dialogEmailController.text;
-                
+
                 // Prepare data for API call
                 Map b = {
                   "name": dialogNameController.text.toString(),
@@ -595,7 +616,7 @@ void _showBottomDrawer(BuildContext context) {
                   "country": data!.data!.userId!.country,
                   "pincode": data!.data!.userId!.pincode,
                 };
-                
+
                 Navigator.of(context).pop();
                 postedit(b);
               },

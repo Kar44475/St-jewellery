@@ -18,11 +18,7 @@ class CategoryWiseProductResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'data': data.toJson(),
-    };
+    return {'success': success, 'message': message, 'data': data.toJson()};
   }
 }
 
@@ -30,16 +26,17 @@ class CategoryWiseProductData {
   final int status;
   final List<CategoryWiseProduct> productList;
 
-  CategoryWiseProductData({
-    required this.status,
-    required this.productList,
-  });
+  CategoryWiseProductData({required this.status, required this.productList});
 
   factory CategoryWiseProductData.fromJson(Map<String, dynamic> json) {
     return CategoryWiseProductData(
       status: json['status'] ?? 0,
-      productList: (json['product_list'] as List<dynamic>?)
-              ?.map((item) => CategoryWiseProduct.fromJson(item as Map<String, dynamic>))
+      productList:
+          (json['product_list'] as List<dynamic>?)
+              ?.map(
+                (item) =>
+                    CategoryWiseProduct.fromJson(item as Map<String, dynamic>),
+              )
               .toList() ??
           [],
     );

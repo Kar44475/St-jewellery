@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
 
   Widget _buildHeaderSection(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Expanded(
       flex: 9,
       child: Container(
@@ -73,9 +73,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildLogoSection(screenWidth),
-            ],
+            children: [_buildLogoSection(screenWidth)],
           ),
         ),
       ),
@@ -221,11 +219,15 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
           filled: true,
           fillColor: Colors.grey[50],
           counterText: "",
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 18,
+          ),
         ),
         languageCode: "en",
         onChanged: (phone) => print(phone.completeNumber),
-        onCountryChanged: (country) => print('Country changed to: ${country.name}'),
+        onCountryChanged: (country) =>
+            print('Country changed to: ${country.name}'),
       ),
     );
   }
@@ -311,7 +313,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     setState(() {
       _isLongPressing = true;
     });
-    
+
     Timer(const Duration(seconds: _longPressDurationSeconds), () {
       if (_isLongPressing) {
         showToast("No OTP login initiated");
@@ -331,7 +333,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   void _handleGetOtpPressed(BuildContext context) {
     final phoneNumber = _phoneNumberController.text.trim();
     printDebug(phoneNumber);
-    
+
     if (_validatePhoneNumber(phoneNumber)) {
       if (phoneNumber == _testPhoneNumber) {
         _navigateToTestOtp(context, phoneNumber);
@@ -349,10 +351,8 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => OtpPage(
-          generatedOtp: _testOtp,
-          mobile: "+91$phoneNumber",
-        ),
+        builder: (context) =>
+            OtpPage(generatedOtp: _testOtp, mobile: "+91$phoneNumber"),
       ),
     );
   }
@@ -364,7 +364,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   bool _validatePhoneNumber(String phoneNumber) {
     const String phonePattern = r'(^(?:[+0]9)?[0-9]{6,12}$)';
     final RegExp regExp = RegExp(phonePattern);
-    
+
     if (phoneNumber.isEmpty) {
       showToast('Please enter mobile number');
       return false;
@@ -381,4 +381,3 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     return _generatedOtpNumber!;
   }
 }
- 

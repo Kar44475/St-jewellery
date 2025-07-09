@@ -29,10 +29,10 @@ class Bankdetailsmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
@@ -47,22 +47,24 @@ class Data {
   List<Detail> upiDetails;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        bankDetails: List<Detail>.from(
-            json["bank_details"].map((x) => Detail.fromJson(x))),
-        upiDetails: List<Detail>.from(
-            json["upi_details"].map((x) => Detail.fromJson(x))),
-      );
+    status: json["status"],
+    bankDetails: List<Detail>.from(
+      json["bank_details"].map((x) => Detail.fromJson(x)),
+    ),
+    upiDetails: List<Detail>.from(
+      json["upi_details"].map((x) => Detail.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "bank_details": bankDetails == null
-            ? null
-            : List<dynamic>.from(bankDetails.map((x) => x.toJson())),
-        "upi_details": upiDetails == null
-            ? null
-            : List<dynamic>.from(upiDetails.map((x) => x.toJson())),
-      };
+    "status": status,
+    "bank_details": bankDetails == null
+        ? null
+        : List<dynamic>.from(bankDetails.map((x) => x.toJson())),
+    "upi_details": upiDetails == null
+        ? null
+        : List<dynamic>.from(upiDetails.map((x) => x.toJson())),
+  };
 }
 
 class Detail {
@@ -95,32 +97,32 @@ class Detail {
   DateTime updatedAt;
 
   factory Detail.fromJson(Map<String, dynamic> json) => Detail(
-        id: json["id"],
-        branchId: json["branchId"],
-        bankName: json["bank_name"] ?? "",
-        beneficiaryName: json["beneficiaryName"] ?? "",
-        ifscCode: json["ifsc_Code"] ?? "",
-        accNo: json["acc_no"] ?? "",
-        upiId: json["Upi_id"] ?? "",
-        mobNo: json["mob_no"] ?? "",
-        type: json["type"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    branchId: json["branchId"],
+    bankName: json["bank_name"] ?? "",
+    beneficiaryName: json["beneficiaryName"] ?? "",
+    ifscCode: json["ifsc_Code"] ?? "",
+    accNo: json["acc_no"] ?? "",
+    upiId: json["Upi_id"] ?? "",
+    mobNo: json["mob_no"] ?? "",
+    type: json["type"],
+    status: json["status"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "bank_name": bankName,
-        "beneficiaryName": beneficiaryName,
-        "ifsc_Code": ifscCode,
-        "acc_no": accNo,
-        "Upi_id": upiId,
-        "mob_no": mobNo,
-        "type": type,
-        "status": status,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "branchId": branchId,
+    "bank_name": bankName,
+    "beneficiaryName": beneficiaryName,
+    "ifsc_Code": ifscCode,
+    "acc_no": accNo,
+    "Upi_id": upiId,
+    "mob_no": mobNo,
+    "type": type,
+    "status": status,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

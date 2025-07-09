@@ -15,11 +15,7 @@ class Agentprofileviewmodel {
   String? message;
   Data? data;
 
-  Agentprofileviewmodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  Agentprofileviewmodel({this.success, this.message, this.data});
 
   factory Agentprofileviewmodel.fromJson(Map<String, dynamic> json) =>
       Agentprofileviewmodel(
@@ -29,30 +25,27 @@ class Agentprofileviewmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
   String? status;
   UserId? userId;
 
-  Data({
-    this.status,
-    this.userId,
-  });
+  Data({this.status, this.userId});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        userId: json["userId"] == null ? null : UserId.fromJson(json["userId"]),
-      );
+    status: json["status"],
+    userId: json["userId"] == null ? null : UserId.fromJson(json["userId"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "userId": userId?.toJson(),
-      };
+    "status": status,
+    "userId": userId?.toJson(),
+  };
 }
 
 class UserId {
@@ -95,46 +88,46 @@ class UserId {
   });
 
   factory UserId.fromJson(Map<String, dynamic> json) => UserId(
-        id: json["id"],
-        branchId: json["branchId"],
-        userId: json["UserId"],
-        agentName: json["agentName"],
-        agentCode: json["agent_code"],
-        phone: json["phone"],
-        email: json["email"] ?? "",
-        adhaar: json["adhaar"] ?? "",
-        panNumber: json["panNumber"] ?? "",
-        address: json["address"] ?? "",
-        image: json["image"],
-        referalId: json["referalId"],
-        referalFrom: json["referalFrom"],
-        point: json["point"],
-        status: json["status"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    branchId: json["branchId"],
+    userId: json["UserId"],
+    agentName: json["agentName"],
+    agentCode: json["agent_code"],
+    phone: json["phone"],
+    email: json["email"] ?? "",
+    adhaar: json["adhaar"] ?? "",
+    panNumber: json["panNumber"] ?? "",
+    address: json["address"] ?? "",
+    image: json["image"],
+    referalId: json["referalId"],
+    referalFrom: json["referalFrom"],
+    point: json["point"],
+    status: json["status"],
+    createdAt: json["created_at"] == null
+        ? null
+        : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null
+        ? null
+        : DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "UserId": userId,
-        "agentName": agentName,
-        "agent_code": agentCode,
-        "phone": phone,
-        "email": email,
-        "adhaar": adhaar,
-        "panNumber": panNumber,
-        "address": address,
-        "image": image,
-        "referalId": referalId,
-        "referalFrom": referalFrom,
-        "point": point,
-        "status": status,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "branchId": branchId,
+    "UserId": userId,
+    "agentName": agentName,
+    "agent_code": agentCode,
+    "phone": phone,
+    "email": email,
+    "adhaar": adhaar,
+    "panNumber": panNumber,
+    "address": address,
+    "image": image,
+    "referalId": referalId,
+    "referalFrom": referalFrom,
+    "point": point,
+    "status": status,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

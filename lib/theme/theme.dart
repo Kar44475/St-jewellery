@@ -23,14 +23,8 @@ final ThemeData stJewelleryTheme = ThemeData(
       fontWeight: FontWeight.bold,
       color: Color(0xFF1E1E1E),
     ),
-    bodyLarge: TextStyle(
-      fontSize: 16,
-      color: Color(0xFF1E1E1E),
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 14,
-      color: Color(0xFF666666),
-    ),
+    bodyLarge: TextStyle(fontSize: 16, color: Color(0xFF1E1E1E)),
+    bodyMedium: TextStyle(fontSize: 14, color: Color(0xFF666666)),
     labelLarge: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w600,
@@ -41,9 +35,7 @@ final ThemeData stJewelleryTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: Color(0xFF903036),
       foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
@@ -57,28 +49,19 @@ final ThemeData stJewelleryTheme = ThemeData(
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(
-        color: Color(0xFFFFCB03),
-      ),
+      borderSide: BorderSide(color: Color(0xFFFFCB03)),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(
-        color: Color(0xFF903036),
-        width: 2,
-      ),
+      borderSide: BorderSide(color: Color(0xFF903036), width: 2),
     ),
-    hintStyle: TextStyle(
-      color: Colors.grey,
-    ),
+    hintStyle: TextStyle(color: Colors.grey),
   ),
   cardTheme: CardThemeData(
     elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
-      side: BorderSide(
-        color: Color(0xFFFFCB03),
-      ),
+      side: BorderSide(color: Color(0xFFFFCB03)),
     ),
   ),
   colorScheme: ColorScheme.fromSwatch().copyWith(

@@ -29,10 +29,10 @@ class Paymentdetailsmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
@@ -55,25 +55,26 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        paymentsList: List<PaymentsList>.from(
-            json["paymentsList"].map((x) => PaymentsList.fromJson(x))),
-        sumAmount: json["sum_amount"],
-        sumGram: json["sum_gram"],
-        totalInstallment: json["totalInstallment"],
-        schemeName: json["SchemeName"],
-        schemeType: json["SchemeType"],
-        totalPoint: List<String>.from(json["TotalPoint"].map((x) => x)),
-      );
+    paymentsList: List<PaymentsList>.from(
+      json["paymentsList"].map((x) => PaymentsList.fromJson(x)),
+    ),
+    sumAmount: json["sum_amount"],
+    sumGram: json["sum_gram"],
+    totalInstallment: json["totalInstallment"],
+    schemeName: json["SchemeName"],
+    schemeType: json["SchemeType"],
+    totalPoint: List<String>.from(json["TotalPoint"].map((x) => x)),
+  );
 
   Map<String, dynamic> toJson() => {
-        "paymentsList": List<dynamic>.from(paymentsList.map((x) => x.toJson())),
-        "sum_amount": sumAmount,
-        "sum_gram": sumGram,
-        "totalInstallment": totalInstallment,
-        "SchemeName": schemeName,
-        "SchemeType": schemeType,
-        "TotalPoint": List<dynamic>.from(totalPoint.map((x) => x)),
-      };
+    "paymentsList": List<dynamic>.from(paymentsList.map((x) => x.toJson())),
+    "sum_amount": sumAmount,
+    "sum_gram": sumGram,
+    "totalInstallment": totalInstallment,
+    "SchemeName": schemeName,
+    "SchemeType": schemeType,
+    "TotalPoint": List<dynamic>.from(totalPoint.map((x) => x)),
+  };
 }
 
 class PaymentsList {
@@ -116,43 +117,43 @@ class PaymentsList {
   });
 
   factory PaymentsList.fromJson(Map<String, dynamic> json) => PaymentsList(
-        id: json["id"],
-        branchId: json["branchId"],
-        voucherNumber: json["voucherNumber"],
-        userId: json["UserId"],
-        sheduledDateId: json["SheduledDateId"],
-        subscriptionId: json["subscriptionId"],
-        gram: json["gram"],
-        amount: json["amount"],
-        taransactionId: json["taransactionId"],
-        paymentDate: DateTime.parse(json["paymentDate"]),
-        paidBy: json["paidBy"],
-        note: json["note"],
-        paymentMode: json["paymentMode"],
-        paymentMethod: json["payment_method"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    branchId: json["branchId"],
+    voucherNumber: json["voucherNumber"],
+    userId: json["UserId"],
+    sheduledDateId: json["SheduledDateId"],
+    subscriptionId: json["subscriptionId"],
+    gram: json["gram"],
+    amount: json["amount"],
+    taransactionId: json["taransactionId"],
+    paymentDate: DateTime.parse(json["paymentDate"]),
+    paidBy: json["paidBy"],
+    note: json["note"],
+    paymentMode: json["paymentMode"],
+    paymentMethod: json["payment_method"],
+    status: json["status"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "branchId": branchId,
-        "voucherNumber": voucherNumber,
-        "UserId": userId,
-        "SheduledDateId": sheduledDateId,
-        "subscriptionId": subscriptionId,
-        "gram": gram,
-        "amount": amount,
-        "taransactionId": taransactionId,
-        "paymentDate":
-            "${paymentDate.year.toString().padLeft(4, '0')}-${paymentDate.month.toString().padLeft(2, '0')}-${paymentDate.day.toString().padLeft(2, '0')}",
-        "paidBy": paidBy,
-        "note": note,
-        "paymentMode": paymentMode,
-        "payment_method": paymentMethod,
-        "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "branchId": branchId,
+    "voucherNumber": voucherNumber,
+    "UserId": userId,
+    "SheduledDateId": sheduledDateId,
+    "subscriptionId": subscriptionId,
+    "gram": gram,
+    "amount": amount,
+    "taransactionId": taransactionId,
+    "paymentDate":
+        "${paymentDate.year.toString().padLeft(4, '0')}-${paymentDate.month.toString().padLeft(2, '0')}-${paymentDate.day.toString().padLeft(2, '0')}",
+    "paidBy": paidBy,
+    "note": note,
+    "paymentMode": paymentMode,
+    "payment_method": paymentMethod,
+    "status": status,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

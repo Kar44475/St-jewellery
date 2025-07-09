@@ -140,7 +140,10 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
               if (schemeid == null) {
                 showToast("Please select a scheme");
               } else if (shcemetype == 1) {
-                Navigate.push(context, SelectpriceTabyearly(arguments: details));
+                Navigate.push(
+                  context,
+                  SelectpriceTabyearly(arguments: details),
+                );
                 // Navigator.pushNamed(
                 //     context, SelectpriceTabyearly.routeName,
                 //     arguments: details);
@@ -173,7 +176,10 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
             ? Opacity(opacity: 0)
             : data!.data != null
             ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: data!.data!.schemeList!.length,
@@ -192,7 +198,7 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
                                 //             branchiid == 3
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: _isCheckeded.elementAt(index) 
+                                    color: _isCheckeded.elementAt(index)
                                         ? Color.fromRGBO(255, 203, 3, 1)
                                         : Colors.white,
                                     border: Border.all(
@@ -230,7 +236,10 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
                                                   .schemeName!,
                                               style: TextStyle(
                                                 fontSize: 14,
-                                                color: _isCheckeded.elementAt(index)
+                                                color:
+                                                    _isCheckeded.elementAt(
+                                                      index,
+                                                    )
                                                     ? Colors.black
                                                     : Colors.black,
                                                 fontWeight: FontWeight.w600,
@@ -259,7 +268,7 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
                             padding: const EdgeInsets.only(bottom: 15),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: _isCheckeded.elementAt(index) 
+                                color: _isCheckeded.elementAt(index)
                                     ? Color.fromRGBO(255, 203, 3, 1)
                                     : Colors.white,
                                 border: Border.all(
@@ -281,8 +290,9 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  details = data!.data!.schemeList!
-                                      .elementAt(index);
+                                  details = data!.data!.schemeList!.elementAt(
+                                    index,
+                                  );
                                   tick(index);
                                 },
                                 child: Padding(
@@ -302,7 +312,8 @@ class _SelectNewSchemeState extends State<SelectNewScheme> {
                                             color: _isCheckeded.elementAt(index)
                                                 ? Colors.black
                                                 : Colors.black54,
-                                            fontWeight: _isCheckeded.elementAt(index)
+                                            fontWeight:
+                                                _isCheckeded.elementAt(index)
                                                 ? FontWeight.w600
                                                 : FontWeight.w500,
                                           ),

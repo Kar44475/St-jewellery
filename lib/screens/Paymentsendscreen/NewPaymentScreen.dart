@@ -168,10 +168,9 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
     return isLoading
         ? Container()
         : Scaffold(
-           
             appBar: AppBar(
-              title: Text("Payment Details", ),
-           
+              title: Text("Payment Details"),
+
               elevation: 0,
               shadowColor: Colors.grey.withOpacity(0.1),
             ),
@@ -210,8 +209,11 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.info_outline, 
-                                         color: Colors.blue[600], size: 18),
+                                    Icon(
+                                      Icons.info_outline,
+                                      color: Colors.blue[600],
+                                      size: 18,
+                                    ),
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Text(
@@ -227,20 +229,25 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                 ),
                               ),
                               const SizedBox(height: 24),
-                              
+
                               // UPI Section
                               Container(
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   color: Colors.orange[50],
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: Colors.orange[100]!),
+                                  border: Border.all(
+                                    color: Colors.orange[100]!,
+                                  ),
                                 ),
                                 child: Column(
                                   children: [
                                     Row(
                                       children: [
-                                        Image.asset("assets/upi.png", height: 20),
+                                        Image.asset(
+                                          "assets/upi.png",
+                                          height: 20,
+                                        ),
                                         const SizedBox(width: 12),
                                         Text(
                                           "UPI PAYMENT OPTIONS",
@@ -254,7 +261,8 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                     ),
                                     const SizedBox(height: 16),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         _buildPaymentButton(
                                           "assets/gpay.png",
@@ -318,9 +326,9 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                   ],
                                 ),
                               ),
-                              
+
                               const SizedBox(height: 24),
-                              
+
                               // Bank Details Section
                               Container(
                                 padding: const EdgeInsets.all(16),
@@ -366,7 +374,9 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(12),
-                                        border: Border.all(color: Colors.grey[200]!),
+                                        border: Border.all(
+                                          color: Colors.grey[200]!,
+                                        ),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16),
@@ -387,7 +397,9 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                                         .beneficiaryName!,
                                                   ),
                                                 );
-                                                showToast("Beneficiary Name copied");
+                                                showToast(
+                                                  "Beneficiary Name copied",
+                                                );
                                               },
                                             ),
                                             Divider(color: Colors.grey[200]),
@@ -406,10 +418,12 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                                         .accNo!,
                                                   ),
                                                 );
-                                                showToast("Account number copied");
+                                                showToast(
+                                                  "Account number copied",
+                                                );
                                               },
                                             ),
-                                                                                  Divider(color: Colors.grey[200]),
+                                            Divider(color: Colors.grey[200]),
                                             _buildCopyField(
                                               "Branch IFSC Code",
                                               bankdDetails!.data.bankDetails
@@ -486,7 +500,12 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
           );
   }
 
-  Widget _buildPaymentButton(String iconPath, String label, Color bgColor, VoidCallback onTap) {
+  Widget _buildPaymentButton(
+    String iconPath,
+    String label,
+    Color bgColor,
+    VoidCallback onTap,
+  ) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -557,11 +576,7 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
               color: Colors.blue[50],
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              Icons.copy,
-              size: 16,
-              color: Colors.blue[600],
-            ),
+            child: Icon(Icons.copy, size: 16, color: Colors.blue[600]),
           ),
         ),
       ],
@@ -572,9 +587,7 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 10,
         titlePadding: EdgeInsets.zero,
         actionsPadding: const EdgeInsets.only(bottom: 20, top: 20),
@@ -598,10 +611,7 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                 children: [
                   const Text(
                     "Open",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(width: 8),
                   Image.asset(
@@ -647,9 +657,7 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                     const Icon(FontAwesomeIcons.landmark, size: 16),
                     const SizedBox(width: 8),
                     Text(
-                      bankdDetails!.data.bankDetails
-                          .elementAt(index)
-                          .bankName!,
+                      bankdDetails!.data.bankDetails.elementAt(index).bankName!,
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -703,7 +711,11 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 titlePadding: const EdgeInsets.all(20),
-                actionsPadding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                actionsPadding: const EdgeInsets.only(
+                  bottom: 20,
+                  left: 20,
+                  right: 20,
+                ),
                 title: Row(
                   children: [
                     IconButton(
@@ -745,7 +757,10 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                             autofocus: true,
                             enabled: (details!["type"]) == 0 ? false : true,
                             controller: amountController,
-                            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+                            style: const TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
+                            ),
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
@@ -770,7 +785,8 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                   gram = 0;
                                   finalgram = "";
                                 } else {
-                                  gram = double.parse(value) /
+                                  gram =
+                                      double.parse(value) /
                                       double.parse(
                                         details!['todaysrate'].toString(),
                                       );
@@ -789,9 +805,13 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                                 },
                                 child: Container(
                                   width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                  ),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey[300]!),
+                                    border: Border.all(
+                                      color: Colors.grey[300]!,
+                                    ),
                                     borderRadius: BorderRadius.circular(12),
                                     color: Colors.blue[50],
                                   ),
@@ -878,17 +898,28 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
                               "Please input amount & provide a screenshot of transaction to continue",
                             );
                           } else {
-                                                       if (schemetype.toString().compareTo("1") == 0) {
-                              if (currentstatus.toString().compareTo("dialy") == 0) {
-                                pay(amountController.text.toString(), finalgram);
+                            if (schemetype.toString().compareTo("1") == 0) {
+                              if (currentstatus.toString().compareTo("dialy") ==
+                                  0) {
+                                pay(
+                                  amountController.text.toString(),
+                                  finalgram,
+                                );
                               }
-                              if (currentstatus.toString().compareTo("dialy") != 0) {
-                                pay(amountController.text.toString(), finalgram);
+                              if (currentstatus.toString().compareTo("dialy") !=
+                                  0) {
+                                pay(
+                                  amountController.text.toString(),
+                                  finalgram,
+                                );
                               }
                             } else {
                               try {
                                 if (_image == null) {
-                                  if (transidController.text.toString().compareTo("") == 0) {
+                                  if (transidController.text
+                                          .toString()
+                                          .compareTo("") ==
+                                      0) {
                                     showToastCenter(
                                       "Please provide a Transaction id or screenshot",
                                     );
@@ -980,7 +1011,9 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
         bankdDetails = bankdetails;
       });
       print(bankdetails);
-      isbankdetailsPresent = bankdDetails!.data.bankDetails.isEmpty ? false : true;
+      isbankdetailsPresent = bankdDetails!.data.bankDetails.isEmpty
+          ? false
+          : true;
       isUpiPresent = bankdDetails!.data.upiDetails.isEmpty ? false : true;
 
       if (isbankdetailsPresent && isUpiPresent) {

@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class AgentNextPaymentCustomer extends StatefulWidget {
 }
 
 class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
-  Map<int, bool> loadingButtons = {}; 
+  Map<int, bool> loadingButtons = {};
 
   TextEditingController amountController = TextEditingController();
 
@@ -97,7 +96,7 @@ class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
         customerListAll.addAll(fetchedList);
         _dataStream!.add(customerListAll);
         currentPage++;
-        if (fetchedList.length < limit) hasMore = false; 
+        if (fetchedList.length < limit) hasMore = false;
       } else {
         hasMore = false;
       }
@@ -311,7 +310,6 @@ class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
   }
 
   showAlertDialog(BuildContext context) {
-  
     Widget cancelButton = TextButton(
       child: const Text("Cancel"),
       onPressed: () {
@@ -329,13 +327,11 @@ class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
       },
     );
 
-
     AlertDialog alert = AlertDialog(
       title: const Text("Payment"),
       content: const Text("Would you like to continue with the paymnet?"),
       actions: [cancelButton, continueButton],
     );
-
 
     showDialog(
       context: context,
@@ -375,7 +371,6 @@ class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
       },
     );
 
-  
     AlertDialog alert = AlertDialog(
       title: const Text("Payment"),
       content: StatefulBuilder(
@@ -437,7 +432,6 @@ class _AgentNextPaymentCustomerState extends State<AgentNextPaymentCustomer> {
       actions: [cancelButton, continueButton],
     );
 
-   
     showDialog(
       context: context,
       builder: (BuildContext context) {

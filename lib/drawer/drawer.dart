@@ -187,7 +187,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       }),
     ]);
 
- 
     if (isLoggedIn && isAgent) {
       menuItems.insert(
         0,
@@ -200,7 +199,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         }),
       );
     }
-
 
     if (isLoggedIn && !isAgent) {
       menuItems.insertAll(0, [
@@ -220,13 +218,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   Widget _buildActionSection() {
     if (isLoggedIn) {
-   
       return _buildLogoutItem(Icons.power_settings_new, "Log Out", () {
         Navigator.pop(context);
         exitApp(context);
       });
     } else {
-   
       return _buildLoginItem(Icons.login, "Log In", () {
         Navigator.pop(context);
         Navigator.pushReplacement(

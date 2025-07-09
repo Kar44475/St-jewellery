@@ -48,12 +48,12 @@ class _ReceiptState extends State<Receipt> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-   
+
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back,  size: 20),
+          icon: Icon(Icons.arrow_back, size: 20),
         ),
         title: Text("Receipt"),
       ),

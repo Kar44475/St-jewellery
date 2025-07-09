@@ -29,33 +29,31 @@ class NotificationModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-    required this.notification,
-  });
+  Data({required this.status, required this.notification});
 
   String status;
   List<Notification> notification;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        notification: List<Notification>.from(
-            json["notification"].map((x) => Notification.fromJson(x))),
-      );
+    status: json["status"],
+    notification: List<Notification>.from(
+      json["notification"].map((x) => Notification.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "notification": notification == null
-            ? null
-            : List<dynamic>.from(notification.map((x) => x.toJson())),
-      };
+    "status": status,
+    "notification": notification == null
+        ? null
+        : List<dynamic>.from(notification.map((x) => x.toJson())),
+  };
 }
 
 class Notification {
@@ -80,24 +78,24 @@ class Notification {
   DateTime updatedAt;
 
   factory Notification.fromJson(Map<String, dynamic> json) => Notification(
-        id: json["id"],
-        title: json["title"],
-        description: json["description"],
-        userId: json["UserId"],
-        subscriptionId: json["subscriptionId"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    title: json["title"],
+    description: json["description"],
+    userId: json["UserId"],
+    subscriptionId: json["subscriptionId"],
+    status: json["status"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "description": description,
-        "UserId": userId,
-        "subscriptionId": subscriptionId,
-        "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "title": title,
+    "description": description,
+    "UserId": userId,
+    "subscriptionId": subscriptionId,
+    "status": status,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

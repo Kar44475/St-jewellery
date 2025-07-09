@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart';
 import 'package:stjewellery/theme/theme.dart';
@@ -20,6 +19,5 @@ class MyApp extends StatelessWidget {
       theme: stJewelleryTheme,
       home: JewelleryDetailsHomeScreen(),
     );
-
   }
 }

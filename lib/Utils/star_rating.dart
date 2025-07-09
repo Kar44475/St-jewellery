@@ -20,16 +20,13 @@ class StarRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: List.generate(
-        5,
-        (index) {
-          return Icon(
-            Icons.star,
-            size: starSize,
-            color: index < rating ? Color(0xffffc832) : Colors.grey[300],
-          );
-        },
-      ),
+      children: List.generate(5, (index) {
+        return Icon(
+          Icons.star,
+          size: starSize,
+          color: index < rating ? Color(0xffffc832) : Colors.grey[300],
+        );
+      }),
     );
   }
 }

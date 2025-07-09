@@ -16,12 +16,12 @@ class AgentProfileView extends StatefulWidget {
 class AgentProfileViewState extends State<AgentProfileView> {
   static const Duration _focusDelay = Duration(seconds: 1);
   static const String _emptyString = "";
-  
+
   DateTime selectedDate = DateTime.now();
   final FocusNode _nameFocusNode = FocusNode();
 
   Agentprofileviewmodel? _agentProfileData;
-  
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -57,12 +57,7 @@ class AgentProfileViewState extends State<AgentProfileView> {
       body: Container(
         decoration: const BoxDecoration(),
         child: SafeArea(
-          child: ListView(
-            children: [
-              _buildAppBar(),
-              _buildProfileCard(),
-            ],
-          ),
+          child: ListView(children: [_buildAppBar(), _buildProfileCard()]),
         ),
       ),
     );
@@ -192,10 +187,7 @@ class AgentProfileViewState extends State<AgentProfileView> {
           child: TextField(
             controller: _addressController,
             enabled: _isEditMode,
-            style: TextStyle(
-              fontSize: 14,
-              color: ColorUtil.fromHex("#262626"),
-            ),
+            style: TextStyle(fontSize: 14, color: ColorUtil.fromHex("#262626")),
             minLines: 10,
             textInputAction: TextInputAction.done,
             maxLines: 15,
@@ -203,9 +195,7 @@ class AgentProfileViewState extends State<AgentProfileView> {
             decoration: InputDecoration(
               fillColor: ColorUtil.fromHex("#ffffff"),
               hintText: "Address",
-              hintStyle: TextStyle(
-                color: ColorUtil.fromHex("#262626"),
-              ),
+              hintStyle: TextStyle(color: ColorUtil.fromHex("#262626")),
               border: InputBorder.none,
             ),
           ),
@@ -218,7 +208,10 @@ class AgentProfileViewState extends State<AgentProfileView> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
-        child: secondaryButton(_isEditMode ? "Save" : "Edit", _handleButtonPress),
+        child: secondaryButton(
+          _isEditMode ? "Save" : "Edit",
+          _handleButtonPress,
+        ),
       ),
     );
   }
@@ -245,12 +238,12 @@ class AgentProfileViewState extends State<AgentProfileView> {
       showToast("Please enter name");
       return;
     }
-    
+
     if (_areDocumentsEmpty()) {
       showToast("Please enter Pancard or Aadhaar card details");
       return;
     }
-    
+
     _saveProfile();
   }
 
@@ -259,8 +252,8 @@ class AgentProfileViewState extends State<AgentProfileView> {
   }
 
   bool _areDocumentsEmpty() {
-    return _aadhaarController.text.trim().isEmpty && 
-           _panCardController.text.trim().isEmpty;
+    return _aadhaarController.text.trim().isEmpty &&
+        _panCardController.text.trim().isEmpty;
   }
 
   void _saveProfile() {
@@ -280,10 +273,10 @@ class AgentProfileViewState extends State<AgentProfileView> {
     try {
       print("Fetching profile details");
       Loading.show(context);
-      
-      final Agentprofileviewmodel profileData = 
+
+      final Agentprofileviewmodel profileData =
           await Schemelistgetprofile.getprofileagent();
-      
+
       setState(() {
         Loading.dismiss();
         _agentProfileData = profileData;
@@ -311,10 +304,9 @@ class AgentProfileViewState extends State<AgentProfileView> {
     try {
       Loading.show(context);
       print("Submitting profile edit: $profileDetails");
-      
-     
-          await Schemelistgetprofile.postprofileagentEdit(profileDetails);
-      
+
+      await Schemelistgetprofile.postprofileagentEdit(profileDetails);
+
       Loading.dismiss();
       setState(() {
         _isEditMode = false;
@@ -328,7 +320,7 @@ class AgentProfileViewState extends State<AgentProfileView> {
   bool validateMobile(String phoneNumber) {
     const String phonePattern = r'(^(?:[+0]9)?[0-9]{6,12}$)';
     final RegExp phoneRegExp = RegExp(phonePattern);
-    
+
     if (phoneNumber.isEmpty) {
       showToast('Please enter mobile number');
       return false;

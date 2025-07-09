@@ -3,7 +3,6 @@ import 'package:stjewellery/screens/main_screens/login_pop_widget.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
 import 'package:stjewellery/Utils/utils.dart';
 
-
 class GoldBookingTab extends StatefulWidget {
   const GoldBookingTab({super.key});
 
@@ -11,7 +10,8 @@ class GoldBookingTab extends StatefulWidget {
   State<GoldBookingTab> createState() => _GoldBookingTabState();
 }
 
-class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStateMixin {
+class _GoldBookingTabState extends State<GoldBookingTab>
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
@@ -19,7 +19,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
   int selectedSchemeIndex = 0;
   bool hasExistingScheme = false;
   bool isCheckingScheme = true;
-
 
   final List<Map<String, dynamic>> goldSchemes = [
     {'amount': 500, 'months': 11, 'total': 5500},
@@ -37,23 +36,18 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
       duration: Duration(milliseconds: 1200),
       vsync: this,
     );
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeOutCubic,
-    ));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
     _animationController.forward();
-    
-   
+
     _checkExistingScheme();
   }
 
@@ -95,35 +89,29 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-        
                     _buildHeaderBanner(),
-                    
+
                     SizedBox(height: 20),
-                    
-             
+
                     _buildTitleSection(),
-                    
+
                     SizedBox(height: 25),
-                    
-             
+
                     if (hasExistingScheme) ...[
                       _buildCurrentSchemeSection(),
                       SizedBox(height: 25),
                     ],
-                    
-           
+
                     _buildAvailableSchemesTable(),
-                    
+
                     SizedBox(height: 25),
-                    
-      
+
                     _buildTermsAndConditions(),
-                    
+
                     SizedBox(height: 25),
-                    
-           
+
                     _buildActionSection(),
-                    
+
                     SizedBox(height: 30),
                   ],
                 ),
@@ -138,7 +126,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
       width: double.infinity,
       child: Stack(
         children: [
-
           ClipRRect(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -156,10 +143,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFFFFD700),
-                        Color(0xFFFFA500),
-                      ],
+                      colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
                     ),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
@@ -170,8 +154,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               },
             ),
           ),
-          
-   
+
           Container(
             height: 220,
             decoration: BoxDecoration(
@@ -182,15 +165,11 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.5),
-                ],
+                colors: [Colors.transparent, Colors.black.withOpacity(0.5)],
               ),
             ),
           ),
-          
-  
+
           Positioned(
             bottom: 25,
             left: 25,
@@ -215,7 +194,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ),
                 SizedBox(height: 6),
                 Text(
-                  hasExistingScheme 
+                  hasExistingScheme
                       ? 'Manage your existing gold scheme or explore new options'
                       : 'Secure your gold at today\'s price with our advance booking scheme',
                   style: TextStyle(
@@ -311,7 +290,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     );
   }
 
-
   Widget _buildCurrentSchemeSection() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -342,8 +320,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ),
               ),
             ),
-            
-          
+
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.all(15),
@@ -387,7 +364,6 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
       ),
     );
   }
-
 
   Widget _buildAvailableSchemesTable() {
     return Padding(
@@ -433,8 +409,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ],
               ),
             ),
-            
-          
+
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
@@ -472,17 +447,13 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ],
               ),
             ),
-            
-                
+
             ...goldSchemes.map((scheme) {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(
-                      color: Colors.grey[200]!,
-                      width: 1,
-                    ),
+                    bottom: BorderSide(color: Colors.grey[200]!, width: 1),
                   ),
                 ),
                 child: Row(
@@ -491,10 +462,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                       flex: 3,
                       child: Text(
                         '₹${scheme['amount']} × ${scheme['months']} months',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black87,
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.black87),
                       ),
                     ),
                     Expanded(
@@ -513,10 +481,9 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ),
               );
             }).toList(),
-            
+
             SizedBox(height: 15),
-            
-         
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
@@ -594,33 +561,37 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               ),
             ),
             SizedBox(height: 15),
-            ...terms.map((term) => Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 6, right: 10),
-                    width: 4,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      shape: BoxShape.circle,
+            ...terms
+                .map(
+                  (term) => Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 6, right: 10),
+                          width: 4,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            term,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[700],
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Text(
-                      term,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[700],
-                        height: 1.4,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )).toList(),
+                )
+                .toList(),
           ],
         ),
       ),
@@ -651,24 +622,26 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
             Container(
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                color: hasExistingScheme 
+                color: hasExistingScheme
                     ? Colors.green.withOpacity(0.1)
                     : Theme.of(context).primaryColor.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                hasExistingScheme ? Icons.account_balance_wallet : Icons.diamond,
+                hasExistingScheme
+                    ? Icons.account_balance_wallet
+                    : Icons.diamond,
                 size: 40,
-                color: hasExistingScheme 
+                color: hasExistingScheme
                     ? Colors.green
                     : Theme.of(context).primaryColor,
               ),
             ),
-        
+
             SizedBox(height: 20),
-            
+
             Text(
-              hasExistingScheme 
+              hasExistingScheme
                   ? 'Manage Your Gold Scheme'
                   : 'Ready to Book Your Gold?',
               textAlign: TextAlign.center,
@@ -691,22 +664,21 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
               ),
             ),
             SizedBox(height: 25),
-            
+
             // Single Main Action Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  hasExistingScheme 
+                  hasExistingScheme
                       ? _navigateToSchemeDetails()
                       : showDialog(
-  context: context,
-  builder: (context) => LoginPopupWidget(),
-);
-
+                          context: context,
+                          builder: (context) => LoginPopupWidget(),
+                        );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: hasExistingScheme 
+                  backgroundColor: hasExistingScheme
                       ? Colors.green
                       : Theme.of(context).primaryColor,
                   foregroundColor: Colors.white,
@@ -720,14 +692,14 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      hasExistingScheme ? Icons.visibility : Icons.content_paste_go_outlined, 
-                      size: 20
+                      hasExistingScheme
+                          ? Icons.visibility
+                          : Icons.content_paste_go_outlined,
+                      size: 20,
                     ),
                     SizedBox(width: 8),
                     Text(
-                      hasExistingScheme 
-                          ? 'View My Scheme'
-                          : 'View profile',
+                      hasExistingScheme ? 'View My Scheme' : 'View profile',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -737,36 +709,26 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
                 ),
               ),
             ),
-            
+
             SizedBox(height: 15),
-            
-  
+
             Container(
               padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.blue.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.blue.withOpacity(0.2),
-                ),
+                border: Border.all(color: Colors.blue.withOpacity(0.2)),
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.info_outline,
-                    color: Colors.blue,
-                    size: 16,
-                  ),
+                  Icon(Icons.info_outline, color: Colors.blue, size: 16),
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       hasExistingScheme
                           ? 'Track your scheme progress and manage payments easily.'
                           : 'Our experts will help you choose the perfect gold scheme for your needs.',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.blue[700],
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.blue[700]),
                     ),
                   ),
                 ],
@@ -782,7 +744,7 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
     String amountStr = amount.toString();
     String result = '';
     int count = 0;
-    
+
     for (int i = amountStr.length - 1; i >= 0; i--) {
       if (count > 0 && count % 2 == 0 && i != 0) {
         result = ',' + result;
@@ -793,20 +755,17 @@ class _GoldBookingTabState extends State<GoldBookingTab> with TickerProviderStat
       result = amountStr[i] + result;
       count++;
     }
-    
+
     return '₹$result';
   }
 
-void _navigateToSchemeDetails() {
-  Navigator.push(
-    context, 
-    MaterialPageRoute(
-      builder: (context) => TopNavigation(
-        sourceScreen: 'gold_scheme',
-        initialTab: 0, 
+  void _navigateToSchemeDetails() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            TopNavigation(sourceScreen: 'gold_scheme', initialTab: 0),
       ),
-    ),
-  );
-}
-
+    );
+  }
 }

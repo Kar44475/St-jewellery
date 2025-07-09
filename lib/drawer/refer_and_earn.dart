@@ -75,7 +75,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                           width: ScreenSize.setWidth(context, 0.6),
                           height: 150,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor.withOpacity(0.1),
+                            color: Theme.of(
+                              context,
+                            ).primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: ClipRRect(
@@ -107,9 +109,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                       ],
                     ),
                   ),
-                  
+
                   SizedBox(height: 16),
-                  
+
                   // Points and Referral Code Section
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 16),
@@ -152,7 +154,8 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                     SizedBox(width: 12),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             datas!.data.point.toString(),
@@ -178,7 +181,7 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                               ],
                             ),
                           ),
-                          
+
                           // Divider
                           Container(
                             width: 1,
@@ -186,7 +189,7 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                             color: Colors.black.withOpacity(0.2),
                             margin: EdgeInsets.symmetric(horizontal: 16),
                           ),
-                          
+
                           // Referral Code Section
                           Expanded(
                             child: Column(
@@ -202,7 +205,10 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                 ),
                                 SizedBox(height: 8),
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.3),
                                     borderRadius: BorderRadius.circular(8),
@@ -211,7 +217,8 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          datas!.data.referal.referalId.toString(),
+                                          datas!.data.referal.referalId
+                                              .toString(),
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.black87,
@@ -223,7 +230,8 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                         onTap: () {
                                           Clipboard.setData(
                                             ClipboardData(
-                                              text: datas!.data.referal.referalId,
+                                              text:
+                                                  datas!.data.referal.referalId,
                                             ),
                                           );
                                           showToast("Referral ID copied");
@@ -231,8 +239,12 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                         child: Container(
                                           padding: EdgeInsets.all(4),
                                           decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(0.5),
-                                            borderRadius: BorderRadius.circular(4),
+                                            color: Colors.white.withOpacity(
+                                              0.5,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              4,
+                                            ),
                                           ),
                                           child: Icon(
                                             Icons.copy,
@@ -251,9 +263,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                       ),
                     ),
                   ),
-                  
+
                   SizedBox(height: 24),
-                  
+
                   // Referral List Header
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 16),
@@ -275,7 +287,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                         Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor.withOpacity(0.1),
+                            color: Theme.of(
+                              context,
+                            ).primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
@@ -297,7 +311,10 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                         ),
                         if (datas!.data.referedList.isNotEmpty)
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(255, 203, 3, 0.2),
                               borderRadius: BorderRadius.circular(12),
@@ -314,9 +331,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                       ],
                     ),
                   ),
-                  
+
                   SizedBox(height: 16),
-                  
+
                   // Referral List Content
                   (datas!.data.referedList.isEmpty)
                       ? Container(
@@ -368,7 +385,10 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                           itemCount: datas!.data.referedList.length,
                           itemBuilder: (BuildContext ctxt, item) {
                             return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
@@ -384,7 +404,10 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                               child: ExpansionTileCard(
                                 baseColor: Colors.white,
                                 expandedColor: Colors.white,
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
                                 finalPadding: EdgeInsets.zero,
                                 initialPadding: EdgeInsets.zero,
                                 borderRadius: BorderRadius.circular(12),
@@ -395,7 +418,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                        color: Theme.of(
+                                          context,
+                                        ).primaryColor.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Icon(
@@ -405,14 +430,17 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                       ),
                                     ),
                                     SizedBox(width: 12),
-                                    
+
                                     // User Info
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            datas!.data.referedList.elementAt(item).name,
+                                            datas!.data.referedList
+                                                .elementAt(item)
+                                                .name,
                                             style: TextStyle(
                                               fontSize: 16,
                                               color: Colors.black87,
@@ -430,7 +458,9 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                               ),
                                               SizedBox(width: 4),
                                               Text(
-                                                datas!.data.referedList.elementAt(item).phone,
+                                                datas!.data.referedList
+                                                    .elementAt(item)
+                                                    .phone,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors.grey[600],
@@ -442,14 +472,27 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                         ],
                                       ),
                                     ),
-                                    
-                                                    // Payment count badge
-                                    if (datas!.data.referedList.elementAt(item).paymentDates.isNotEmpty)
+
+                                    // Payment count badge
+                                    if (datas!.data.referedList
+                                        .elementAt(item)
+                                        .paymentDates
+                                        .isNotEmpty)
                                       Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
                                         decoration: BoxDecoration(
-                                          color: Color.fromRGBO(255, 203, 3, 0.2),
-                                          borderRadius: BorderRadius.circular(12),
+                                          color: Color.fromRGBO(
+                                            255,
+                                            203,
+                                            3,
+                                            0.2,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         child: Text(
                                           "${datas!.data.referedList.elementAt(item).paymentDates.length}",
@@ -473,7 +516,8 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                       ),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
@@ -494,66 +538,88 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                           ],
                                         ),
                                         SizedBox(height: 12),
-                                        
+
                                         // Payment dates list
                                         ListView.builder(
                                           shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(),
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
                                           itemCount: datas!.data.referedList
                                               .elementAt(item)
                                               .paymentDates
                                               .length,
-                                          itemBuilder: (BuildContext context, int index) {
-                                            return Container(
-                                              margin: EdgeInsets.only(bottom: 8),
-                                              padding: EdgeInsets.all(12),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(8),
-                                                border: Border.all(
-                                                  color: Colors.grey.withOpacity(0.2),
-                                                  width: 1,
-                                                ),
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    width: 8,
-                                                    height: 8,
-                                                    decoration: BoxDecoration(
-                                                      color: Theme.of(context).primaryColor,
-                                                      borderRadius: BorderRadius.circular(4),
+                                          itemBuilder:
+                                              (
+                                                BuildContext context,
+                                                int index,
+                                              ) {
+                                                return Container(
+                                                  margin: EdgeInsets.only(
+                                                    bottom: 8,
+                                                  ),
+                                                  padding: EdgeInsets.all(12),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          8,
+                                                        ),
+                                                    border: Border.all(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      width: 1,
                                                     ),
                                                   ),
-                                                  SizedBox(width: 12),
-                                                  Text(
-                                                    "Expires on: ",
-                                                    style: TextStyle(
-                                                      fontSize: 13,
-                                                      color: Colors.grey[600],
-                                                      fontWeight: FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      datas!.data.referedList
-                                                          .elementAt(item)
-                                                          .paymentDates
-                                                          .elementAt(index)
-                                                          .paymentEndDates
-                                                          .toString()
-                                                          .substring(0, 10),
-                                                      style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: Colors.black87,
-                                                        fontWeight: FontWeight.w600,
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 8,
+                                                        height: 8,
+                                                        decoration: BoxDecoration(
+                                                          color: Theme.of(
+                                                            context,
+                                                          ).primaryColor,
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                4,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                      SizedBox(width: 12),
+                                                      Text(
+                                                        "Expires on: ",
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color:
+                                                              Colors.grey[600],
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          datas!
+                                                              .data
+                                                              .referedList
+                                                              .elementAt(item)
+                                                              .paymentDates
+                                                              .elementAt(index)
+                                                              .paymentEndDates
+                                                              .toString()
+                                                              .substring(0, 10),
+                                                          style: TextStyle(
+                                                            fontSize: 13,
+                                                            color:
+                                                                Colors.black87,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                );
+                                              },
                                         ),
                                       ],
                                     ),
@@ -563,7 +629,7 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                             );
                           },
                         ),
-                  
+
                   SizedBox(height: 20),
                 ],
               ),
@@ -596,4 +662,3 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
     }
   }
 }
-                

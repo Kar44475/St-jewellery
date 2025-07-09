@@ -53,7 +53,6 @@
 //     getrole();
 //   }
 
-
 // void _showBottomDrawer(BuildContext context) {
 //   showModalBottomSheet(
 //     context: context,
@@ -77,7 +76,7 @@
 //         ),
 //         child: Column(
 //           children: [
-   
+
 //             Container(
 //               margin: EdgeInsets.symmetric(vertical: 10),
 //               width: 40,
@@ -87,7 +86,7 @@
 //                 borderRadius: BorderRadius.circular(2),
 //               ),
 //             ),
-   
+
 //             Expanded(
 //               child: SingleChildScrollView(
 //                 controller: scrollController,
@@ -101,21 +100,20 @@
 //   );
 // }
 
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-     
+
 //       body: Scaffold(
 //         appBar: AppBar(
-//             elevation: 0, 
+//             elevation: 0,
 //               backgroundColor: Theme.of(context).primaryColor,
 //      title: Image.asset(
 //             "assets/pngIcons/mainIcons.png",
 //             height: 55,
 //           ),
 
-//   leading: role == 2 || role == 4 
+//   leading: role == 2 || role == 4
 //       ? IconButton(
 //           icon: Icon(Icons.menu, color: Colors.white),
 //           onPressed: () {
@@ -153,7 +151,7 @@
 //           //   icon: const Icon(Icons.notifications, size: 25, color: Colors.white),
 //           // ),
 //           // appBarColor: Theme.of(context).primaryColor,
-     
+
 //         ),
 //         //    key: _sliderDrawerKey,
 //         //    sliderOpenSize: 200,
@@ -162,22 +160,19 @@
 //         //     ? const DrawerWidget()
 //         //     : const Opacity(opacity: 0),
 
-
-
-        
 //         body: Container(
 //           color: Colors.white,
 //           child: Column(
 //             children: [
 //               Expanded(
 //                 child: Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 8.0), 
+//                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
 //                   child: LayoutBuilder(
 //                     builder: (context, constraints) {
-                
+
 //                       final availableWidth = constraints.maxWidth - 16;
-//                       final itemWidth = (availableWidth - 8) / 2; 
-//                       final itemHeight = itemWidth * 1.3; 
+//                       final itemWidth = (availableWidth - 8) / 2;
+//                       final itemHeight = itemWidth * 1.3;
 //                       final imgHeight = itemWidth * 0.75;
 //                       final aspectRatio = itemWidth / itemHeight;
 
@@ -185,11 +180,11 @@
 //                         shrinkWrap: true,
 //                         padding: EdgeInsets.only(
 //                           top: 8,
-//                           bottom: 100, 
+//                           bottom: 100,
 //                         ),
 //                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
 //                           crossAxisCount: 2,
-//                           crossAxisSpacing: 8.0, 
+//                           crossAxisSpacing: 8.0,
 //                           mainAxisSpacing: 8.0,
 //                           childAspectRatio: aspectRatio,
 //                         ),
@@ -222,9 +217,9 @@
 //                               child: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: [
-                        
+
 //                                   Expanded(
-//                                     flex: 3, 
+//                                     flex: 3,
 //                                     child: Container(
 //                                       width: double.infinity,
 //                                       decoration: BoxDecoration(
@@ -239,17 +234,16 @@
 //                                       ),
 //                                     ),
 //                                   ),
-                                  
-                         
+
 //                                   Expanded(
 //                                     flex: 2,
 //                                     child: Padding(
-//                                       padding: const EdgeInsets.all(8.0), 
+//                                       padding: const EdgeInsets.all(8.0),
 //                                       child: Column(
 //                                         crossAxisAlignment: CrossAxisAlignment.start,
 //                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                                         children: [
-                                        
+
 //                                           Flexible(
 //                                             child: Text(
 //                                               product.name,
@@ -262,8 +256,7 @@
 //                                               ),
 //                                             ),
 //                                           ),
-                                          
-                                
+
 //                                           Flexible(
 //                                             child: Text(
 //                                               product.description,
@@ -276,8 +269,7 @@
 //                                               ),
 //                                             ),
 //                                           ),
-                                          
-                                     
+
 //                                           StarRating(),
 //                                         ],
 //                                       ),
@@ -354,5 +346,5 @@
 //       ),
 //     );
 //   }
-  
+
 // }

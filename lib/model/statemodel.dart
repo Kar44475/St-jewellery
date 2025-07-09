@@ -21,39 +21,37 @@ class Statemodel {
   Data data;
 
   factory Statemodel.fromJson(Map<String, dynamic> json) => Statemodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-    required this.stateList,
-  });
+  Data({required this.status, required this.stateList});
 
   int status;
   List<StateList> stateList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        stateList: List<StateList>.from(
-            json["state_list"].map((x) => StateList.fromJson(x))),
-      );
+    status: json["status"],
+    stateList: List<StateList>.from(
+      json["state_list"].map((x) => StateList.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "state_list": stateList == null
-            ? null
-            : List<dynamic>.from(stateList.map((x) => x.toJson())),
-      };
+    "status": status,
+    "state_list": stateList == null
+        ? null
+        : List<dynamic>.from(stateList.map((x) => x.toJson())),
+  };
 }
 
 class StateList {
@@ -72,18 +70,18 @@ class StateList {
   DateTime updatedAt;
 
   factory StateList.fromJson(Map<String, dynamic> json) => StateList(
-        id: json["id"],
-        countryId: json["countryId"],
-        stateName: json["stateName"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    countryId: json["countryId"],
+    stateName: json["stateName"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "countryId": countryId,
-        "stateName": stateName,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "countryId": countryId,
+    "stateName": stateName,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

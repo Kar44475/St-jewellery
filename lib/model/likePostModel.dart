@@ -21,30 +21,25 @@ class LikePostModel {
   Data data;
 
   factory LikePostModel.fromJson(Map<String, dynamic> json) => LikePostModel(
-        success: json["success"] == null ? null : json["success"],
-        message: json["message"] == null ? null : json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"] == null ? null : json["success"],
+    message: json["message"] == null ? null : json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success == null ? null : success,
-        "message": message == null ? null : message,
-        "data": data == null ? null : data.toJson(),
-      };
+    "success": success == null ? null : success,
+    "message": message == null ? null : message,
+    "data": data == null ? null : data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.status,
-  });
+  Data({required this.status});
 
   bool status;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"] == null ? null : json["status"],
-      );
+  factory Data.fromJson(Map<String, dynamic> json) =>
+      Data(status: json["status"] == null ? null : json["status"]);
 
-  Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-      };
+  Map<String, dynamic> toJson() => {"status": status == null ? null : status};
 }

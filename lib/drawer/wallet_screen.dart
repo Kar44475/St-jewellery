@@ -12,54 +12,52 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
-
-void _showBottomDrawer(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (context) => DraggableScrollableSheet(
-      initialChildSize: 0.7,
-      minChildSize: 0.5,
-      maxChildSize: 0.9,
-      builder: (context, scrollController) => Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: Offset(0, -5),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            // Handle bar
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(2),
+  void _showBottomDrawer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.7,
+        minChildSize: 0.5,
+        maxChildSize: 0.9,
+        builder: (context, scrollController) => Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: Offset(0, -5),
               ),
-            ),
-            // Drawer content
-            Expanded(
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: DrawerWidget(),
+            ],
+          ),
+          child: Column(
+            children: [
+              // Handle bar
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
-            ),
-          ],
+              // Drawer content
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: DrawerWidget(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,39 +73,35 @@ void _showBottomDrawer(BuildContext context) {
           //     //   MaterialPageRoute(builder: (context) => const testt()),
           //     // );
           //   },
-           // icon: const Icon(Icons.notifications, size: 25),
-
-
-backgroundColor: Theme.of(context).primaryColor,
-    elevation: 0,
-    leading: 
-       IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            _showBottomDrawer(context);
-          },
-        ),
-      // : null,
-    title: Image.asset(
-      "assets/pngIcons/mainIcons.png",
-      height: 55,
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const Notificationsscreen(),
-          //   ),
-          // );
-        },
-        icon: const Icon(Icons.notifications, size: 25, color: Colors.white),
-      ),
-    ],
-
-
+          // icon: const Icon(Icons.notifications, size: 25),
+          backgroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () {
+              _showBottomDrawer(context);
+            },
           ),
+          // : null,
+          title: Image.asset("assets/pngIcons/mainIcons.png", height: 55),
+          actions: [
+            IconButton(
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const Notificationsscreen(),
+                //   ),
+                // );
+              },
+              icon: const Icon(
+                Icons.notifications,
+                size: 25,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
         //   appBarColor: Colors.white,
         //   title: Image.asset("assets/pngIcons/mainIcons.png", scale: 5),
         // ),

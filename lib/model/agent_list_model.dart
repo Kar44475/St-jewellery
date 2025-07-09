@@ -15,11 +15,7 @@ class Agentcustomermodel {
   String? message;
   Data? data;
 
-  Agentcustomermodel({
-    this.success,
-    this.message,
-    this.data,
-  });
+  Agentcustomermodel({this.success, this.message, this.data});
 
   factory Agentcustomermodel.fromJson(Map<String, dynamic> json) =>
       Agentcustomermodel(
@@ -29,10 +25,10 @@ class Agentcustomermodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
@@ -40,30 +36,27 @@ class Data {
   String? status;
   List<CustomerList>? customerList;
 
-  Data({
-    this.versions,
-    this.status,
-    this.customerList,
-  });
+  Data({this.versions, this.status, this.customerList});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        versions: json["versions"] == null
-            ? null
-            : Versions.fromJson(json["versions"]),
-        status: json["status"],
-        customerList: json["CustomerList"] == null
-            ? []
-            : List<CustomerList>.from(
-                json["CustomerList"]!.map((x) => CustomerList.fromJson(x))),
-      );
+    versions: json["versions"] == null
+        ? null
+        : Versions.fromJson(json["versions"]),
+    status: json["status"],
+    customerList: json["CustomerList"] == null
+        ? []
+        : List<CustomerList>.from(
+            json["CustomerList"]!.map((x) => CustomerList.fromJson(x)),
+          ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "versions": versions?.toJson(),
-        "status": status,
-        "CustomerList": customerList == null
-            ? []
-            : List<dynamic>.from(customerList!.map((x) => x.toJson())),
-      };
+    "versions": versions?.toJson(),
+    "status": status,
+    "CustomerList": customerList == null
+        ? []
+        : List<dynamic>.from(customerList!.map((x) => x.toJson())),
+  };
 }
 
 class CustomerList {
@@ -126,87 +119,79 @@ class CustomerList {
   });
 
   factory CustomerList.fromJson(Map<String, dynamic> json) => CustomerList(
-        id: json["id"],
-        registrationNumber: json["registrationNumber"],
-        userId: json["UserId"],
-        branchId: json["branchId"],
-        name: json["name"],
-        email: json["email"],
-        address: json["address"],
-        phone: json["phone"],
-        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-        aCNumber: json["a_c_number"],
-        adhaarcard: json["adhaarcard"],
-        pancard: json["pancard"],
-        nominee: json["nominee"],
-        nomineeRelation: json["nominee_relation"],
-        nomineePhone: json["nominee_phone"],
-        pincode: json["pincode"],
-        district: json["district"],
-        state: json["state"],
-        country: json["country"],
-        image: json["image"],
-        referalId: json["referalId"],
-        referalFrom: json["referalFrom"],
-        point: json["point"],
-        userType: json["userType"],
-        agentId: json["agentId"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    registrationNumber: json["registrationNumber"],
+    userId: json["UserId"],
+    branchId: json["branchId"],
+    name: json["name"],
+    email: json["email"],
+    address: json["address"],
+    phone: json["phone"],
+    dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+    aCNumber: json["a_c_number"],
+    adhaarcard: json["adhaarcard"],
+    pancard: json["pancard"],
+    nominee: json["nominee"],
+    nomineeRelation: json["nominee_relation"],
+    nomineePhone: json["nominee_phone"],
+    pincode: json["pincode"],
+    district: json["district"],
+    state: json["state"],
+    country: json["country"],
+    image: json["image"],
+    referalId: json["referalId"],
+    referalFrom: json["referalFrom"],
+    point: json["point"],
+    userType: json["userType"],
+    agentId: json["agentId"],
+    createdAt: json["created_at"] == null
+        ? null
+        : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null
+        ? null
+        : DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "registrationNumber": registrationNumber,
-        "UserId": userId,
-        "branchId": branchId,
-        "name": name,
-        "email": email,
-        "address": address,
-        "phone": phone,
-        "dob":
-            "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
-        "a_c_number": aCNumber,
-        "adhaarcard": adhaarcard,
-        "pancard": pancard,
-        "nominee": nominee,
-        "nominee_relation": nomineeRelation,
-        "nominee_phone": nomineePhone,
-        "pincode": pincode,
-        "district": district,
-        "state": state,
-        "country": country,
-        "image": image,
-        "referalId": referalId,
-        "referalFrom": referalFrom,
-        "point": point,
-        "userType": userType,
-        "agentId": agentId,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
+    "id": id,
+    "registrationNumber": registrationNumber,
+    "UserId": userId,
+    "branchId": branchId,
+    "name": name,
+    "email": email,
+    "address": address,
+    "phone": phone,
+    "dob":
+        "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
+    "a_c_number": aCNumber,
+    "adhaarcard": adhaarcard,
+    "pancard": pancard,
+    "nominee": nominee,
+    "nominee_relation": nomineeRelation,
+    "nominee_phone": nomineePhone,
+    "pincode": pincode,
+    "district": district,
+    "state": state,
+    "country": country,
+    "image": image,
+    "referalId": referalId,
+    "referalFrom": referalFrom,
+    "point": point,
+    "userType": userType,
+    "agentId": agentId,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }
 
 class Versions {
   int? android;
   int? ios;
 
-  Versions({
-    this.android,
-    this.ios,
-  });
+  Versions({this.android, this.ios});
 
-  factory Versions.fromJson(Map<String, dynamic> json) => Versions(
-        android: json["android"],
-        ios: json["ios"],
-      );
+  factory Versions.fromJson(Map<String, dynamic> json) =>
+      Versions(android: json["android"], ios: json["ios"]);
 
-  Map<String, dynamic> toJson() => {
-        "android": android,
-        "ios": ios,
-      };
+  Map<String, dynamic> toJson() => {"android": android, "ios": ios};
 }

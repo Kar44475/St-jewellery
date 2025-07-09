@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 Aboutusmodel aboutusmodelFromJson(String str) =>
@@ -19,33 +17,29 @@ class Aboutusmodel {
   Data data;
 
   factory Aboutusmodel.fromJson(Map<String, dynamic> json) => Aboutusmodel(
-        success: json["success"],
-        message: json["message"],
-        data: Data.fromJson(json["data"]),
-      );
+    success: json["success"],
+    message: json["message"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data == null ? null : data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data == null ? null : data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.aboutOurJewellery,
-  });
+  Data({required this.aboutOurJewellery});
 
   AboutUs aboutOurJewellery;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        aboutOurJewellery:
-           AboutUs.fromJson(json["AboutUs"]),
-      );
+  factory Data.fromJson(Map<String, dynamic> json) =>
+      Data(aboutOurJewellery: AboutUs.fromJson(json["AboutUs"]));
 
   Map<String, dynamic> toJson() => {
-        "AboutUs": aboutOurJewellery == null ? null : aboutOurJewellery.toJson(),
-      };
+    "AboutUs": aboutOurJewellery == null ? null : aboutOurJewellery.toJson(),
+  };
 }
 
 class AboutUs {
@@ -62,16 +56,16 @@ class AboutUs {
   dynamic updatedAt;
 
   factory AboutUs.fromJson(Map<String, dynamic> json) => AboutUs(
-        id: json["id"],
-        description: json["description"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-      );
+    id: json["id"],
+    description: json["description"],
+    createdAt: json["created_at"],
+    updatedAt: json["updated_at"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "description": description,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "description": description,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

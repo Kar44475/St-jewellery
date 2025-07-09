@@ -23,7 +23,8 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
     ),
     StoreInfo(
       name: "ST Jewellers Vadakkancherry",
-      location: "Golden Tower, Near Indian Bank\nOpp Private Bus Stand, Vadakkencherry\nKerala 678683", // Updated address
+      location:
+          "Golden Tower, Near Indian Bank\nOpp Private Bus Stand, Vadakkencherry\nKerala 678683", // Updated address
       storeImage: "assets/pngIcons/vdkn-tcr.png", // Restored individual image
       mapImage: "assets/pngIcons/vamap.jpeg",
       mapUrl: "https://maps.app.goo.gl/wRkpCwcayZ8W2dGs7?g_st=aw",
@@ -40,14 +41,13 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
     StoreInfo(
       name: "ST Jewellers Kattappana",
       location: "Kattappana, Kerala 685508",
-      storeImage: "assets/pngIcons/st-kattapana.png", // Restored individual image
+      storeImage:
+          "assets/pngIcons/st-kattapana.png", // Restored individual image
       mapImage: "assets/pngIcons/ktmap.jpeg",
       mapUrl: "https://maps.app.goo.gl/9kRKA4Megd6Ajxm79?g_st=aw",
       phoneNumber: "+918606999828", // Add actual phone number
     ),
   ];
-
-
 
   @override
   void initState() {
@@ -56,13 +56,9 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
       duration: Duration(milliseconds: 1000),
       vsync: this,
     );
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
     _animationController.forward();
   }
 
@@ -84,12 +80,12 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
             children: [
               // Header Section
               _buildHeader(),
-              
+
               SizedBox(height: 20),
-              
+
               // Stores List
               _buildStoresList(),
-              
+
               SizedBox(height: 30),
             ],
           ),
@@ -143,7 +139,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
               ),
             ),
           ),
-          
+
           // Content
           Padding(
             padding: EdgeInsets.all(30),
@@ -153,11 +149,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
               children: [
                 Row(
                   children: [
-                    Icon(
-                      Icons.store,
-                      size: 40,
-                      color: Colors.white,
-                    ),
+                    Icon(Icons.store, size: 40, color: Colors.white),
                     SizedBox(width: 15),
                     Expanded(
                       child: Column(
@@ -228,13 +220,13 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
         children: [
           // Store Header with Image - Updated for long image
           _buildStoreHeader(store),
-          
+
           // Store Details
           _buildStoreDetails(store),
-          
+
           // Map Section
           _buildMapSection(store),
-          
+
           // Action Buttons
           _buildActionButtons(store),
         ],
@@ -276,11 +268,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.store,
-                          size: 60,
-                          color: Colors.white,
-                        ),
+                        Icon(Icons.store, size: 60, color: Colors.white),
                         SizedBox(height: 10),
                         Text(
                           store.name,
@@ -298,7 +286,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
               },
             ),
           ),
-          
+
           // Gradient Overlay
           Container(
             height: 200,
@@ -310,14 +298,11 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.7),
-                ],
+                colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
               ),
             ),
           ),
-          
+
           // Store Name and Badge
           Positioned(
             bottom: 20,
@@ -365,7 +350,6 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
       ),
     );
   }
-
 
   Widget _buildStoreDetails(StoreInfo store) {
     return Padding(
@@ -490,16 +474,19 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
                       },
                     ),
                   ),
-                  
+
                   // Overlay with tap indicator
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                                           color: Colors.black.withOpacity(0.3),
+                      color: Colors.black.withOpacity(0.3),
                     ),
                     child: Center(
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.9),
                           borderRadius: BorderRadius.circular(25),
@@ -584,10 +571,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
     try {
       final Uri uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
-        await launchUrl(
-          uri,
-          mode: LaunchMode.externalApplication,
-        );
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         _showErrorSnackBar('Could not open maps application');
       }
@@ -602,27 +586,26 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
     try {
       // Remove any spaces or special characters except + and numbers
       String cleanNumber = phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
-      
+
       // Ensure the number starts with tel:
       String telUrl = 'tel:$cleanNumber';
-      
+
       print('Attempting to call: $telUrl'); // Debug log
-      
+
       final Uri uri = Uri.parse(telUrl);
-      
+
       // Check if the device can handle tel: URLs
       if (await canLaunchUrl(uri)) {
-        await launchUrl(
-          uri,
-          mode: LaunchMode.externalApplication,
-        );
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         // Fallback: try with different approach
         await _tryAlternativeCall(cleanNumber);
       }
     } catch (e) {
       print('Error making phone call: $e');
-      _showErrorSnackBar('Unable to make phone call. Please dial manually: ${phoneNumber}');
+      _showErrorSnackBar(
+        'Unable to make phone call. Please dial manually: ${phoneNumber}',
+      );
     }
   }
 
@@ -669,10 +652,7 @@ class _StoresTabState extends State<StoresTab> with TickerProviderStateMixin {
           ),
           title: Row(
             children: [
-              Icon(
-                Icons.phone,
-                color: Theme.of(context).primaryColor,
-              ),
+              Icon(Icons.phone, color: Theme.of(context).primaryColor),
               SizedBox(width: 10),
               Text('Call Store'),
             ],

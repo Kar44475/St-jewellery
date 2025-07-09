@@ -29,35 +29,30 @@ class Wholewalletmodel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
-  Data({
-    required this.wallet,
-    this.amountTotal,
-    this.gramTotal,
-  });
+  Data({required this.wallet, this.amountTotal, this.gramTotal});
 
   List<Wallet> wallet;
   var amountTotal;
   var gramTotal;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        wallet:
-            List<Wallet>.from(json["wallet"].map((x) => Wallet.fromJson(x))),
-        amountTotal: json["amount_total"],
-        gramTotal: json["gram_total"],
-      );
+    wallet: List<Wallet>.from(json["wallet"].map((x) => Wallet.fromJson(x))),
+    amountTotal: json["amount_total"],
+    gramTotal: json["gram_total"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "wallet": List<dynamic>.from(wallet.map((x) => x.toJson())),
-        "amount_total": amountTotal,
-        "gram_total": gramTotal,
-      };
+    "wallet": List<dynamic>.from(wallet.map((x) => x.toJson())),
+    "amount_total": amountTotal,
+    "gram_total": gramTotal,
+  };
 }
 
 class Wallet {
@@ -76,20 +71,20 @@ class Wallet {
   dynamic gram;
 
   factory Wallet.fromJson(Map<String, dynamic> json) => Wallet(
-        schemeName: json["schemeName"],
-        subscriptionId: json["SubscriptionId"],
-        wal: List<Wal>.from(json["wal"].map((x) => Wal.fromJson(x))),
-        amount: json["amount"],
-        gram: json["gram"],
-      );
+    schemeName: json["schemeName"],
+    subscriptionId: json["SubscriptionId"],
+    wal: List<Wal>.from(json["wal"].map((x) => Wal.fromJson(x))),
+    amount: json["amount"],
+    gram: json["gram"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "schemeName": schemeName,
-        "SubscriptionId": subscriptionId,
-        "wal": List<dynamic>.from(wal.map((x) => x.toJson())),
-        "amount": amount,
-        "gram": gram,
-      };
+    "schemeName": schemeName,
+    "SubscriptionId": subscriptionId,
+    "wal": List<dynamic>.from(wal.map((x) => x.toJson())),
+    "amount": amount,
+    "gram": gram,
+  };
 }
 
 class Wal {
@@ -126,37 +121,37 @@ class Wal {
   DateTime updatedAt;
 
   factory Wal.fromJson(Map<String, dynamic> json) => Wal(
-        id: json["id"],
-        voucherNumber: json["voucherNumber"],
-        userId: json["UserId"],
-        sheduledDateId: json["SheduledDateId"],
-        subscriptionId: json["subscriptionId"],
-        gram: json["gram"],
-        amount: json["amount"],
-        taransactionId: json["taransactionId"],
-        paymentDate: DateTime.parse(json["paymentDate"]),
-        paidBy: json["paidBy"],
-        paymentMethod: json["payment_method"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    voucherNumber: json["voucherNumber"],
+    userId: json["UserId"],
+    sheduledDateId: json["SheduledDateId"],
+    subscriptionId: json["subscriptionId"],
+    gram: json["gram"],
+    amount: json["amount"],
+    taransactionId: json["taransactionId"],
+    paymentDate: DateTime.parse(json["paymentDate"]),
+    paidBy: json["paidBy"],
+    paymentMethod: json["payment_method"],
+    status: json["status"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "voucherNumber": voucherNumber,
-        "UserId": userId,
-        "SheduledDateId": sheduledDateId,
-        "subscriptionId": subscriptionId,
-        "gram": gram,
-        "amount": amount,
-        "taransactionId": taransactionId,
-        "paymentDate":
-            "${paymentDate.year.toString().padLeft(4, '0')}-${paymentDate.month.toString().padLeft(2, '0')}-${paymentDate.day.toString().padLeft(2, '0')}",
-        "paidBy": paidBy,
-        "payment_method": paymentMethod,
-        "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "voucherNumber": voucherNumber,
+    "UserId": userId,
+    "SheduledDateId": sheduledDateId,
+    "subscriptionId": subscriptionId,
+    "gram": gram,
+    "amount": amount,
+    "taransactionId": taransactionId,
+    "paymentDate":
+        "${paymentDate.year.toString().padLeft(4, '0')}-${paymentDate.month.toString().padLeft(2, '0')}-${paymentDate.day.toString().padLeft(2, '0')}",
+    "paidBy": paidBy,
+    "payment_method": paymentMethod,
+    "status": status,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

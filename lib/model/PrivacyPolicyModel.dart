@@ -29,31 +29,29 @@ class PrivacyPolicyModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "data": data.toJson(),
-      };
+    "success": success,
+    "message": message,
+    "data": data.toJson(),
+  };
 }
 
 class Data {
   bool status;
   List<Privacy> privacy;
 
-  Data({
-    required this.status,
-    required this.privacy,
-  });
+  Data({required this.status, required this.privacy});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        status: json["status"],
-        privacy:
-            List<Privacy>.from(json["privacy"].map((x) => Privacy.fromJson(x))),
-      );
+    status: json["status"],
+    privacy: List<Privacy>.from(
+      json["privacy"].map((x) => Privacy.fromJson(x)),
+    ),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "privacy": List<dynamic>.from(privacy.map((x) => x.toJson())),
-      };
+    "status": status,
+    "privacy": List<dynamic>.from(privacy.map((x) => x.toJson())),
+  };
 }
 
 class Privacy {
@@ -63,23 +61,23 @@ class Privacy {
   dynamic updatedAt;
 
   Privacy({
-    required   this.id,
-    required  this.description,
+    required this.id,
+    required this.description,
     this.createdAt,
     this.updatedAt,
   });
 
   factory Privacy.fromJson(Map<String, dynamic> json) => Privacy(
-        id: json["id"],
-        description: json["description"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-      );
+    id: json["id"],
+    description: json["description"],
+    createdAt: json["created_at"],
+    updatedAt: json["updated_at"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "description": description,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "description": description,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

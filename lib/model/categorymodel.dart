@@ -18,11 +18,7 @@ class CategoryProductResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'data': data.toJson(),
-    };
+    return {'success': success, 'message': message, 'data': data.toJson()};
   }
 }
 
@@ -40,11 +36,13 @@ class ResponseData {
   factory ResponseData.fromJson(Map<String, dynamic> json) {
     return ResponseData(
       status: json['status'] ?? 0,
-      categoryList: (json['category_list'] as List<dynamic>?)
+      categoryList:
+          (json['category_list'] as List<dynamic>?)
               ?.map((item) => Category.fromJson(item as Map<String, dynamic>))
               .toList() ??
           [],
-      latestProductList: (json['Latest_product_list'] as List<dynamic>?)
+      latestProductList:
+          (json['Latest_product_list'] as List<dynamic>?)
               ?.map((item) => Product.fromJson(item as Map<String, dynamic>))
               .toList() ??
           [],
@@ -54,8 +52,12 @@ class ResponseData {
   Map<String, dynamic> toJson() {
     return {
       'status': status,
-      'category_list': categoryList.map((category) => category.toJson()).toList(),
-      'Latest_product_list': latestProductList.map((product) => product.toJson()).toList(),
+      'category_list': categoryList
+          .map((category) => category.toJson())
+          .toList(),
+      'Latest_product_list': latestProductList
+          .map((product) => product.toJson())
+          .toList(),
     };
   }
 }

@@ -112,7 +112,11 @@ class _RegistrationState extends State<Registration>
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: IconButton(
-                          icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 24),
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 24,
+                          ),
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -265,7 +269,7 @@ class _RegistrationState extends State<Registration>
 
   personalTab() {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24,vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
       child: Column(
         children: [
           // Enhanced Text Fields with consistent styling
@@ -296,9 +300,7 @@ class _RegistrationState extends State<Registration>
               decoration: BoxDecoration(
                 color: Color.fromRGBO(255, 203, 3, 0.15),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.transparent,
-                ),
+                border: Border.all(color: Colors.transparent),
               ),
               child: Row(
                 children: [
@@ -357,10 +359,7 @@ class _RegistrationState extends State<Registration>
               ),
               child: Text(
                 "Next",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -458,7 +457,7 @@ class _RegistrationState extends State<Registration>
           ),
           SizedBox(height: 40),
           // Enhanced Register Button
-                  // Enhanced Register Button
+          // Enhanced Register Button
           Container(
             width: double.infinity,
             height: 56,
@@ -470,7 +469,8 @@ class _RegistrationState extends State<Registration>
                   )
                 : ElevatedButton(
                     onPressed: () async {
-                      if (referralController.text.toString().compareTo("") == 0) {
+                      if (referralController.text.toString().compareTo("") ==
+                          0) {
                         showSnackBar(
                           context,
                           "Please enter referral code. If you don't have reference code please contact admin using WhatsApp!",
@@ -508,7 +508,9 @@ class _RegistrationState extends State<Registration>
                           "branchId": branchid.elementAt(
                             branch.indexOf(selectedbranch!),
                           ),
-                          "state": stateid.elementAt(states.indexOf(selectedstate!)),
+                          "state": stateid.elementAt(
+                            states.indexOf(selectedstate!),
+                          ),
                           "country": countryid.elementAt(
                             countrys.indexOf(selectedcountry!),
                           ),
@@ -557,18 +559,11 @@ class _RegistrationState extends State<Registration>
         controller: controller,
         keyboardType: keyboardType,
         maxLines: maxLines,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: Colors.grey[600]),
-          prefixIcon: Icon(
-            icon,
-            color: Colors.grey[600],
-            size: 20,
-          ),
+          prefixIcon: Icon(icon, color: Colors.grey[600], size: 20),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(12),
@@ -614,19 +609,9 @@ class _RegistrationState extends State<Registration>
         value: value,
         hint: Row(
           children: [
-            Icon(
-              icon,
-              color: Colors.grey[600],
-              size: 20,
-            ),
+            Icon(icon, color: Colors.grey[600], size: 20),
             SizedBox(width: 12),
-            Text(
-              hint,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 14,
-              ),
-            ),
+            Text(hint, style: TextStyle(color: Colors.grey[600], fontSize: 14)),
           ],
         ),
         items: items.map((String item) {
@@ -634,10 +619,7 @@ class _RegistrationState extends State<Registration>
             value: item,
             child: Text(
               item,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
           );
         }).toList(),
@@ -659,15 +641,9 @@ class _RegistrationState extends State<Registration>
           fillColor: Colors.transparent,
           contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         ),
-        icon: Icon(
-          Icons.keyboard_arrow_down,
-          color: Colors.grey[600],
-        ),
+        icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
         dropdownColor: Colors.white,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-        ),
+        style: TextStyle(color: Colors.black, fontSize: 14),
       ),
     );
   }

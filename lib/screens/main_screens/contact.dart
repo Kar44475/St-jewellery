@@ -14,14 +14,13 @@ class ContactTab extends StatefulWidget {
 class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-  
 
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _commentController = TextEditingController();
-  
+
   bool _isSubmitting = false;
 
   @override
@@ -31,13 +30,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
       duration: Duration(milliseconds: 1000),
       vsync: this,
     );
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
     _animationController.forward();
   }
 
@@ -61,19 +56,16 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-        
               _buildHeaderBanner(),
-              
+
               SizedBox(height: 30),
-              
-            
+
               _buildContactInfo(),
-              
+
               SizedBox(height: 30),
-              
-           
+
               _buildEnquiryForm(),
-              
+
               SizedBox(height: 30),
             ],
           ),
@@ -88,7 +80,6 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
       width: double.infinity,
       child: Stack(
         children: [
-     
           ClipRRect(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -120,8 +111,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               },
             ),
           ),
-          
-       
+
           Container(
             height: 250,
             decoration: BoxDecoration(
@@ -132,15 +122,11 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.6),
-                ],
+                colors: [Colors.transparent, Colors.black.withOpacity(0.6)],
               ),
             ),
           ),
-          
-  
+
           Positioned(
             bottom: 30,
             left: 30,
@@ -191,26 +177,23 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-        
           _buildContactCard(
             icon: "assets/pngIcons/175ae58f-10c8-4628-99de-42317f40ddd3.svg",
             title: "Address",
             content: "Gate No.1, West Hill Road\nGosayikunnu\nThrissur",
             onTap: () => _openMaps(),
           ),
-          
+
           SizedBox(height: 20),
-          
-       
+
           _buildContactCard(
             icon: "assets/pngIcons/e19621c1-1b8c-47e5-86a7-36f3b78cd172.svg",
             title: "Customer Service",
             content: "Day: Monday to Sunday\nTime: 10.00am - 7.30pm",
             onTap: null,
           ),
-          
+
           SizedBox(height: 20),
-          
 
           _buildContactCard(
             icon: "assets/pngIcons/85efb04e-8840-4c63-b9a6-319193e1a3a0.svg",
@@ -295,11 +278,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               ),
             ),
             if (onTap != null)
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey[400],
-              ),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
           ],
         ),
       ),
@@ -339,14 +318,10 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               SizedBox(height: 8),
               Text(
                 'Fill out the form below and we\'ll get back to you soon',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
               SizedBox(height: 25),
-              
-   
+
               _buildFormField(
                 controller: _nameController,
                 label: 'Full Name',
@@ -359,10 +334,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                   return null;
                 },
               ),
-              
+
               SizedBox(height: 20),
-              
-          
+
               _buildFormField(
                 controller: _emailController,
                 label: 'Email Address',
@@ -373,16 +347,17 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  if (!RegExp(
+                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                  ).hasMatch(value)) {
                     return 'Please enter a valid email';
                   }
                   return null;
                 },
               ),
-              
+
               SizedBox(height: 20),
-              
-        
+
               _buildFormField(
                 controller: _phoneController,
                 label: 'Phone Number',
@@ -399,9 +374,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                   return null;
                 },
               ),
-              
+
               SizedBox(height: 20),
-     
+
               _buildFormField(
                 controller: _commentController,
                 label: 'Message/Comment',
@@ -415,10 +390,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                   return null;
                 },
               ),
-              
+
               SizedBox(height: 30),
-              
-   
+
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -441,7 +415,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                               height: 20,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
                               ),
                             ),
                             SizedBox(width: 10),
@@ -499,11 +475,14 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey[300]!
-            ),),
+              borderSide: BorderSide(color: Colors.grey[300]!),
+            ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2,
+              ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -537,8 +516,9 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
 
   Future<void> _openMaps() async {
     const String address = "Gate No.1, West Hill Road, Gosayikunnu, Thrissur";
-    final String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(address)}";
-    
+    final String googleMapsUrl =
+        "https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(address)}";
+
     try {
       final Uri uri = Uri.parse(googleMapsUrl);
       if (await canLaunchUrl(uri)) {
@@ -573,10 +553,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
             SizedBox(height: 20),
             Text(
               'Choose a number to call',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             _buildPhoneOption('+91 7025 770 257'),
@@ -605,10 +582,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
       ),
       title: Text(
         phoneNumber,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       ),
       trailing: Icon(Icons.call, color: Colors.green),
       onTap: () {
@@ -622,7 +596,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
     try {
       String cleanNumber = phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
       String telUrl = 'tel:$cleanNumber';
-      
+
       final Uri uri = Uri.parse(telUrl);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
@@ -663,7 +637,11 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.phone, color: Theme.of(context).primaryColor, size: 20),
+                    Icon(
+                      Icons.phone,
+                      color: Theme.of(context).primaryColor,
+                      size: 20,
+                    ),
                     SizedBox(width: 10),
                     Text(
                       phoneNumber,
@@ -719,7 +697,6 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
     });
 
     try {
-   
       Map<String, dynamic> enquiryData = {
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
@@ -731,21 +708,16 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
 
       print('Submitting enquiry: $enquiryData');
 
-   
       try {
-        
         await Dashbordservice.getDashboard();
-        
-  
+
         _showSuccessDialog();
         _clearForm();
       } catch (apiError) {
-   
         print('API call failed as expected: $apiError');
         _showSuccessDialog();
         _clearForm();
       }
-
     } catch (e) {
       print('Error submitting enquiry: $e');
       _showErrorSnackBar('Failed to submit enquiry. Please try again.');
@@ -774,11 +746,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
                   color: Colors.green.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.check_circle,
-                  size: 60,
-                  color: Colors.green,
-                ),
+                child: Icon(Icons.check_circle, size: 60, color: Colors.green),
               ),
               SizedBox(height: 20),
               Text(
@@ -793,10 +761,7 @@ class _ContactTabState extends State<ContactTab> with TickerProviderStateMixin {
               Text(
                 'Thank you for your enquiry. We will get back to you within 24 hours.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ],
           ),

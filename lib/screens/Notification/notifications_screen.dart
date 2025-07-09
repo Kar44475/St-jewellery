@@ -4,7 +4,6 @@ import 'package:stjewellery/model/Notificationmodel.dart';
 import 'package:stjewellery/service/notificationservice.dart';
 import 'package:intl/intl.dart';
 
-
 class Notificationsscreen extends StatefulWidget {
   const Notificationsscreen({Key? key}) : super(key: key);
 
@@ -43,9 +42,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-          
-            },
+            onPressed: () {},
             icon: Icon(Icons.done_all, color: Colors.white),
           ),
         ],
@@ -57,78 +54,76 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
               ),
             )
           : data!.data.notification.isNotEmpty
-              ? Column(
-                  children: [
-               
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.all(16),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(255, 203, 3, 1),
-                        borderRadius: BorderRadius.circular(12),
+          ? Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(255, 203, 3, 1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(
+                          Icons.notifications_active,
+                          color: Colors.black87,
+                          size: 20,
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(8),
+                      SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Recent Notifications",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
                             ),
-                            child: Icon(
-                              Icons.notifications_active,
-                              color: Colors.black87,
-                              size: 20,
+                            Text(
+                              "${data!.data.notification.length} notifications",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Recent Notifications",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                                Text(
-                                  "${data!.data.notification.length} notifications",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    
-             
-                    Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        itemCount: data!.data.notification.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return _buildNotificationCard(index);
-                        },
-                      ),
-                    ),
-                  ],
-                )
-              : _buildEmptyState(),
+                    ],
+                  ),
+                ),
+
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: data!.data.notification.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _buildNotificationCard(index);
+                    },
+                  ),
+                ),
+              ],
+            )
+          : _buildEmptyState(),
     );
   }
 
   Widget _buildNotificationCard(int index) {
     final notification = data!.data.notification.elementAt(index);
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -148,7 +143,6 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-       
             Container(
               width: 40,
               height: 40,
@@ -162,15 +156,13 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                 size: 20,
               ),
             ),
-            
+
             SizedBox(width: 12),
-            
-          
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-           
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -186,7 +178,10 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                       ),
                       SizedBox(width: 8),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(12),
@@ -202,10 +197,9 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                       ),
                     ],
                   ),
-                  
+
                   SizedBox(height: 8),
-                  
-           
+
                   Text(
                     notification.description,
                     style: TextStyle(
@@ -215,9 +209,9 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                       height: 1.4,
                     ),
                   ),
-                  
+
                   SizedBox(height: 12),
-          
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -241,8 +235,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
                           ),
                         ],
                       ),
-                      
-                   
+
                       Container(
                         width: 8,
                         height: 8,
@@ -310,7 +303,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
       DateTime date = DateTime.parse(dateString);
       DateTime now = DateTime.now();
       Duration difference = now.difference(date);
-      
+
       if (difference.inDays == 0) {
         if (difference.inHours == 0) {
           return "${difference.inMinutes}m ago";
@@ -330,7 +323,7 @@ class _NotificationsscreenState extends State<Notificationsscreen> {
 
   bool load = true;
   NotificationModel? data;
-  
+
   Future<void> getnoification() async {
     try {
       Loading.show(context);

@@ -18,11 +18,7 @@ class AllProductsResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'data': data.toJson(),
-    };
+    return {'success': success, 'message': message, 'data': data.toJson()};
   }
 }
 
@@ -30,15 +26,13 @@ class AllProductsData {
   final int status;
   final List<AllProduct> allProductList;
 
-  AllProductsData({
-    required this.status,
-    required this.allProductList,
-  });
+  AllProductsData({required this.status, required this.allProductList});
 
   factory AllProductsData.fromJson(Map<String, dynamic> json) {
     return AllProductsData(
       status: json['status'] ?? 0,
-      allProductList: (json['All_product_list'] as List<dynamic>?)
+      allProductList:
+          (json['All_product_list'] as List<dynamic>?)
               ?.map((item) => AllProduct.fromJson(item as Map<String, dynamic>))
               .toList() ??
           [],
@@ -48,7 +42,9 @@ class AllProductsData {
   Map<String, dynamic> toJson() {
     return {
       'status': status,
-      'All_product_list': allProductList.map((product) => product.toJson()).toList(),
+      'All_product_list': allProductList
+          .map((product) => product.toJson())
+          .toList(),
     };
   }
 }
