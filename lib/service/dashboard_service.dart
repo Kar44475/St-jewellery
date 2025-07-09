@@ -5,7 +5,7 @@ import 'package:stjewellery/model/categorymodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 
 import 'package:dio/dio.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 
 class Dashbordservice {
   static Future<Dashboardmodel> getDashboard() async {

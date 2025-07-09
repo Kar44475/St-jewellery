@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/model/agent_profile_view_model.dart';
 import 'package:stjewellery/model/profileeditmodel.dart';
 import 'package:stjewellery/model/profileeditpostmodel.dart';

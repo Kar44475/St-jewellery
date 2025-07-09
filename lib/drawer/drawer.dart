@@ -7,7 +7,7 @@ import 'package:stjewellery/drawer/contact_us.dart';
 
 import 'package:stjewellery/drawer/privacy_policy.dart';
 import 'package:stjewellery/drawer/refer_and_earn.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/Widgets/exitwidget.dart';
 import 'package:stjewellery/screens/Login_OTP/login_screen.dart';
 import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';

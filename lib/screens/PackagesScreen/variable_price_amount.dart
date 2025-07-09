@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/model/Schemeaddmodel.dart';
 import 'package:stjewellery/model/schemeAmountListmodel.dart';
 import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';
