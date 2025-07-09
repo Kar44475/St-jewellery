@@ -23,7 +23,7 @@ class _SelectPackageState extends State<SelectpriceTabyearly> {
   int? schemeid;
   int termindex = 0;
 
-  SchemeAmountListmodel? data;
+  SchemeAmountListmodel? schemelistModel;
 
   int? role;
 
@@ -55,16 +55,16 @@ class _SelectPackageState extends State<SelectpriceTabyearly> {
       );
       setState(() {
         Loading.dismiss();
-        data = datas;
-        print(data);
+        schemelistModel = datas;
+        print(schemelistModel);
         load = false;
       });
       _isCheckeded = List<bool>.filled(
-        data!.data.fixed.length,
+        schemelistModel!.data.fixed.length,
         false,
         growable: true,
       );
-      data!.data.fixed.forEach((element) {
+      schemelistModel!.data.fixed.forEach((element) {
         pricelist.add(element.id);
       });
     } catch (e) {
@@ -100,12 +100,12 @@ class _SelectPackageState extends State<SelectpriceTabyearly> {
       ),
       body: load == true
           ? const Center(child: CircularProgressIndicator())
-          : data!.data != null
+          : schemelistModel!.data != null
               ? Column(
                   children: [
                     Expanded(
                       child: VariablePriceAmount(
-                        data: data!,
+                        data: schemelistModel!,
                         schemeid: schemeid!,
                         details: details!,
                       ),

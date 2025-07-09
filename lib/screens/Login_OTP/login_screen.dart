@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:stjewellery/Utils/utils.dart';
 import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
- import 'package:stjewellery/screens/Login_OTP/otp_screen.dart';
+import 'package:stjewellery/screens/Login_OTP/otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   int _logoTapCount = 0;
   Timer? _tapCountTimer;
   bool _isLongPressing = false;
-
 
   static const String _testPhoneNumber = "9946088916";
   static const String _testOtp = "000000";
@@ -44,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           _buildHeaderSection(context),
@@ -53,19 +53,27 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     );
   }
 
-
   Widget _buildHeaderSection(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     
     return Expanded(
       flex: 9,
       child: Container(
-        color: Theme.of(context).primaryColor,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor,
+              Theme.of(context).primaryColor.withOpacity(0.9),
+            ],
+          ),
+        ),
         width: double.infinity,
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            //  _buildMenuButton(context),
               _buildLogoSection(screenWidth),
             ],
           ),
@@ -74,43 +82,31 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     );
   }
 
-
-  Widget _buildMenuButton(BuildContext context) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.white,
-              size: 28,
-            ),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-      ),
-    );
-  }
-
-
   Widget _buildLogoSection(double screenWidth) {
-    return Expanded(
-      child: Center(
-        child: GestureDetector(
-          onTap: _handleLogoTap,
-          child: Image.asset(
-            "assets/pngIcons/mainIcons.png",
-            width: screenWidth * 0.4,
-            height: screenWidth * 0.4,
-            fit: BoxFit.contain,
+    return Container(
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
           ),
+        ],
+      ),
+      child: GestureDetector(
+        onTap: _handleLogoTap,
+        child: Image.asset(
+          "assets/pngIcons/mainIcons.png",
+          width: screenWidth * 0.3,
+          height: screenWidth * 0.3,
+          fit: BoxFit.contain,
         ),
       ),
     );
   }
-
 
   Widget _buildLoginFormSection(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -124,23 +120,19 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
           decoration: _buildFormContainerDecoration(),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
             child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: screenHeight * 0.5 - 64),
+              constraints: BoxConstraints(minHeight: screenHeight * 0.5 - 80),
               child: IntrinsicHeight(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 10),
                     _buildSignInTitle(context),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
                     _buildSubtitle(),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 40),
                     _buildPhoneNumberField(),
-                    // const SizedBox(height: 24),
-                    // _buildDividerWithText(),
-                    // const SizedBox(height: 16),
-                    // _buildGuestLoginButton(),
                     const Spacer(),
                     _buildGetOtpButton(context),
                   ],
@@ -153,24 +145,22 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     );
   }
 
-
   BoxDecoration _buildFormContainerDecoration() {
     return BoxDecoration(
       color: Colors.white,
       borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
+        topLeft: Radius.circular(35),
+        topRight: Radius.circular(35),
       ),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 10,
-          offset: const Offset(0, -5),
+          color: Colors.black.withOpacity(0.08),
+          blurRadius: 15,
+          offset: const Offset(0, -8),
         ),
       ],
     );
   }
-
 
   Widget _buildSignInTitle(BuildContext context) {
     return GestureDetector(
@@ -179,94 +169,107 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
       child: Text(
         "SIGN IN",
         style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
           color: Theme.of(context).primaryColor,
-          letterSpacing: 1.5,
+          letterSpacing: 1.2,
         ),
       ),
     );
   }
 
-
   Widget _buildSubtitle() {
-    return const Text(
+    return Text(
       "Your golden account awaits - log in to shine",
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 14,
-        color: Colors.black,
+        fontSize: 15,
+        color: Colors.grey[600],
         fontWeight: FontWeight.w400,
+        height: 1.4,
       ),
     );
   }
-
 
   Widget _buildPhoneNumberField() {
-    return IntlPhoneField(
-      initialCountryCode: "IN",
-      controller: _phoneNumberController,
-      keyboardType: const TextInputType.numberWithOptions(signed: true),
-      decoration: InputDecoration(
-        labelText: 'Mobile Number',
-        labelStyle: TextStyle(color: Colors.grey[600]),
-        border: _buildInputBorder(),
-        focusedBorder: _buildInputBorder(),
-        enabledBorder: _buildInputBorder(),
-        errorBorder: _buildInputBorder(),
-        disabledBorder: _buildInputBorder(),
-        filled: true,
-        fillColor: const Color.fromRGBO(255, 203, 3, 0.15),
-        counterText: "",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
-      languageCode: "en",
-      onChanged: (phone) => print(phone.completeNumber),
-      onCountryChanged: (country) => print('Country changed to: ${country.name}'),
+      child: IntlPhoneField(
+        initialCountryCode: "IN",
+        controller: _phoneNumberController,
+        keyboardType: const TextInputType.numberWithOptions(signed: true),
+        decoration: InputDecoration(
+          labelText: 'Mobile Number',
+          labelStyle: TextStyle(
+            color: Colors.grey[600],
+            fontWeight: FontWeight.w500,
+          ),
+          border: _buildInputBorder(),
+          focusedBorder: _buildFocusedInputBorder(),
+          enabledBorder: _buildInputBorder(),
+          errorBorder: _buildInputBorder(),
+          disabledBorder: _buildInputBorder(),
+          filled: true,
+          fillColor: Colors.grey[50],
+          counterText: "",
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        ),
+        languageCode: "en",
+        onChanged: (phone) => print(phone.completeNumber),
+        onCountryChanged: (country) => print('Country changed to: ${country.name}'),
+      ),
     );
   }
-
 
   OutlineInputBorder _buildInputBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
+      borderRadius: BorderRadius.circular(15),
     );
   }
 
-
-  Widget _buildDividerWithText() {
-    return Row(
-      children: [
-        Expanded(child: Divider(color: Colors.grey[300], thickness: 1)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            "or",
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        Expanded(child: Divider(color: Colors.grey[300], thickness: 1)),
-      ],
+  OutlineInputBorder _buildFocusedInputBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+      borderRadius: BorderRadius.circular(15),
     );
   }
-
-
-
 
   Widget _buildGetOtpButton(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 56,
-      margin: const EdgeInsets.only(top: 50),
+      margin: const EdgeInsets.only(top: 30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
       child: _isLoadingOtp
-          ? Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).primaryColor,
+          ? Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2.5,
+                ),
               ),
             )
           : ElevatedButton(
@@ -274,22 +277,22 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
                 foregroundColor: Colors.white,
-                elevation: 2,
+                elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(15),
                 ),
               ),
               child: const Text(
                 "Get OTP",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5,
                 ),
               ),
             ),
     );
   }
-
 
   void _handleLogoTap() {
     _logoTapCount++;
@@ -338,7 +341,6 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     }
   }
 
-
   void _navigateToTestOtp(BuildContext context, String phoneNumber) {
     setState(() {
       _isLoadingOtp = false;
@@ -356,9 +358,8 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   }
 
   void _sendOtpToUser(BuildContext context, String phoneNumber) {
-    sendOtp(context, phoneNumber, _generatedOtpNumber.toString(),true);
+    sendOtp(context, phoneNumber, _generatedOtpNumber.toString(), true);
   }
-
 
   bool _validatePhoneNumber(String phoneNumber) {
     const String phonePattern = r'(^(?:[+0]9)?[0-9]{6,12}$)';
@@ -380,3 +381,4 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
     return _generatedOtpNumber!;
   }
 }
+ 
