@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/drawer/drawer.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);

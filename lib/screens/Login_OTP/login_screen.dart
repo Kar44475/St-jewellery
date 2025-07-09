@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
 import 'package:stjewellery/screens/Login_OTP/otp_screen.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 // import 'package:stjewellery/Util/Utils.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 
 import 'package:dio/dio.dart';

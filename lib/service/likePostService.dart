@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 
 import '../model/SaveSchemeModel.dart';
 

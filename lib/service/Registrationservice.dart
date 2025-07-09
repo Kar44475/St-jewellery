@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/model/Registrationmodel.dart';
 import 'package:stjewellery/model/agentregisterationmodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
-// import 'package:stjewellery/utils/utils.dart';
+// import 'package:stjewellery/support_widget/essential.dart';
 
 class Registrationservice {
   static Future<Registrationmodel?> getRegistration(Map data) async {

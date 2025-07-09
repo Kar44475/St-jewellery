@@ -8,7 +8,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:stjewellery/agent_module/agent_home_screen/agent_tab.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/model/user_model.dart';
 import 'package:stjewellery/screens/Login_OTP/otp_template.dart';
 import 'package:stjewellery/screens/PackagesScreen/select_scheme.dart';

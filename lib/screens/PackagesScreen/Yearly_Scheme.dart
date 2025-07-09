@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/agent_module/agent_home_screen/agent_tab.dart';
 import 'package:stjewellery/model/SchemeListModel.dart';
 import 'package:stjewellery/model/Schemeaddmodel.dart';

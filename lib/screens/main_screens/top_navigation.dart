@@ -6,7 +6,7 @@ import 'package:stjewellery/screens/main_screens/scheme_screen.dart';
 import 'package:stjewellery/screens/main_screens/jewellery_details_home_screen.dart'; // Add this import
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/drawer/drawer.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/screens/Notification/notifications_screen.dart';
 
 class TopNavigation extends StatefulWidget {

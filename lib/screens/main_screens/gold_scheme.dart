@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stjewellery/screens/main_screens/login_pop_widget.dart';
 import 'package:stjewellery/screens/main_screens/top_navigation.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 
 class GoldBookingTab extends StatefulWidget {
   const GoldBookingTab({super.key});

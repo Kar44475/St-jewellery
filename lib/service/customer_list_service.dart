@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/model/Nextpaymentcustomerlistmodel.dart';
 import 'package:stjewellery/model/agent_list_model.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';

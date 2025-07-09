@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:stjewellery/Widgets/Inputdropdown.dart';
 import 'package:stjewellery/Widgets/TextFieldWidget.dart';
 import 'package:stjewellery/model/Countymodel.dart';

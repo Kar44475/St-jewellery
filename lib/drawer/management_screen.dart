@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stjewellery/utils/utils.dart';
+import 'package:stjewellery/support_widget/essential.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:stjewellery/model/teamModel.dart';
 import 'package:stjewellery/service/teamservice.dart';
