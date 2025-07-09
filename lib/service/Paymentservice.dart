@@ -3,7 +3,7 @@ import 'package:stjewellery/model/paymentmodel.dart';
 import 'package:stjewellery/model/userpaymodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 
 class Paymentservice {
   static Future<Paymentmodel> postPay(Map data) async {

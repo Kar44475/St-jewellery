@@ -1,7 +1,7 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/model/Referralmodel.dart';
 import 'package:stjewellery/service/Referralservice.dart';
 

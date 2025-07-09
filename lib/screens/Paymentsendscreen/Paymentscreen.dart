@@ -7,7 +7,7 @@
 // import 'package:image_picker/image_picker.dart';
 // import 'package:stjewellery/BottomNav/BottomNav.dart';
 // import 'package:stjewellery/Constant/Constants.dart';
-// import 'package:stjewellery/Utils/Utils.dart';
+// import 'package:stjewellery/utils/utils.dart';
 // import 'package:stjewellery/model/Bankdetailsmodel.dart';
 // import 'package:stjewellery/model/userpaymodel.dart';
 // import 'package:stjewellery/screens/Paymentsendscreen/newWidgetsPaymentPage.dart';

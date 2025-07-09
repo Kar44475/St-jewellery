@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import '../model/TermsNConditionModel.dart';
 import '../screens/Config/ApiConfig.dart';
 import '../screens/Config/DioInstance.dart';

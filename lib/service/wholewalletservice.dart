@@ -1,4 +1,4 @@
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/model/wholewalletmodel.dart';
 
 import 'package:stjewellery/screens/Config/ApiConfig.dart';

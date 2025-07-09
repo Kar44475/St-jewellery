@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/model/Bankdetailsmodel.dart';
 import 'package:stjewellery/model/userpaymodel.dart';
 import 'package:stjewellery/screens/Paymentsendscreen/newWidgetsPaymentPage.dart';

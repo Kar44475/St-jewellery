@@ -2,7 +2,7 @@ import 'package:stjewellery/model/Notificationmodel.dart';
 import 'package:stjewellery/screens/Config/ApiConfig.dart';
 import 'package:stjewellery/screens/Config/DioInstance.dart';
 import 'package:dio/dio.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 
 class Notificationservice {
   static Future<NotificationModel> notification() async {

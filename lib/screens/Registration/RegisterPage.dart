@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:stjewellery/Constant/constants.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/Widgets/Inputdropdown.dart';
 import 'package:stjewellery/Widgets/TextFieldWidget.dart';
 import 'package:stjewellery/model/BranchListModel.dart';

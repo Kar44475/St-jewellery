@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stjewellery/Constant/constants.dart';
 import 'package:stjewellery/drawer/drawer.dart';
-import 'package:stjewellery/Utils/utils.dart';
+import 'package:stjewellery/utils/utils.dart';
 import 'package:stjewellery/Widgets/exitwidget.dart';
 import 'package:stjewellery/model/profileeditmodel.dart';
 import 'package:stjewellery/model/profileeditpostmodel.dart';
