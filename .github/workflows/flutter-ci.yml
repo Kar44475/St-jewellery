@@ -1,0 +1,77 @@
+name: Flutter CI/CD Pipeline
+
+# When should this run?
+on:
+  push:
+    branches: [ master1 ]  # Run when you push to master1
+  pull_request:
+    branches: [ master1 ]  # Run when someone creates a pull request
+
+jobs:
+  # Job 1: Test the code
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Get your code
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Step 2: Install Flutter
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.32.0'  # Updated to match your version
+        channel: 'stable'
+    
+    # Step 3: Download dependencies
+    - name: Install dependencies
+      run: flutter pub get
+    
+    # Step 4: Check code formatting
+    - name: Check formatting
+      run: dart format --output=none --set-exit-if-changed .
+    
+    # Step 5: Analyze code for issues
+    - name: Analyze code
+      run: flutter analyze
+    
+    # Step 6: Run tests (if you have any)
+    - name: Run tests
+      run: flutter test
+
+  # Job 2: Build Android App (only if tests pass)
+  build-android:
+    name: Build Android
+    needs: test  # Wait for test job to complete
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master1'  # Only on master1 branch
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.32.0'  # Updated to match your version
+        channel: 'stable'
+    
+    - name: Setup Java (needed for Android)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '21'  # Updated to match your Java version
+    
+    - name: Install dependencies
+      run: flutter pub get
+    
+    - name: Build APK
+      run: flutter build apk --release
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
