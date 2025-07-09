@@ -49,6 +49,7 @@ jobs:
     needs: test  # Wait for test job to complete
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master1'  # Only on master1 branch
+    timeout-minutes: 30  # Increase timeout
     
     steps:
     - name: Checkout code
@@ -64,13 +65,21 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
-        java-version: '21'
+        java-version: '17'  # Changed from 21 to 17 for better compatibility
     
     - name: Install dependencies
       run: flutter pub get
     
-    - name: Build APK
-      run: flutter build apk --release
+    - name: Clean build
+      run: flutter clean
+    
+    - name: Build APK with more memory
+      run: |
+        export GRADLE_OPTS="-Xmx2048m -Dorg.gradle.daemon=false"
+        flutter build apk --release --verbose
+    
+    - name: Verify APK exists
+      run: ls -la build/app/outputs/flutter-apk/
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
