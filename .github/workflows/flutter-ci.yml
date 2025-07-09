@@ -33,7 +33,7 @@ jobs:
       continue-on-error: true
 
   build-android:
-    name: Build AAB for Play Store
+    name: Build Signed AAB for Play Store
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master1'
@@ -58,11 +58,25 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     
-    - name: Build AAB
-      run: flutter build appbundle
+    - name: Create keystore directory
+      run: mkdir -p android/app/keystore
     
-    - name: Upload AAB
+    - name: Decode Keystore
+      run: |
+        echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/keystore/upload-keystore.jks
+    
+    - name: Create key.properties
+      run: |
+        echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
+        echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+        echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+        echo "storeFile=keystore/upload-keystore.jks" >> android/key.properties
+    
+    - name: Build Signed Release AAB
+      run: flutter build appbundle --release
+    
+    - name: Upload Signed AAB
       uses: actions/upload-artifact@v4
       with:
-        name: app-release-aab
+        name: app-release-signed-aab
         path: build/app/outputs/bundle/release/app-release.aab
